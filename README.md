@@ -5,6 +5,11 @@ Collaborators
 ---
 This draft originally created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
 
+Feedback / discussion
+---
+
+Please comment on this draft specification in the Digital Curation Google Group, https://groups.google.com/forum/?fromgroups#!forum/digital-curation .
+
 Purpose and background
 ---
 
@@ -147,7 +152,7 @@ bagProfileBar.json
 @todo
 ---
 
-* Request feedback from BagIt implementer community, initially over the digital-curation@googlegroups.com discussion list.
+* Request feedback from BagIt implementer community, initially in the Digital Curation Google Group.
 * Write code to confirm proof-of-concept use cases.
 * Formalize specification.
 * Write standard libraries to assist in profile validation.
