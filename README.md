@@ -144,9 +144,9 @@ bagProfileBar.json
 
     "manifest-required":  [ "md5" ],
     "allow-fetch.txt" : false,
-    "serialization" : "required",
-    "accept-serialization" : [ "application/zip", "application/tar" ],
-    "accept-version" : [ "0.96", "0.97" ],
+    "serialization" : "optional",
+    "accept-serialization" : [ "application/zip" ],
+    "accept-version" : [ "0.97" ],
   }
 
 @todo
