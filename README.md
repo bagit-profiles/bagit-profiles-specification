@@ -13,7 +13,7 @@ Please comment on this draft specification in the Digital Curation Google Group,
 Purpose and background
 ---
 
-The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on which optional components of the bags they are exchanging. Details of the profile are instantiated in a JSON file that both the producing and consuming applications interpret using the conventions described below. The profile file sits at an HTTP URI (e.g., http://foo.example.com/bagitprofiles/profile-bar.json), and can therefore be read by any number of applications creating or consuming Bags:
+The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging. Details of the profile are instantiated in a JSON file that both the producing and consuming applications interpret using the conventions described below. The profile file sits at an HTTP URI (e.g., http://foo.example.com/bagitprofiles/profile-bar.json), and can therefore be read by any number of applications creating or consuming Bags:
 
 	                        BagIt Profile JSON file
                                         /       ^
@@ -51,7 +51,7 @@ Each manifest file in LIST is required.
 A fetch.txt file is allowed within the bag. Default: true
 
 4. serialization: forbidden|required|optional
-Allow, forbid or require serialization of bags. Default is optional.
+Allow, forbid or require serialization of Bags. Default is optional.
 
 5. accept-serialization: LIST
 A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
