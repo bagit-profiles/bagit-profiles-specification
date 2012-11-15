@@ -11,7 +11,7 @@ Purpose and background
 The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on which optional components of the bags they are exchanging. Details of the profile are instantiated in a JSON file that both the producing and consuming applications interpret using the conventions described below. The profile file sits at an HTTP URI (e.g., http://foo.example.com/bagitprofiles/profile-bar.json), and can therefore be read by any number of applications creating or consuming Bags:
 
 				BagIt Profile JSON file
-					/	^
+					/       ^
 				       v         \		
 			Bag creating app 1  -->  Bag consuming app
 			Bag creating app 2
