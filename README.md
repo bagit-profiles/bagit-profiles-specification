@@ -85,16 +85,16 @@ bagProfileFoo.json
         "Version": "0.3"
       },
       "bag-info": {
-        "bagging-date": {
+        "Bagging-Date": {
+          "required": true
+        },
+        "Source-Organization" : {
+          "required": true,
+          "values": [ "Simon Fraser University", "York University" ]
+        },
+        "Contact-Phone": {
           "required": true
         }
-      },
-      "source-organization" : {
-        "required": true,
-          "values": [ "Simon Fraser University", "York University" ]
-      },
-      "contact-phone": {
-          "required": true
       },
       "manifests-required" : [ "md5" ],
       "allow-fetch.txt" : false,
