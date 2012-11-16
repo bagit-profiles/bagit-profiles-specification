@@ -120,51 +120,51 @@ bagProfileBar.json
         "Source-Organization": {
           "required": true,
           "values": [ "Simon Fraser University", "York University" ]
+        },
+        "Organization-Address": {
+          "required": true,
+          "values": [
+            "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
+            "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+          ]
+        },
+        "Contact-Name": {
+          "required": true,
+          "values": ["Mark Jordan", "Nick Ruest"]
+        },
+        "Contact-Phone": {
+          "required": false
+        },
+        "Contact-Email": {
+          "required": true
+        },
+        "External-Description": {
+          "required": true
+        },
+        "External-Identifier": {
+          "required": false
+        },
+        "Bag-Size": {
+          "required": true
+        },
+        "Bag-Group-Identifier": {
+          "required": false
+        },
+        "Bag-Count": {
+          "required": true
+        },
+        "Internal-Sender-Identifier": {
+           "required": false
+        },
+        "Internal-Sender-Description": {
+          "required": false
+        },
+        "Bagging-Date": {
+          "required": true
+        },
+        "Payload-Oxum": {
+          "required": true
         }
-      },
-      "Organization-Address": {
-        "required": true,
-        "values": [
-          "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
-          "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
-        ]
-      },
-      "Contact-Name": {
-        "required": true,
-        "values": ["Mark Jordan", "Nick Ruest"]
-      },
-      "Contact-Phone": {
-        "required": false
-      },
-      "Contact-Email": {
-        "required": true
-      },
-      "External-Description": {
-        "required": true
-      },
-      "External-Identifier": {
-        "required": false
-      },
-      "Bag-Size": {
-        "required": true
-      },
-      "Bag-Group-Identifier": {
-        "required": false
-      },
-      "Bag-Count": {
-        "required": true
-      },
-      "Internal-Sender-Identifier": {
-        "required": false
-      },
-      "Internal-Sender-Description": {
-        "required": false
-      },
-      "Bagging-Date": {
-        "required": true
-      },
-      "Payload-Oxum": {
-        "required": true
       },
     "manifests-required":  [ "md5" ],
     "allow-fetch.txt" : false,
