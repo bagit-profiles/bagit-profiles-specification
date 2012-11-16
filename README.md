@@ -41,7 +41,7 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 1. `bag-profile-info`:
 
-	A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "Bag-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "Bag-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "Bag-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
+	A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "Bag-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "Bag-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "Bag-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Name," "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
 
 2. `bag-info`:
 
