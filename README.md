@@ -82,17 +82,17 @@ bagProfileFoo.json
         "Source-Organization": "Yale University",
         "Contact-Name": "Mark Matienzo",
         "External-Description": "BagIt profile for packaging disk images",
-        "Version": "0.3",
-      }
+        "Version": "0.3"
+      },
       "bag-info": {
         "bagging-date": {
           "required": true
-         },
-      }
+        }
+      },
       "source-organization" : {
         "required": true,
           "values": [ "Simon Fraser University", "York University" ]
-        },
+      },
       "contact-phone": {
           "required": true
       },
@@ -100,7 +100,7 @@ bagProfileFoo.json
       "allow-fetch.txt" : false,
       "serialization" : "required",
       "accept-serialization" : [ "application/zip", "application/tar" ],
-      "accept-bagit-version" : [ "0.96", "0.97" ],
+      "accept-bagit-version" : [ "0.96", "0.97" ]
     }
 ```
 
@@ -114,20 +114,20 @@ bagProfileBar.json
         "Contact-Name": "William Wueppelmann",
         "Contact-Email": "tdr@canadiana.com",
         "External-Description": "BagIt profile for ingesting content into the C.O. TDR loading dock.",
-        "Version": "1.2",
-      }
+        "Version": "1.2"
+      },
       "bag-info": {
         "Source-Organization": {
           "required": true,
           "values": [ "Simon Fraser University", "York University" ]
-        },
-      }
+        }
+      },
       "Organization-Address": {
         "required": true,
         "values": [
           "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
           "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
-        ],
+        ]
       },
       "Contact-Name": {
         "required": true,
@@ -160,9 +160,8 @@ bagProfileBar.json
       "Internal-Sender-Description": {
         "required": false
       },
-      "Bagging Date": {
+      "Bagging-Date": {
         "required": true
-        "yyyy-mm-dd"
       },
       "Payload-Oxum": {
         "required": true
@@ -171,7 +170,7 @@ bagProfileBar.json
     "allow-fetch.txt" : false,
     "serialization" : "optional",
     "accept-serialization" : [ "application/zip" ],
-    "accept-bagit-version" : [ "0.97" ],
+    "accept-bagit-version" : [ "0.97" ]
   }
 ```
 
