@@ -47,7 +47,7 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 	Specifies which tags are required, etc. in bag-info.txt. Each tag definition takes two optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted.
 
-	bag-info.txt must contain the tag 'Bag-Profile-Identifie', with a value of the URI of the JSON file containing the profile. Since Bags complying to a profile must contain this tag, they must also contain a bag-info.txt file.
+	bag-info.txt must contain the tag 'Bag-Profile-Identifier', with a value of the URI of the JSON file containing the profile. Since Bags complying to a profile must contain this tag, they must also contain a bag-info.txt file.
 
 
 3. `manifests-required`: LIST
@@ -88,13 +88,13 @@ bagProfileFoo.json
         "bagging-date": {
           "required": true
          },
-        "source-organization" : {
-          "required": true,
+      }
+      "source-organization" : {
+        "required": true,
           "values": [ "Simon Fraser University", "York University" ]
-         },
-        "contact-phone": {
-          "required": true
         },
+      "contact-phone": {
+          "required": true
       },
       "manifests-required" : [ "md5" ],
       "allow-fetch.txt" : false,
@@ -121,51 +121,51 @@ bagProfileBar.json
           "required": true,
           "values": [ "Simon Fraser University", "York University" ]
         },
-        "Organization-Address": {
-          "required": true,
-          "values": [
-            "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
-            "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
-          ],
-        },
-        "Contact-Name": {
-          "required": true,
-          "values": ["Mark Jordan", "Nick Ruest"]
-        },
-        "Contact-Phone": {
-          "required": false
-        },
-        "Contact-Email": {
-          "required": true
-        },
-        "External-Description": {
-          "required": true
-        },
-        "External-Identifier": {
-          "required": false
-        },
-        "Bag-Size": {
-          "required": true
-        },
-        "Bag-Group-Identifier": {
-          "required": false
-        },
-        "Bag-Count": {
-          "required": true
-        },
-        "Internal-Sender-Identifier": {
-          "required": false
-        },
-        "Internal-Sender-Description": {
-          "required": false
-        },
-        "Bagging Date": {
-          "required": true
-          "yyyy-mm-dd"
-        },
-        "Payload-Oxum": {
-          "required": true
-        },
+      }
+      "Organization-Address": {
+        "required": true,
+        "values": [
+          "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
+          "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+        ],
+      },
+      "Contact-Name": {
+        "required": true,
+        "values": ["Mark Jordan", "Nick Ruest"]
+      },
+      "Contact-Phone": {
+        "required": false
+      },
+      "Contact-Email": {
+        "required": true
+      },
+      "External-Description": {
+        "required": true
+      },
+      "External-Identifier": {
+        "required": false
+      },
+      "Bag-Size": {
+        "required": true
+      },
+      "Bag-Group-Identifier": {
+        "required": false
+      },
+      "Bag-Count": {
+        "required": true
+      },
+      "Internal-Sender-Identifier": {
+        "required": false
+      },
+      "Internal-Sender-Description": {
+        "required": false
+      },
+      "Bagging Date": {
+        "required": true
+        "yyyy-mm-dd"
+      },
+      "Payload-Oxum": {
+        "required": true
       },
     "manifests-required":  [ "md5" ],
     "allow-fetch.txt" : false,
