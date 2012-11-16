@@ -37,13 +37,13 @@ Some profile attributes are fatal: failure to validate accept-serialization or a
 Implementation details
 ---
 
-The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow.
+The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow. LIST in the key definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a | indicate allowed options for that field.
 
 1. `bag-info`:
 
 	Specifies which tags are required, etc. Assumes presence of bag-info.txt. Each tag definition takes two optional parameters: required is true or false (default false) and indicates whether or not this tag is required. "values" is a list of acceptable values. If empty, any value is accepted.
 
-	bag-info.txt must contain the tag 'Bag-Profile', with a value of the URI of the JSON file containing the profile. LIST in the key definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a | indicate allowed options for that field.
+	bag-info.txt must contain the tag 'Bag-Profile', with a value of the URI of the JSON file containing the profile. 
 
 2. `manifests-required`: LIST
 
