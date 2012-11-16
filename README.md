@@ -39,31 +39,38 @@ Implementation details
 
 The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow.
 
-1. bag-info:
-Specifies which tags are required, etc. Assumes presence of bag-info.txt. Each tag definition takes two optional parameters: required is true or false (default false) and indicates whether or not this tag is required. "values" is a list of acceptable values. If empty, any value is accepted.
+1. `bag-info`:
+
+	Specifies which tags are required, etc. Assumes presence of bag-info.txt. Each tag definition takes two optional parameters: required is true or false (default false) and indicates whether or not this tag is required. "values" is a list of acceptable values. If empty, any value is accepted.
 
 	bag-info.txt must contain the tag 'Bag-Profile', with a value of the URI of the JSON file containing the profile. LIST in the key definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a | indicate allowed options for that field.
 
-2. manifests-required: LIST
-Each manifest file in LIST is required.
+2. `manifests-required`: LIST
 
-3. allow-fetch.txt: true|false
-A fetch.txt file is allowed within the bag. Default: true
+	Each manifest file in LIST is required.
 
-4. serialization: forbidden|required|optional
-Allow, forbid or require serialization of Bags. Default is optional.
+3. `allow-fetch.txt`: `true`|`false`
 
-5. accept-serialization: LIST
-A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
+	A fetch.txt file is allowed within the bag. Default: `true`
 
-6. accept-version: LIST
-A list of Bagit version numbers that will be accepted. At least one version is required.
+4. `serialization`: `forbidden`|`required`|`optional`
+
+	Allow, forbid or require serialization of Bags. Default is `optional`.
+
+5. `accept-serialization`: LIST
+
+	A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
+
+6. `accept-version`: LIST
+
+	A list of Bagit version numbers that will be accepted. At least one version is required.
 
 Examples
 ---
 
 bagProfileFoo.json
 
+```json
     {
       "bag-info.txt": {
         "bagging-date": {
@@ -71,7 +78,7 @@ bagProfileFoo.json
          },
         "source-organization" : {
           "required": true,
-          "values": [ "Simon Fraser University", "York Univeristy" ]
+          "values": [ "Simon Fraser University", "York University" ]
          },
         "contact-phone": {
           "required": true
@@ -83,23 +90,27 @@ bagProfileFoo.json
       "accept-serialization" : [ "application/zip", "application/tar" ],
       "accept-version" : [ "0.96", "0.97" ],
     }
-
+```
 
 bagProfileBar.json
 
+```json
     {
-      bag-info.txt: {
+      "bag-info.txt": {
       "Source-Organization": {
         "required": true,
-         "values": "Simon Fraser University", "York University"
+        "values": [ "Simon Fraser University", "York University" ]
       },
       "Organization-Address": {
         "required": true,
-        "values": "8888 University Drive Burnaby, B.C. V5A 1S6 Canada", "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+        "values": [
+          "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
+          "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+        ],
       },
       "Contact-Name": {
         "required": true,
-        "values": "Mark Jordan", "Nick Ruest"
+        "values": ["Mark Jordan", "Nick Ruest"]
       },
       "Contact-Phone": {
         "required": false
@@ -117,7 +128,7 @@ bagProfileBar.json
         "required": true
       },
           
-      "Bag-Group-Identifier: {
+      "Bag-Group-Identifier": {
         "required": false
       },
       "Bag-Count": {
@@ -129,16 +140,16 @@ bagProfileBar.json
       "Internal-Sender-Description": {
         "required": false
       },
-      "Bagging Date: {
+      "Bagging Date": {
         "required": true
         "yyyy-mm-dd"
       },
-      "Payload-Oxum: {
+      "Payload-Oxum": {
         "required": true
       },
     },
     
-    bagit.txt: {
+    "bagit.txt": {
       "required": true
     },
 
@@ -148,6 +159,7 @@ bagProfileBar.json
     "accept-serialization" : [ "application/zip" ],
     "accept-version" : [ "0.97" ],
   }
+```
 
 @todo
 ---
