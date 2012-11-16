@@ -32,7 +32,7 @@ The intended workflow for using a BagIt profile is:
 
 2. The application consuming these Bags retrieves the profile file from its URI and validates incoming Bags against it; specifically, it must complete the Bag if fetch.txt is present, validate the complete Bag against the profile, and then validate the Bag against the cannonical BagIt spec. 
 
-Some profile attributes are fatal: failure to validate accept-serialization or accept-version implies that the rest of the bag is unverifiable and processing should stop. Processing may continue after other errors in order to generate a comprehensive error report.
+Some profile attributes are fatal: failure to validate accept-serialization or accept-version implies that the rest of the bag is unverifiable and processing should stop. Processing may continue after non-fatal errors in order to generate a comprehensive error report.
 
 Implementation details
 ---
