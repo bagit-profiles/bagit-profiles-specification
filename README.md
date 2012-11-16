@@ -148,11 +148,6 @@ bagProfileBar.json
         "required": true
       },
     },
-    
-    "bagit.txt": {
-      "required": true
-    },
-
     "manifest-required":  [ "md5" ],
     "allow-fetch.txt" : false,
     "serialization" : "optional",
