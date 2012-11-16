@@ -77,7 +77,7 @@ bagProfileFoo.json
 
 ```json
     {
-      "bagit-profile-info: {
+      "bagit-profile-info": {
         "Bag-Profile-Identifier": "http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
         "Source-Organization": "Yale University",
         "Contact-Name": "Mark Matienzo",
@@ -108,7 +108,7 @@ bagProfileBar.json
 
 ```json
     {
-      "bagit-profile-info: {
+      "bagit-profile-info": {
         "Bag-Profile-Identifier": "http://canadiana.org/standards/bagit/tdr_ingest.json",
         "Source-Organization": "Candiana.org",
         "Contact-Name": "William Wueppelmann",
