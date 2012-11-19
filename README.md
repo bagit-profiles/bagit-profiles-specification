@@ -35,9 +35,9 @@ The intended workflow for using a BagIt profile is:
 
 2. The consumer of the Bags retrieves the profile file from its URI and validates incoming Bags against it; specifically, it must complete the Bag if fetch.txt is present, validate the complete Bag against the profile, and then validate the Bag against the cannonical BagIt spec. 
 
-Each of these steps may be performed by a separate tool or microservice; in fact, implementers may integrate validation functionality in tools that perform other Bag-processing functions. For example, the completion of a holey Bag might be performed by a more general Bag-processing tool and need not be delegated to separate validation tools. 
+Each of these steps may be performed by a separate tool or microservice; in fact, implementers may integrate validation functionality in tools that perform other Bag-processing functions. For example, the completion of a holey Bag might be performed by a more general Bag-processing tool and need not be delegated to a separate validation tool. 
 
-Some profile constraints are fatal: for example, failure to validate accept-serialization or accept-version implies that the rest of the bag is unverifiable and processing should stop. Therefore, the task that checks the 'accept-validation' constraint should be performed as early as possible in the workflow. Processing may continue after non-fatal errors in order to generate a comprehensive error report.
+Some profile constraints are fatal: for example, failure to validate 'accept-serialization' or 'accept-version' implies that the rest of the bag is unverifiable and processing should stop. Therefore, the task that checks these two constraints should be performed as early as possible in the workflow. Processing may continue after non-fatal errors in order to generate a comprehensive error report.
 
 Implementation details
 ---
