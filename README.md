@@ -182,6 +182,7 @@ bagProfileBar.json
 @todo
 ---
 
+* Add license (CC0/Public Domain?).
 * Request feedback from BagIt implementer community, initially in the Digital Curation Google Group.
 * Write code to confirm proof-of-concept use cases.
 * Formalize specification.
