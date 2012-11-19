@@ -26,13 +26,18 @@ This proposed Specification builds on the sample profile included in the Library
 
 Use cases for BagIt profiles include distributed mass production of Bags, repository or application-specific content ingestion via Bags (e.g. SWORD, Archivematica), and Preservation-as-a-Service.
 
+Workflow
+---
+
 The intended workflow for using a BagIt profile is: 
 
-1. The application creating the Bags ensures that Bags it produces meet all of the constraints expressed in the agreed-upon profile file.
+1. The creator of the Bags ensures that Bags it produces meet all of the constraints expressed in the agreed-upon profile file.
 
-2. The application consuming these Bags retrieves the profile file from its URI and validates incoming Bags against it; specifically, it must complete the Bag if fetch.txt is present, validate the complete Bag against the profile, and then validate the Bag against the cannonical BagIt spec. 
+2. The consumer of the Bags retrieves the profile file from its URI and validates incoming Bags against it; specifically, it must complete the Bag if fetch.txt is present, validate the complete Bag against the profile, and then validate the Bag against the cannonical BagIt spec. 
 
-Some profile attributes are fatal: failure to validate accept-serialization or accept-version implies that the rest of the bag is unverifiable and processing should stop. Processing may continue after non-fatal errors in order to generate a comprehensive error report.
+Each of these steps may be performed by a separate tool or microservice; in fact, implementers may integrate validation functionality in tools that perform other Bag-processing functions. For example, the completion of a holey Bag might be performed by a more general Bag-processing tool and need not be delegated to separate validation tools. 
+
+Some profile constraints are fatal: for example, failure to validate accept-serialization or accept-version implies that the rest of the bag is unverifiable and processing should stop. Therefore, the task that checks the 'accept-validation' constraint should be performed as early as possible in the workflow. Processing may continue after non-fatal errors in order to generate a comprehensive error report.
 
 Implementation details
 ---
