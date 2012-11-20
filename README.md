@@ -44,34 +44,34 @@ Implementation details
 
 The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow. LIST in the field definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a | indicate allowed options for that field.
 
-1. `bagit-profile-info`:
+1. `Bagit-Profile-Info`:
 
 	A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "BagIt-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "BagIt-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "BagIt-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Name," "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
 
-2. `bag-info`:
+2. `Bag-Info`:
 
 	Specifies which tags are required, etc. in bag-info.txt. Each tag definition takes two optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted.
 
 	bag-info.txt must contain the tag 'BagIt-Profile-Identifier', with a value of the URI of the JSON file containing the profile. Since Bags complying to a profile must contain this tag, they must also contain a bag-info.txt file.
 
 
-3. `manifests-required`: LIST
+3. `Manifests-Required`: LIST
 
 	Each manifest file in LIST is required.
 
-4. `allow-fetch.txt`: `true`|`false`
+4. `Allow-Fetch.txt`: `true`|`false`
 
 	A fetch.txt file is allowed within the bag. Default: `true`
 
-5. `serialization`: `forbidden`|`required`|`optional`
+5. `Serialization`: `forbidden`|`required`|`optional`
 
 	Allow, forbid or require serialization of Bags. Default is `optional`.
 
-6. `accept-serialization`: LIST
+6. `Accept-Serialization`: LIST
 
 	A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
 
-7. `accept-bagit-version`: LIST
+7. `Accept-Bagit-Version`: LIST
 
 	A list of Bagit version numbers that will be accepted. At least one version is required.
 
@@ -82,14 +82,14 @@ bagProfileFoo.json
 
 ```json
     {
-      "bagit-profile-info": {
+      "Bagit-Profile-Info": {
         "BagIt-Profile-Identifier": "http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
         "Source-Organization": "Yale University",
         "Contact-Name": "Mark Matienzo",
         "External-Description": "BagIt profile for packaging disk images",
         "Version": "0.3"
       },
-      "bag-info": {
+      "Bag-Info": {
         "Bagging-Date": {
           "required": true
         },
@@ -101,11 +101,11 @@ bagProfileFoo.json
           "required": true
         }
       },
-      "manifests-required" : [ "md5" ],
-      "allow-fetch.txt" : false,
-      "serialization" : "required",
-      "accept-serialization" : [ "application/zip", "application/tar" ],
-      "accept-bagit-version" : [ "0.96", "0.97" ]
+      "Manifests-Required" : [ "md5" ],
+      "Allow-Fetch.txt" : false,
+      "Serialization" : "required",
+      "Accept-Serialization" : [ "application/zip", "application/tar" ],
+      "Accept-Bagit-Version" : [ "0.96", "0.97" ]
     }
 ```
 
@@ -113,7 +113,7 @@ bagProfileBar.json
 
 ```json
     {
-      "bagit-profile-info": {
+      "Bagit-Profile-Info": {
         "BagIt-Profile-Identifier": "http://canadiana.org/standards/bagit/tdr_ingest.json",
         "Source-Organization": "Candiana.org",
         "Contact-Name": "William Wueppelmann",
@@ -121,7 +121,7 @@ bagProfileBar.json
         "External-Description": "BagIt profile for ingesting content into the C.O. TDR loading dock.",
         "Version": "1.2"
       },
-      "bag-info": {
+      "Bag-Info": {
         "Source-Organization": {
           "required": true,
           "values": [ "Simon Fraser University", "York University" ]
@@ -171,11 +171,11 @@ bagProfileBar.json
           "required": true
         }
       },
-    "manifests-required":  [ "md5" ],
-    "allow-fetch.txt" : false,
-    "serialization" : "optional",
-    "accept-serialization" : [ "application/zip" ],
-    "accept-bagit-version" : [ "0.97" ]
+    "Manifests-Required":  [ "md5" ],
+    "Allow-Fetch.txt" : false,
+    "Serialization" : "optional",
+    "Accept-Serialization" : [ "application/zip" ],
+    "Accept-Bagit-Version" : [ "0.97" ]
   }
 ```
 
