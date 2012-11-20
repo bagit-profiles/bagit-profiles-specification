@@ -83,7 +83,7 @@ bagProfileFoo.json
 ```json
     {
       "bagit-profile-info": {
-        "Bag-Profile-Identifier": "http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
+        "BagIt-Profile-Identifier": "http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
         "Source-Organization": "Yale University",
         "Contact-Name": "Mark Matienzo",
         "External-Description": "BagIt profile for packaging disk images",
@@ -114,7 +114,7 @@ bagProfileBar.json
 ```json
     {
       "bagit-profile-info": {
-        "Bag-Profile-Identifier": "http://canadiana.org/standards/bagit/tdr_ingest.json",
+        "BagIt-Profile-Identifier": "http://canadiana.org/standards/bagit/tdr_ingest.json",
         "Source-Organization": "Candiana.org",
         "Contact-Name": "William Wueppelmann",
         "Contact-Email": "tdr@canadiana.com",
