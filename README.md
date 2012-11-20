@@ -44,15 +44,15 @@ Implementation details
 
 The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow. LIST in the field definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a | indicate allowed options for that field.
 
-1. `bag-profile-info`:
+1. `bagit-profile-info`:
 
-	A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "Bag-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "Bag-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "Bag-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Name," "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
+	A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "BagIt-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "BagIt-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "BagIt-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Name," "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
 
 2. `bag-info`:
 
 	Specifies which tags are required, etc. in bag-info.txt. Each tag definition takes two optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted.
 
-	bag-info.txt must contain the tag 'Bag-Profile-Identifier', with a value of the URI of the JSON file containing the profile. Since Bags complying to a profile must contain this tag, they must also contain a bag-info.txt file.
+	bag-info.txt must contain the tag 'BagIt-Profile-Identifier', with a value of the URI of the JSON file containing the profile. Since Bags complying to a profile must contain this tag, they must also contain a bag-info.txt file.
 
 
 3. `manifests-required`: LIST
