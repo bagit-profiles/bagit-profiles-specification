@@ -89,10 +89,13 @@ class Profile(object):
     def validate_bag_info(self, bag):
         pass
 
-    # @todo: For each member of self.profile['manifests_required'], throw an exception if 
+    # For each member of self.profile['manifests_required'], throw an exception if 
     # the manifest file is not present.
     def validate_manifests_required(self, bag):
-        pass
+        for manifest_type in self.profile['Manifests-Required']:
+            path_to_manifest = os.path.join(bag.path, 'manifest-' + manifest_type + '.txt')
+            if not os.path.exists(path_to_manifest):
+                raise ProfileValidationError("Required manifest type %s is not present in Bag." % manifest_type)
 
     # @todo: Check to see if this constraint is False, and if it is, then check to see
     # if the fetch.txt file exists. If it does, throw an exception.
