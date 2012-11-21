@@ -104,12 +104,12 @@ class Profile(object):
             config = self.profile['Bag-Info'][tag]
             if 'required' in config and config['required'] is True: 
                 if tag not in bag.info:
-                    raise ProfileValidationError("Required tag %s is not present in bag-info.txt." % tag)
+                    raise ProfileValidationError("Required tag '%s' is not present in bag-info.txt." % tag)
                 # If the tag is in bag-info.txt, check to see if the value is constrained.
                 else:
                     if 'values' in config: 
                         if bag.info[tag] not in config['values']:
-                            raise ProfileValidationError("Required tag %s is present in bag-info.txt but does not have an allowed value." % bag.info[tag])
+                            raise ProfileValidationError("Required tag '%s' is present in bag-info.txt but does not have an allowed value ('%s')." % (tag, bag.info[tag]))
 
     # For each member of self.profile['manifests_required'], throw an exception if 
     # the manifest file is not present.
@@ -117,7 +117,7 @@ class Profile(object):
         for manifest_type in self.profile['Manifests-Required']:
             path_to_manifest = os.path.join(bag.path, 'manifest-' + manifest_type + '.txt')
             if not os.path.exists(path_to_manifest):
-                raise ProfileValidationError("Required manifest type %s is not present in Bag." % manifest_type)
+                raise ProfileValidationError("Required manifest type '%s' is not present in Bag." % manifest_type)
 
     # Check to see if this constraint is False, and if it is, then check to see
     # if the fetch.txt file exists. If it does, throw an exception.
