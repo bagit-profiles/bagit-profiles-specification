@@ -78,105 +78,128 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 Examples
 ---
 
-bagProfileFoo.json
+[bagProfileFoo.json](https://raw.github.com/ruebot/bagit-profiles/master/bagProfileFoo.json)
 
 ```json
     {
-      "BagIt-Profile-Info": {
-        "BagIt-Profile-Identifier": "http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
-        "Source-Organization": "Yale University",
-        "Contact-Name": "Mark Matienzo",
-        "External-Description": "BagIt profile for packaging disk images",
-        "Version": "0.3"
-      },
-      "Bag-Info": {
-        "Bagging-Date": {
-          "required": true
-        },
-        "Source-Organization" : {
-          "required": true,
-          "values": [ "Simon Fraser University", "York University" ]
-        },
-        "Contact-Phone": {
-          "required": true
-        }
-      },
-      "Manifests-Required" : [ "md5" ],
-      "Allow-Fetch.txt" : false,
-      "Serialization" : "required",
-      "Accept-Serialization" : [ "application/zip", "application/tar" ],
-      "Accept-BagIt-Version" : [ "0.96", "0.97" ]
+       "BagIt-Profile-Info":{
+          "BagIt-Profile-Identifier":"http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
+          "Source-Organization":"Yale University",
+          "Contact-Name":"Mark Matienzo",
+          "External-Description":"BagIt profile for packaging disk images",
+          "Version":"0.3"
+       },
+       "Bag-Info":{
+          "Bagging-Date":{
+             "required":true
+          },
+          "Source-Organization":{
+             "required":true,
+             "values":[
+                "Simon Fraser University",
+                "York University"
+             ]
+          },
+          "Contact-Phone":{
+             "required":true
+          }
+       },
+       "Manifests-Required":[
+          "md5"
+       ],
+       "Allow-Fetch.txt":false,
+       "Serialization":"required",
+       "Accept-Serialization":[
+          "application/zip",
+          "application/tar"
+       ],
+       "Accept-BagIt-Version":[
+          "0.96",
+          "0.97"
+       ]
     }
 ```
 
-bagProfileBar.json
+[bagProfileBar.json](https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json)
 
 ```json
     {
-      "BagIt-Profile-Info": {
-        "BagIt-Profile-Identifier": "http://canadiana.org/standards/bagit/tdr_ingest.json",
-        "Source-Organization": "Candiana.org",
-        "Contact-Name": "William Wueppelmann",
-        "Contact-Email": "tdr@canadiana.com",
-        "External-Description": "BagIt profile for ingesting content into the C.O. TDR loading dock.",
-        "Version": "1.2"
-      },
-      "Bag-Info": {
-        "Source-Organization": {
-          "required": true,
-          "values": [ "Simon Fraser University", "York University" ]
-        },
-        "Organization-Address": {
-          "required": true,
-          "values": [
-            "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
-            "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
-          ]
-        },
-        "Contact-Name": {
-          "required": true,
-          "values": ["Mark Jordan", "Nick Ruest"]
-        },
-        "Contact-Phone": {
-          "required": false
-        },
-        "Contact-Email": {
-          "required": true
-        },
-        "External-Description": {
-          "required": true
-        },
-        "External-Identifier": {
-          "required": false
-        },
-        "Bag-Size": {
-          "required": true
-        },
-        "Bag-Group-Identifier": {
-          "required": false
-        },
-        "Bag-Count": {
-          "required": true
-        },
-        "Internal-Sender-Identifier": {
-           "required": false
-        },
-        "Internal-Sender-Description": {
-          "required": false
-        },
-        "Bagging-Date": {
-          "required": true
-        },
-        "Payload-Oxum": {
-          "required": true
-        }
-      },
-    "Manifests-Required":  [ "md5" ],
-    "Allow-Fetch.txt" : false,
-    "Serialization" : "optional",
-    "Accept-Serialization" : [ "application/zip" ],
-    "Accept-BagIt-Version" : [ "0.97" ]
-  }
+         "BagIt-Profile-Info":{
+          "BagIt-Profile-Identifier":"http://canadiana.org/standards/bagit/tdr_ingest.json",
+          "Source-Organization":"Candiana.org",
+          "Contact-Name":"William Wueppelmann",
+          "Contact-Email":"tdr@canadiana.com",
+          "External-Description":"BagIt profile for ingesting content into the C.O. TDR loading dock.",
+          "Version":"1.2"
+       },
+       "Bag-Info":{
+          "Source-Organization":{
+             "required":true,
+             "values":[
+                "Simon Fraser University",
+                "York University"
+             ]
+          },
+          "Organization-Address":{
+             "required":true,
+             "values":[
+                "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
+                "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+             ]
+          },
+          "Contact-Name":{
+             "required":true,
+             "values":[
+                "Mark Jordan",
+                "Nick Ruest"
+             ]
+          },
+          "Contact-Phone":{
+             "required":false
+          },
+          "Contact-Email":{
+             "required":true
+          },
+          "External-Description":{
+             "required":true
+          },
+          "External-Identifier":{
+             "required":false
+          },
+          "Bag-Size":{
+             "required":true
+          },
+          "Bag-Group-Identifier":{
+             "required":false
+          },
+          "Bag-Count":{
+             "required":true
+          },
+          "Internal-Sender-Identifier":{
+             "required":false
+          },
+          "Internal-Sender-Description":{
+             "required":false
+          },
+          "Bagging-Date":{
+             "required":true
+          },
+          "Payload-Oxum":{
+             "required":true
+          }
+       },
+       "Manifests-Required":[
+          "md5"
+       ],
+       "Allow-Fetch.txt":false,
+       "Serialization":"optional",
+       "Accept-Serialization":[
+          "application/zip"
+       ],
+       "Accept-BagIt-Version":[
+          "0.97"
+       ]
+    }
 ```
 
 @todo
