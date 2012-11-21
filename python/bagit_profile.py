@@ -82,12 +82,29 @@ class Profile(object):
         if 'BagIt-Profile-Identifier' not in profile['BagIt-Profile-Info']:
             raise ProfileValidationError("Required 'BagIt-Profile-Identifier' tag is not in 'BagIt-Profile-Info'.")
 
-    # @todo: For each member of self.profile['bag_info'], if the member has a 'required'
-    #  attribute, throw an exception if the member is not present in the bag's bag-info.txt
-    # file. If the member has a 'values' attribute, throw an exception if the member's value
-    # in bag-info.txt does not have one of the listed values.
+    # Validate tags in self.profile['Bag-Info'].
+    # u'Bag-Info': {   u'Bagging-Date': {   u'required': True},
+    #                 u'Contact-Phone': {   u'required': True},
+    #                 u'Source-Organization': {   u'required': True,
+    #                                             u'values': [   u'Simon Fraser University',
+    #                                                            u'York University']}},
     def validate_bag_info(self, bag):
-        pass
+        # First, check for the required 'BagIt-Profile-Identifier' tag and ensure it has the same value
+        # as self.url.
+        if 'BagIt-Profile-Identifier' not in bag.info:
+            raise ProfileValidationError("Required 'BagIt-Profile-Identifier' tag is not in bag-info.txt.")
+        else:
+            if bag.info['BagIt-Profile-Identifier'] != self.url:
+                raise ProfileValidationError("'BagIt-Profile-Identifier' tag does not contain this profile's URI.")
+        # Then, iterate through self.profile['Bag-Info'] and if a key has a dict containing a 'required' key that is True,
+        # check to see if that key exists in bags.info. 
+        # for tag in self.profile['Bag-Info']:
+            # ... @todo: finish this....
+            # raise ProfileValidationError("Required tag '%s' does not exist in bag-info.txt." % tag)
+            
+        # If it doesn't, throw an exception.
+        # if it does but it also has a 'values' key, check the value of that tag to make sure it is in the value list.
+        # print bag.info
 
     # For each member of self.profile['manifests_required'], throw an exception if 
     # the manifest file is not present.
