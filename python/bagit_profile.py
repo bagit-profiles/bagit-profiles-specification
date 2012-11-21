@@ -19,9 +19,12 @@ my_profile = bagit_profile.Profile('http://example.com/bagitprofile.json')
 
 # Validate 'Serialization' and 'Accept-Serialization'. This must be done 
 # before .validate(bag) is called. 'mydir' is the path to the Bag.
-my_profile.validate_serialization('mydir')
+if my_profile.validate_serialization('mydir'):
+    print "Serialization validates"
+else:
+    print "Serialization does not validate"
 
-# Validate the profile.
+# Validate the rest of the profile.
 if my_profile.validate(bag):
     print "Validates"
 else:
