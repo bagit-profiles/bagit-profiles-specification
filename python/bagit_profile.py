@@ -97,10 +97,13 @@ class Profile(object):
             if not os.path.exists(path_to_manifest):
                 raise ProfileValidationError("Required manifest type %s is not present in Bag." % manifest_type)
 
-    # @todo: Check to see if this constraint is False, and if it is, then check to see
+    # Check to see if this constraint is False, and if it is, then check to see
     # if the fetch.txt file exists. If it does, throw an exception.
     def validate_allow_fetch(self, bag):
-        pass
+        if self.profile['Allow-Fetch.txt'] is False: 
+            path_to_fetchtxt = os.path.join(bag.path, 'fetch.txt')
+            if os.path.exists(path_to_fetchtxt):
+                raise ProfileValidationError("Fetch.txt is present but is not allowed.")
 
     # Check the Bag's version, and if it's not in the list of allowed versions,
     # throw an exception.
