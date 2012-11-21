@@ -97,14 +97,17 @@ class Profile(object):
             if bag.info['BagIt-Profile-Identifier'] != self.url:
                 raise ProfileValidationError("'BagIt-Profile-Identifier' tag does not contain this profile's URI.")
         # Then, iterate through self.profile['Bag-Info'] and if a key has a dict containing a 'required' key that is True,
-        # check to see if that key exists in bags.info. 
-        # for tag in self.profile['Bag-Info']:
-            # ... @todo: finish this....
-            # raise ProfileValidationError("Required tag '%s' does not exist in bag-info.txt." % tag)
-            
-        # If it doesn't, throw an exception.
-        # if it does but it also has a 'values' key, check the value of that tag to make sure it is in the value list.
-        # print bag.info
+        # check to see if that key exists in bag.info. 
+        for tag in self.profile['Bag-Info']:
+            config = self.profile['Bag-Info'][tag]
+            if 'required' in config and config['required'] is True: 
+                if tag not in bag.info:
+                    raise ProfileValidationError("Required tag %s is not present in bag-info.txt." % tag)
+                # If the tag is in bag-info.txt, check to see if the value is constrained.
+                else:
+                    if 'values' in config: 
+                        if bag.info[tag] not in config['values']:
+                            raise ProfileValidationError("Required tag %s is present in bag-info.txt but does not have an allowed value." % bag.info[tag])
 
     # For each member of self.profile['manifests_required'], throw an exception if 
     # the manifest file is not present.
