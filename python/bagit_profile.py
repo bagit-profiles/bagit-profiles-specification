@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# @todo: Improve exception handling so non-fatal exceptions do not kill script.
+
 """
 A simple Python module for validating BagIt profiles. See https://github.com/ruebot/bagit-profiles
 for more information.
@@ -153,6 +155,6 @@ class Profile(object):
             if mtype not in self.profile['Accept-Serialization']:
                 raise ProfileValidationError("Bag serialization type is not in the list of allowed values.")
       
-        # If we have passed the tests, return True.
+        # If we have passed the serialization tests, return True.
         return True
 
