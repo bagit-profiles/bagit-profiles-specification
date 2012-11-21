@@ -44,7 +44,7 @@ Implementation details
 
 The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow. LIST in the field definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a | indicate allowed options for that field.
 
-1. `Bagit-Profile-Info`:
+1. `BagIt-Profile-Info`:
 
 	A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "BagIt-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "BagIt-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "BagIt-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Name," "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
 
@@ -71,9 +71,9 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 	A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
 
-7. `Accept-Bagit-Version`: LIST
+7. `Accept-BagIt-Version`: LIST
 
-	A list of Bagit version numbers that will be accepted. At least one version is required.
+	A list of BagIt version numbers that will be accepted. At least one version is required.
 
 Examples
 ---
@@ -82,7 +82,7 @@ bagProfileFoo.json
 
 ```json
     {
-      "Bagit-Profile-Info": {
+      "BagIt-Profile-Info": {
         "BagIt-Profile-Identifier": "http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
         "Source-Organization": "Yale University",
         "Contact-Name": "Mark Matienzo",
@@ -105,7 +105,7 @@ bagProfileFoo.json
       "Allow-Fetch.txt" : false,
       "Serialization" : "required",
       "Accept-Serialization" : [ "application/zip", "application/tar" ],
-      "Accept-Bagit-Version" : [ "0.96", "0.97" ]
+      "Accept-BagIt-Version" : [ "0.96", "0.97" ]
     }
 ```
 
@@ -113,7 +113,7 @@ bagProfileBar.json
 
 ```json
     {
-      "Bagit-Profile-Info": {
+      "BagIt-Profile-Info": {
         "BagIt-Profile-Identifier": "http://canadiana.org/standards/bagit/tdr_ingest.json",
         "Source-Organization": "Candiana.org",
         "Contact-Name": "William Wueppelmann",
@@ -175,7 +175,7 @@ bagProfileBar.json
     "Allow-Fetch.txt" : false,
     "Serialization" : "optional",
     "Accept-Serialization" : [ "application/zip" ],
-    "Accept-Bagit-Version" : [ "0.97" ]
+    "Accept-BagIt-Version" : [ "0.97" ]
   }
 ```
 
