@@ -82,7 +82,7 @@ class Profile(object):
         if 'BagIt-Profile-Identifier' not in profile['BagIt-Profile-Info']:
             raise ProfileValidationError("Required 'BagIt-Profile-Identifier' tag is not in 'BagIt-Profile-Info'.")
 
-    # Validate tags in self.profile['Bag-Info'].
+    # Validate tags in self.profile['Bag-Info']. Profile data for this constrain looks like:
     # u'Bag-Info': {   u'Bagging-Date': {   u'required': True},
     #                 u'Contact-Phone': {   u'required': True},
     #                 u'Source-Organization': {   u'required': True,
@@ -96,8 +96,8 @@ class Profile(object):
         else:
             if bag.info['BagIt-Profile-Identifier'] != self.url:
                 raise ProfileValidationError("'BagIt-Profile-Identifier' tag does not contain this profile's URI.")
-        # Then, iterate through self.profile['Bag-Info'] and if a key has a dict containing a 'required' key that is True,
-        # check to see if that key exists in bag.info. 
+        # Then, iterate through self.profile['Bag-Info'] and if a key has a dict containing a 'required' key that is
+        # True, check to see if that key exists in bag.info. 
         for tag in self.profile['Bag-Info']:
             config = self.profile['Bag-Info'][tag]
             if 'required' in config and config['required'] is True: 
