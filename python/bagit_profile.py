@@ -68,11 +68,16 @@ class Profile(object):
         self.validate_accept_bagit_version(bag)
         return True
 
-    # @todo: Check self.profile['bag-profile-info'] to see if "Source-Organization", 
-    # "External-Description", "Version" and "BagIt-Profile-Identifier" are defined. 
+    # Check self.profile['bag-profile-info'] to see if "Source-Organization", 
+    # "External-Description", "Version" and "BagIt-Profile-Identifier" are present. 
     # Errors here are fatal.
     def validate_bagit_profile_info(self, profile):
-        pass
+        if 'Source-Organization' not in profile['BagIt-Profile-Info']:
+            raise ProfileValidationError("Required 'Source-Organization' tag is not in 'BagIt-Profile-Info'.")
+        if 'Version' not in profile['BagIt-Profile-Info']:
+            raise ProfileValidationError("Required 'Version' tag is not in 'BagIt-Profile-Info'.")
+        if 'BagIt-Profile-Identifier' not in profile['BagIt-Profile-Info']:
+            raise ProfileValidationError("Required 'BagIt-Profile-Identifier' tag is not in 'BagIt-Profile-Info'.")
 
     # @todo: For each member of self.profile['bag_info'], if the member has a 'required'
     #  attribute, throw an exception if the member is not present in the bag's bag-info.txt
