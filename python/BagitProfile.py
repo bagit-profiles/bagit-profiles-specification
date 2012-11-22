@@ -41,38 +41,6 @@ import mimetypes
 import logging
 import optparse
 
-# command line program
-
-class BagitProfileOptionParser(optparse.OptionParser):
-  def __init__(self, *args, **opts):
-    optparse.OptionParser.__init__(self, *args, **opts)
-
-def _make_opt_parser():
-  parser = BagitProfileOptionParser(usage='usage: %prog [options] BagitProfile bagDir1 bagDir2 ...')
-  parser.add_option('--quiet', action='store_true', dest='quiet')
-
-  return parser
-
-def _configure_logging(opts):
-  log_format="%(asctime)s - %(levelname)s - %(message)s"
-  if opts.quiet:
-    level = logging.ERROR
-  else:
-    level = logging.INFO
-  if opts.log:
-    logging.basicConfig(filename=opts.log, level=level, format=log_format)
-  else:
-    logging.basicConfig(level=level, format=log_format)
-
-if __name__ == '__main__':
-  opt_parser = _make_opt_parser()
-  opts, args = opt_parser.parse_args()
-  _configure_logging(opts)
-  log = logging.getLogger()
-
-  rc = 0
-
-
 # Define an exceptin class for use within this module.
 class ProfileValidationError(Exception):
     pass
@@ -101,12 +69,12 @@ class Profile(object):
     # Call all the validate functions other than validate_bagit_profile_info(),
     # which we've already called. 'Serialization' and 'Accept-Serialization'
     #  are validated in validate_serialization().
-    def validate(self, bag):
-        self.validate_bag_info(bag)
-        self.validate_manifests_required(bag)
-        self.validate_allow_fetch(bag)
-        self.validate_accept_bagit_version(bag)
-        return True
+def validate(self, bag):
+    self.validate_bag_info(bag)
+    self.validate_manifests_required(bag)
+    self.validate_allow_fetch(bag)
+    self.validate_accept_bagit_version(bag)
+    return True
 
     # Check self.profile['bag-profile-info'] to see if "Source-Organization", 
     # "External-Description", "Version" and "BagIt-Profile-Identifier" are present. 
@@ -206,3 +174,37 @@ class Profile(object):
         # If we have passed the serialization tests, return True.
         return True
 
+# command line program
+
+class BagitProfileOptionParser(optparse.OptionParser):
+  def __init__(self, *args, **opts):
+    optparse.OptionParser.__init__(self, *args, **opts)
+
+def _make_opt_parser():
+  parser = BagitProfileOptionParser(usage='usage: %prog [options] BagitProfile bagDir1 bagDir2 ...')
+  parser.add_option('--quiet', action='store_true', dest='quiet')
+  parser.add_option('--log', action='store', dest='log')
+
+  return parser
+
+def _configure_logging(opts):
+  log_format="%(asctime)s - %(levelname)s - %(message)s"
+  if opts.quiet:
+    level = logging.ERROR
+  else:
+    level = logging.INFO
+  if opts.log:
+    logging.basicConfig(filename=opts.log, level=level, format=log_format)
+  else:
+    logging.basicConfig(level=level, format=log_format)
+
+if __name__ == '__main__':
+  opt_parser = _make_opt_parser()
+  opts, args = opt_parser.parse_args()
+  _configure_logging(opts)
+  log = logging.getLogger()
+
+  rc = 0
+  
+  validate()
+  #sys.exit(rc)
