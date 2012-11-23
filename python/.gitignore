@@ -1,4 +1,4 @@
-ld
+build
 dist
-iaTorrent.egg-info
-iaTorrent.pyc
+BagitProfile.egg-info
+BagitProfile.pyc
