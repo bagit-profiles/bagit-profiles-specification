@@ -194,7 +194,10 @@ def _configure_logging(opts):
   else:
     level = logging.INFO
   if opts.log:
-    logging.basicConfig(filename=opts.log, level=level, format=log_format)
+    logFile = os.path.join(opts.log + '/logs', 'BagitProfile' + time.strfime('%y_%m_%d') + '.log')
+    logging.basicConfig(filename=logFile, level=level, format=log_format)
+  if not opts.log:
+    logging.basicConfig(filename='BagitProfile' + time.strfime('%y_%m_%d') + '.log', level=level, format=log_format)
   else:
     logging.basicConfig(level=level, format=log_format)
 
