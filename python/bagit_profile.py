@@ -214,8 +214,17 @@ if __name__ == '__main__':
 
     # Instantiate a profile, supplying its URI.
     profile = Profile(args[0])
-    # Instantiate an existing Bag and validate it.
+    # Instantiate an existing Bag.
     bag = bagit.Bag(args[1])
+
+    # Validate 'Serialization' and 'Accept-Serialization', then perform general validation.
+    if profile.validate_serialization(args[1]):
+        print "Serialization validates"
+    else:
+        print "Serialization does not validate"
+        rc = 1
+        sys.exit(rc)
+
     profile.validate(bag)
 
     sys.exit(rc)
