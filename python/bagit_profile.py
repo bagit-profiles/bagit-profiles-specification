@@ -69,12 +69,12 @@ class Profile(object):
     # Call all the validate functions other than validate_bagit_profile_info(),
     # which we've already called. 'Serialization' and 'Accept-Serialization'
     #  are validated in validate_serialization().
-def validate(self, bag):
-    self.validate_bag_info(bag)
-    self.validate_manifests_required(bag)
-    self.validate_allow_fetch(bag)
-    self.validate_accept_bagit_version(bag)
-    return True
+    def validate(self, bag):
+        self.validate_bag_info(bag)
+        self.validate_manifests_required(bag)
+        self.validate_allow_fetch(bag)
+        self.validate_accept_bagit_version(bag)
+        return True
 
     # Check self.profile['bag-profile-info'] to see if "Source-Organization", 
     # "External-Description", "Version" and "BagIt-Profile-Identifier" are present. 
@@ -174,14 +174,17 @@ def validate(self, bag):
         # If we have passed the serialization tests, return True.
         return True
 
-# command line program
+
+# Command-line version.
+import time
+import bagit
 
 class BagitProfileOptionParser(optparse.OptionParser):
   def __init__(self, *args, **opts):
     optparse.OptionParser.__init__(self, *args, **opts)
 
 def _make_opt_parser():
-  parser = BagitProfileOptionParser(usage='usage: %prog [options] BagitProfile bagDir1 bagDir2 ...')
+  parser = BagitProfileOptionParser(usage='usage: %prog [options] profile_uri bag_dir')
   parser.add_option('--quiet', action='store_true', dest='quiet')
   parser.add_option('--log', action='store', dest='log')
 
@@ -197,17 +200,22 @@ def _configure_logging(opts):
     logFile = os.path.join(opts.log + '/logs', 'BagitProfile' + time.strfime('%y_%m_%d') + '.log')
     logging.basicConfig(filename=logFile, level=level, format=log_format)
   if not opts.log:
-    logging.basicConfig(filename='BagitProfile' + time.strfime('%y_%m_%d') + '.log', level=level, format=log_format)
+    logging.basicConfig(filename='BagitProfile' + time.strftime('%y_%m_%d') + '.log', level=level, format=log_format)
   else:
     logging.basicConfig(level=level, format=log_format)
 
 if __name__ == '__main__':
-  opt_parser = _make_opt_parser()
-  opts, args = opt_parser.parse_args()
-  _configure_logging(opts)
-  log = logging.getLogger()
+    opt_parser = _make_opt_parser()
+    opts, args = opt_parser.parse_args()
+    _configure_logging(opts)
+    log = logging.getLogger()
 
-  rc = 0
-  
-  validate()
-  #sys.exit(rc)
+    rc = 0
+
+    # Instantiate a profile, supplying its URI.
+    profile = Profile(args[0])
+    # Instantiate an existing Bag and validate it.
+    bag = bagit.Bag(args[1])
+    profile.validate(bag)
+
+    sys.exit(rc)
