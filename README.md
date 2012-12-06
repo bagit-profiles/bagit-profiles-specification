@@ -197,7 +197,7 @@ Examples
       "application/zip"
    ],
    "Accept-BagIt-Version":[
-      "0.97"
+      "0.96"
    ]
 }
 ```
