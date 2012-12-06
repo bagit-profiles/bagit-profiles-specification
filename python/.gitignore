@@ -1,4 +1,5 @@
 build
 dist
-BagitProfile.egg-info
-BagitProfile.pyc
+bagit_profile.egg-info
+bagit_profile.pyc
+*.log

@@ -6,7 +6,7 @@ description = \
     """
 
 setup(
-      name = 'BagitProfile',
+      name = 'bagit_profile',
       version = '0.0.1',
       url = 'https://github.com/ruebot/bagit-profiles',
       author = [
@@ -17,8 +17,8 @@ setup(
         'mjordan@sfu.ca',
         'ruestn@gmail.com',
       ],
-      py_modules = ['BagitProfile'],
-      scripts = ['BagitProfile.py'],
+      py_modules = ['bagit_profile'],
+      scripts = ['bagit_profile.py'],
       description = description,
       platforms = ['POSIX'],
       test_suite = 'test',
