@@ -83,12 +83,15 @@ class Profile(object):
         if 'Source-Organization' not in profile['BagIt-Profile-Info']:
             raise ProfileValidationError("Required 'Source-Organization' tag is not in 'BagIt-Profile-Info'.")
             logging.error(profile + "Required 'Source-Organization' tag is not in 'BagIt-Profile-Info'." + '\n')
+            return False
         if 'Version' not in profile['BagIt-Profile-Info']:
             raise ProfileValidationError("Required 'Version' tag is not in 'BagIt-Profile-Info'.")
             logging.error(profile + "Required 'Version' tag is not in 'BagIt-Profile-Info'." + '\n')
+            return False
         if 'BagIt-Profile-Identifier' not in profile['BagIt-Profile-Info']:
             raise ProfileValidationError("Required 'BagIt-Profile-Identifier' tag is not in 'BagIt-Profile-Info'.")
             logging.error(profile + "Required 'BagIt-Profile-Identifier' tag is not in 'BagIt-Profile-Info'." + '\n')
+            return False
 
     # Validate tags in self.profile['Bag-Info']. Profile data for this constrain looks like:
     # u'Bag-Info': {   u'Bagging-Date': {   u'required': True},
@@ -101,7 +104,8 @@ class Profile(object):
         # as self.url.
         if 'BagIt-Profile-Identifier' not in bag.info:
             raise ProfileValidationError("Required 'BagIt-Profile-Identifier' tag is not in bag-info.txt.")
-            logging.error(bag + "Required 'BagIt-Profile-Identifier' tag is not in bag-info.txt." + '\n') 
+            logging.error(bag + "Required 'BagIt-Profile-Identifier' tag is not in bag-info.txt." + '\n')
+            return False
         else:
             if bag.info['BagIt-Profile-Identifier'] != self.url:
                 raise ProfileValidationError("'BagIt-Profile-Identifier' tag does not contain this profile's URI.")

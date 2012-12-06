@@ -1,0 +1,11 @@
+Bag-Count: 1/1
+Bag-Size: 1.6M
+Bag-Software-Agent: bagit.py <http://github.com/edsu/bagit>
+Bagging-Date: 2012-12-06
+Contact-Email: ruestn@yorku.ca
+Contact-Name: Nick Ruest
+External-Description: Sample BagBar for testing
+Organization-Address: 4700 Keele Street Toronto, Ontario M3J 1P3 Canada
+Payload-Oxum: 1607987.1
+Source-Organization: York University
+BagIt-Profile-Identifier: https://raw.github.com/ruebot/bagit-profiles/refactor/cli-and-module/bagProfileBar.json
