@@ -1,0 +1,7 @@
+Bag-Software-Agent: bagit.py <http://github.com/edsu/bagit>
+Bagging-Date: 2012-11-25
+Contact-Name: Mark Matienzo
+External-Description: BagIt profile for packaging disk images
+Payload-Oxum: 1607987.1
+Source-Organization: Yale University
+BagIt-Profile-Identifier: https://raw.github.com/ruebot/bagit-profiles/refactor/cli-and-module/bagProfileBar.json
