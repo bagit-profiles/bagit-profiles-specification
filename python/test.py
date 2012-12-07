@@ -4,25 +4,47 @@ import logging
 import datetime
 import tempfile
 import unittest
+import bagit
 
 from os.path import join as j
 
 import bagit_profile
 
 class Test_bag_profile(unittest.TestCase):
-
-  # Instantiate an existing Bag using https://github.com/edsu/bagit.
-  bag = bagit.Bag('test-bar')
-
-  # Instantiate a profile, supplying its URI.
-  my_profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/refactor/cli-and-module/bagProfileBar.json')
-
-  # Validate 'Serialization' and 'Accept-Serialization'. This must be done 
-  # before .validate(bag) is called. 'mydir' is the path to the Bag.
   
-  def test_serialization():
-    assertTrue(my_profile.validate_serialization('test-bar'))
+  def test_validate_bagit_profile_info(self):
+    self.profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
+    self.assertTrue(bagit_profile.Profile.validate_bagit_profile_info)  
 
-  #validate the rest of the profile/
-  def test_bag_validation():
-    assertTrue(my_profile.validate(bag))
+  def test_validate(self):
+    self.bag = bagit.Bag('test-bar')
+    self.profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
+    self.assertTrue(bagit_profile.Profile.validate)
+
+  def test_validate_bag_info(self):
+    self.bag = bagit.Bag('test-bar')
+    self.profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
+    self.assertTrue(bagit_profile.Profile.validate_bag_info)
+
+  def test_validate_manifests_required(self):
+    self.bag = bagit.Bag('test-bar')
+    self.profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
+    self.assertTrue(bagit_profile.Profile.validate_manifests_required)
+
+  def test_validate_allow_fetch(self):
+    bag = bagit.Bag('test-bar')
+    profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
+    self.assertTrue(bagit_profile.Profile.validate_allow_fetch)
+
+  def test_validate_accept_bagit_version(self):
+    bag = bagit.Bag('test-bar')
+    profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
+    self.assertTrue(bagit_profile.Profile.validate_accept_bagit_version)
+    
+  def test_validate_serialization(self):
+    bag = bagit.Bag('test-bar')
+    profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
+    self.assertTrue(bagit_profile.Profile.validate_accept_bagit_version)
+
+if __name__ == '__main__':
+  unittest.main()
