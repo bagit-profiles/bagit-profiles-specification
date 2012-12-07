@@ -51,7 +51,7 @@ Or from the commandline:
 
 `bagit.py 'http://uri.for.profile/profile.json' path/to/bag`
 
-## Test suite
+### Test suite
 
 `python test.py`
 
