@@ -43,7 +43,10 @@ import optparse
 
 # Define an exceptin class for use within this module.
 class ProfileValidationError(Exception):
-    pass
+    def __init__(self, value):
+        self.value = value
+    def __str__(self):
+        return repr(self.value)
 
 # Define the Profile class.
 class Profile(object):
@@ -58,8 +61,8 @@ class Profile(object):
             profile = json.loads(profile)
             self.profile = profile
         except:
-            print "Cannot retrieve profile from", self.url
-            logging.error("Cannot retrieve profile from" + self.url)
+            print "Cannot retrieve profile from ", self.url
+            logging.error("Cannot retrieve profile from " + self.url)
             # This is a fatal error.
             sys.exit(1) 
 
@@ -70,11 +73,28 @@ class Profile(object):
     # which we've already called. 'Serialization' and 'Accept-Serialization'
     #  are validated in validate_serialization().
     def validate(self, bag):
-        self.validate_bag_info(bag)
-        self.validate_manifests_required(bag)
-        self.validate_allow_fetch(bag)
-        self.validate_accept_bagit_version(bag)
-        return True
+        valid = True
+        try:
+            self.validate_bag_info(bag)
+        except ProfileValidationError as e:
+            print "Error in bag-info.txt: ", e.value
+            valid = False
+        try:
+            self.validate_manifests_required(bag)
+        except ProfileValidationError as e:
+            print "Required manifests not found: ", e.value
+            valid = False
+        try:
+            self.validate_allow_fetch(bag)
+        except ProfileValidationError as e:
+            print "Required manifests not found: ", e.value
+            valid = False
+        try:
+            self.validate_accept_bagit_version(bag)
+        except ProfileValidationError as e:
+            print "Required BagIt version not found: ", e.value
+            valid = False
+        return valid
 
     # Check self.profile['bag-profile-info'] to see if "Source-Organization", 
     # "External-Description", "Version" and "BagIt-Profile-Identifier" are present. 
@@ -85,7 +105,7 @@ class Profile(object):
             logging.error(profile + "Required 'Source-Organization' tag is not in 'BagIt-Profile-Info'." + '\n')
             return False
         if 'Version' not in profile['BagIt-Profile-Info']:
-            raise ProfileValidationError("Required 'Version' tag is not in 'BagIt-Profile-Info'.")
+            # raise ProfileValidationError("Required 'Version' tag is not in 'BagIt-Profile-Info'.")
             logging.error(profile + "Required 'Version' tag is not in 'BagIt-Profile-Info'." + '\n')
             return False
         if 'BagIt-Profile-Identifier' not in profile['BagIt-Profile-Info']:
@@ -146,7 +166,7 @@ class Profile(object):
     # Check the Bag's version, and if it's not in the list of allowed versions,
     # throw an exception.
     def validate_accept_bagit_version(self, bag):
-        if bag.version not in self.profile['Accept-Bagit-Version']:
+        if bag.version not in self.profile['Accept-BagIt-Version']:
             raise ProfileValidationError("Bag version does is not in list of allowed values.")
             logging.error(bag + "Bag version does is not in list of allowed values." + '\n')
 

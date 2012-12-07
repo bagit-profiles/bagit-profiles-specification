@@ -5,7 +5,7 @@ import bagit_profile
 bag = bagit.Bag('test-bar')
 
 # Instantiate a profile, supplying its URI.
-my_profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/refactor/cli-and-module/bagProfileBar.json')
+my_profile = bagit_profile.Profile('https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json')
 
 # Validate 'Serialization' and 'Accept-Serialization'. This must be done 
 # before .validate(bag) is called. 'mydir' is the path to the Bag.
