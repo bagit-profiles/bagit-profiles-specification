@@ -1,0 +1,2 @@
+language: python
+script: cd python && python setup.py test
