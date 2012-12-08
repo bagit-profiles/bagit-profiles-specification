@@ -112,6 +112,7 @@ class Profile(object):
             raise ProfileValidationError("Required 'BagIt-Profile-Identifier' tag is not in 'BagIt-Profile-Info'.")
             logging.error(profile + "Required 'BagIt-Profile-Identifier' tag is not in 'BagIt-Profile-Info'." + '\n')
             return False
+        return True
 
     # Validate tags in self.profile['Bag-Info']. Profile data for this constrain looks like:
     # u'Bag-Info': {   u'Bagging-Date': {   u'required': True},
@@ -145,6 +146,8 @@ class Profile(object):
                             raise ProfileValidationError("Required tag '%s' is present in bag-info.txt but does not have an allowed value ('%s')." % (tag, bag.info[tag]))
                             logging.error(bag + "Required tag '%s' is present in bag-info.txt but does not have an allowed value ('%s')." + tag + bag.info[tag] + '\n')
 
+        return True
+
     # For each member of self.profile['manifests_required'], throw an exception if 
     # the manifest file is not present.
     def validate_manifests_required(self, bag):
@@ -153,6 +156,8 @@ class Profile(object):
             if not os.path.exists(path_to_manifest):
                 raise ProfileValidationError("Required manifest type '%s' is not present in Bag." + manifest_type)
                 logging.error(bag + "Required manifest type '%s' is not present in Bag." +  manifest_type + '\n')
+        return True
+
 
     # Check to see if this constraint is False, and if it is, then check to see
     # if the fetch.txt file exists. If it does, throw an exception.
@@ -162,6 +167,7 @@ class Profile(object):
             if os.path.exists(path_to_fetchtxt):
                 raise ProfileValidationError("Fetch.txt is present but is not allowed.")
                 logging.error(bag + "Fetch.txt is present but is not allowed." + '\n')
+        return True
 
     # Check the Bag's version, and if it's not in the list of allowed versions,
     # throw an exception.
@@ -169,6 +175,7 @@ class Profile(object):
         if bag.version not in self.profile['Accept-BagIt-Version']:
             raise ProfileValidationError("Bag version does is not in list of allowed values.")
             logging.error(bag + "Bag version does is not in list of allowed values." + '\n')
+        return True
 
     # Perform tests on 'Serialization' and 'Accept-Serialization', in one function.
     # Since the https://github.com/edsu/bagit only operates on unserialized Bags,
@@ -177,6 +184,8 @@ class Profile(object):
     # to be called before validate().
     def validate_serialization(self, path_to_bag):
         # First, perform the two negative tests.
+        if not os.path.exists(path_to_bag):
+            raise IOError("Can't find file %s" % path_to_bag)
         if self.profile['Serialization'] == 'required' and os.path.isdir(path_to_bag):
             raise ProfileValidationError("Bag serialization is required but Bag is a directory.")
             logging.error(path_to_bag + "Bag serialization is required but Bag is a directory." + '\n')
