@@ -211,3 +211,7 @@ Examples
 * Formalize specification.
 * Write standard libraries to assist in profile validation. ~~(Python done)~~
 * Establish a public registry of BagIt profiles for common uses, such as ingestion of content into repository platforms.
+
+### License
+
+![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png "CC0")
