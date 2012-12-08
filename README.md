@@ -209,5 +209,5 @@ Examples
 * ~~Request feedback from BagIt implementer community, initially in the Digital Curation Google Group.~~
 * ~~Write code to confirm proof-of-concept use cases.~~
 * Formalize specification.
-* Write standard libraries to assist in profile validation. (Python done)
+* Write standard libraries to assist in profile validation. ~~(Python done)~~
 * Establish a public registry of BagIt profiles for common uses, such as ingestion of content into repository platforms.
