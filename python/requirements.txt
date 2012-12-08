@@ -1,1 +1,2 @@
 bagit==0.9.8
+requests>=0.14.2

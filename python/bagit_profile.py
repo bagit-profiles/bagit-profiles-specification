@@ -35,8 +35,7 @@ else:
 """
 import os
 import sys
-import json
-import urllib
+import requests
 import mimetypes
 import logging
 import optparse
@@ -56,9 +55,8 @@ class Profile(object):
 
     def get_profile(self):
         try:
-            f = urllib.urlopen(self.url)
-            profile = f.read()
-            profile = json.loads(profile)
+            r = requests.get(self.url)
+            profile = r.json
             self.profile = profile
         except:
             print "Cannot retrieve profile from ", self.url
