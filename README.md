@@ -51,6 +51,8 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 2. `Bag-Info`:
 
 	Specifies which tags are required, etc. in bag-info.txt. Each tag definition takes two optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted.
+	
+	Implementers may define in the Bag-Info section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
 
 	bag-info.txt must contain the tag 'BagIt-Profile-Identifier', with a value of the URI of the JSON file containing the profile. Since Bags complying to a profile must contain this tag, they must also contain a bag-info.txt file.
 
