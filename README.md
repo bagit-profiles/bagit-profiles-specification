@@ -83,7 +83,7 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 9. `Tag-Files-Required`: LIST
 
-  A list of a tag files tha tmust be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files.
+  A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files.
 
 Examples
 ---
