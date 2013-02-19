@@ -77,6 +77,14 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 	A list of BagIt version numbers that will be accepted. At least one version is required.
 
+8. `Tag-Manifests-Required`: LIST
+
+  Each manifest file in LIST is required.
+
+9. `Tag-Files-Required`: LIST
+
+  A list of a tag files tha tmust be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files.
+
 Examples
 ---
 
