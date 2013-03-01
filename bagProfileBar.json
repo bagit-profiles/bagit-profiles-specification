@@ -75,7 +75,6 @@
      "md5"
    ],
    "Tag-Files-Required":[
-     "DPN",
      "DPN/dpnFirstNode.txt",
      "DPN/dpnRegistry"
    ],

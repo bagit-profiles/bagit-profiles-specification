@@ -206,6 +206,13 @@ Examples
    "Accept-Serialization":[
       "application/zip"
    ],
+   "Tag-Manifests-Required":[
+     "md5"
+   ],
+   "Tag-Files-Required":[
+      "DPN/dpnFirstNode.txt",
+      "DPN/dpnRegistry"
+   ],
    "Accept-BagIt-Version":[
       "0.96"
    ]
