@@ -1,9 +1,12 @@
-BagIt Profiles Specification (DRAFT in progress)
+BagIt Profiles Specification
 ===
 
-Collaborators
+Status of this specification
 ---
-This draft originally created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
+Version 1.0 of this specification (2013-05-19) maintained by Mark Jordan and Nick Ruest. 
+
+Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov. 
+
 
 Feedback / discussion
 ---
@@ -225,7 +228,7 @@ Examples
 * ~~Add license (CC0/Public Domain?).~~
 * ~~Request feedback from BagIt implementer community, initially in the Digital Curation Google Group.~~
 * ~~Write code to confirm proof-of-concept use cases.~~
-* Formalize specification.
+* ~~Formalize specification.~~ (Version 1.0 2013-05-19)
 * Write standard libraries to assist in profile validation. ~~([Python](https://github.com/ruebot/bagit-profiles-validator) done)~~
 * Establish a public registry of BagIt profiles for common uses, such as ingestion of content into repository platforms.
 
