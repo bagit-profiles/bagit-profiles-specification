@@ -65,6 +65,13 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 	Each manifest type in LIST is required. The list contains the type of manifest, not
 	the complete filename, e.g. `["sha1", "md5"]`.
 	
+4. `Manifests-Complete`: `true`|`false`
+
+        If `true`, then every manifest listed under `Manifests-Required` must contain a complete list
+        of the payload files. 
+        
+        Default: `false`
+
 4. `Allow-Fetch.txt`: `true`|`false`
 
 	A fetch.txt file is allowed within the bag. Default: `true`
