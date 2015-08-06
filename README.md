@@ -62,7 +62,7 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 3. `Manifests-Required`: LIST
 
-	Each manifest file in LIST is required. The list contains the type of manifest, not
+	Each manifest type in LIST is required. The list contains the type of manifest, not
 	the complete filename, e.g. `["sha1", "md5"]`.
 	
 4. `Allow-Fetch.txt`: `true`|`false`
