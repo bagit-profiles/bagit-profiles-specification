@@ -3,9 +3,9 @@ BagIt Profiles Specification
 
 Status of this specification
 ---
-Current version: 1.0.1 (2015-08-06). Maintained by Mark Jordan and Nick Ruest. 
+Current version: 1.0.1 (2017-05-10). Maintained by Mark Jordan and Nick Ruest. 
 
-Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov. 
+Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
 
 
 Feedback / discussion
@@ -32,13 +32,13 @@ Use cases for BagIt profiles include distributed mass production of Bags, reposi
 Workflow
 ---
 
-The intended workflow for using a BagIt profile is: 
+The intended workflow for using a BagIt profile is:
 
 1. The creator of the Bags ensures that Bags it produces meet all of the constraints expressed in the agreed-upon and published BagIt profile file. The creator declares the `BagIt-Profile-Identifier` in the `bag-info.txt` file of the Bags.
 
-2. The consumer of the Bags identifies the profile(s) from the `BagIt-Profile-Identifier` field in their `bag-info.txt`. The consumer then retrieves the profile file from its URI and validates incoming Bags against it; specifically, it must complete the Bag if `fetch.txt` is present, validate the complete Bag against the profile, and then validate the Bag against the cannonical BagIt spec. 
+2. The consumer of the Bags identifies the profile(s) from the `BagIt-Profile-Identifier` field in their `bag-info.txt`. The consumer then retrieves the profile file from its URI and validates incoming Bags against it; specifically, it must complete the Bag if `fetch.txt` is present, validate the complete Bag against the profile, and then validate the Bag against the cannonical BagIt spec.
 
-Each of these steps may be performed by a separate tool or microservice; in fact, implementers may integrate validation functionality in tools that perform other Bag-processing functions. For example, the completion of a holey Bag might be performed by a more general Bag-processing tool and need not be delegated to a separate validation tool. 
+Each of these steps may be performed by a separate tool or microservice; in fact, implementers may integrate validation functionality in tools that perform other Bag-processing functions. For example, the completion of a holey Bag might be performed by a more general Bag-processing tool and need not be delegated to a separate validation tool.
 
 Some profile constraints are fatal: for example, failure to validate 'Accept-Serialization' or 'Accept-BagIt-Version' implies that the rest of the bag is unverifiable and processing should stop. Therefore, the task that checks these two constraints should be performed as early as possible in the workflow. Processing may continue after non-fatal errors in order to generate a comprehensive error report.
 
@@ -46,9 +46,9 @@ Implementation details
 ---
 
 Bags complying to a BagIt profile MUST contain the tag `BagIt-Profile-Identifier`
-in their `bag-info.txt`, which value is the URI of the JSON file containing the profile it 
+in their `bag-info.txt`, which value is the URI of the JSON file containing the profile it
 conform to.  This tag MAY be repeated if the bag conforms to multiple profiles.
-The URI that identifies the profile SHOULD be versioned, e.g. `http://example.com/bagitprofiles/profile-bar-v0.1.json`. 
+The URI that identifies the profile SHOULD be versioned, e.g. `http://example.com/bagitprofiles/profile-bar-v0.1.json`.
 Resolving the URI with `Accept: application/json` SHOULD provide a BagIt Profile as JSON according to this specification.
 
 The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow. LIST in the field definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a | indicate allowed options for that field.
@@ -59,17 +59,17 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 2. `Bag-Info`:
 
-	Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes two optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted.
-	
-	Implementers may define in the Bag-Info section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
-	The tag `BagIt-Profile-Identifier` is always required, but SHOULD NOT be listed under `Bag-Info` in the profile.
+	Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes three optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted. 3) "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`.
 
+	Implementers may define in the Bag-Info section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
+
+	The tag `BagIt-Profile-Identifier` is always required, but SHOULD NOT be listed under `Bag-Info` in the profile.
 
 3. `Manifests-Required`: LIST
 
 	Each manifest type in LIST is required. The list contains the type of manifest (not
 	the complete filename), e.g. `["sha1", "md5"]`.
-	
+
 4. `Allow-Fetch.txt`: `true`|`false`
 
 	A fetch.txt file is allowed within the bag. Default: `true`
