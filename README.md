@@ -84,7 +84,7 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 7. `Accept-BagIt-Version`: LIST
 
-	A list of BagIt version numbers that will be accepted. At least one version is required.
+	A list of BagIt version numbers that will be accepted. At least one version number is required. All version numbers MUST be UTF-8 encoded strings.
 
 8. `Tag-Manifests-Required`: LIST
 
