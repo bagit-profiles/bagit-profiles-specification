@@ -95,6 +95,14 @@ the complete filename), e.g. `["sha1", "md5"]`.
 
   A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
 
+  Every file in `Tag-Files-Required` must also be present in `Tag-Files-Allowed`.
+
+10. `Tag-Files-Allowed`: LIST
+
+  A list of tag files that may be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+
+  At least all the tag files listed in `Tag-Files-Required` must be in included in `Tag-Files-Allowed`.
+
 Examples
 ---
 
