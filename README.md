@@ -93,20 +93,20 @@ the complete filename), e.g. `["sha1", "md5"]`.
 
 9. `Tag-Files-Required`: LIST
 
-  A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+  A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
 
   Every file in `Tag-Files-Required` must also be present in `Tag-Files-Allowed`.
 
 10. `Tag-Files-Allowed`: LIST
 
-  A list of tag files that may be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+  A list of tag files that may be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
 
   At least all the tag files listed in `Tag-Files-Required` must be in included in `Tag-Files-Allowed`.
 
 Examples
 ---
 
-[bagProfileFoo.json](https://raw.github.com/ruebot/bagit-profiles/master/bagProfileFoo.json)
+[bagProfileFoo.json](https://raw.github.com/bagit-profiles/bagit-profiles/master/bagProfileFoo.json)
 
 ```json
 {
@@ -148,7 +148,7 @@ Examples
 }
 ```
 
-[bagProfileBar.json](https://raw.github.com/ruebot/bagit-profiles/master/bagProfileBar.json)
+[bagProfileBar.json](https://raw.github.com/bagit-profiles/bagit-profiles/master/bagProfileBar.json)
 
 ```json
 {
@@ -244,7 +244,7 @@ Examples
 * ~~Request feedback from BagIt implementer community, initially in the Digital Curation Google Group.~~
 * ~~Write code to confirm proof-of-concept use cases.~~
 * ~~Formalize specification.~~ (Version 1.0 2013-05-19)
-* Write standard libraries to assist in profile validation. ~~([Python](https://github.com/ruebot/bagit-profiles-validator) done)~~
+* Write standard libraries to assist in profile validation. ~~([Python](https://github.com/bagit-profiles/bagit-profiles-validator) done)~~
 * Establish a public registry of BagIt profiles for common uses, such as ingestion of content into repository platforms.
 
 ### License
