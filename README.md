@@ -93,13 +93,17 @@ the complete filename), e.g. `["sha1", "md5"]`.
 
 9. `Tag-Files-Required`: LIST
 
-  A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+  A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
 
   Every file in `Tag-Files-Required` must also be present in `Tag-Files-Allowed`.
 
 10. `Tag-Files-Allowed`: LIST
 
-  A list of tag files that may be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+  A list of tag files that may be included in a conformant Bag. Entries are either full path names relative to the bag base directory or path name patterns in which asterisks can represent zero or more characters (c.f. [glob(7)](http://man7.org/linux/man-pages/man7/glob.7.html)).
+
+  If `Tag-Files-Allowed` is not provided, its value is assumed to be `['*']`, i.e. all tag files are allowed.
+
+As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
 
   At least all the tag files listed in `Tag-Files-Required` must be in included in `Tag-Files-Allowed`.
 
@@ -108,6 +112,7 @@ Examples
 
 [bagProfileFoo.json](https://raw.github.com/bagit-profiles/bagit-profiles/master/bagProfileFoo.json)
 
+<!-- BEGIN-EVAL -w '```json' '```' -- cat ./bagProfileFoo.json -->
 ```json
 {
    "BagIt-Profile-Info":{
@@ -148,11 +153,14 @@ Examples
 }
 ```
 
+<!-- END-EVAL -->
+
 [bagProfileBar.json](https://raw.github.com/bagit-profiles/bagit-profiles/master/bagProfileBar.json)
 
+<!-- BEGIN-EVAL -w '```json' '```' -- cat ./bagProfileBar.json  -->
 ```json
 {
-     "BagIt-Profile-Info":{
+   "BagIt-Profile-Info":{
       "BagIt-Profile-Identifier":"http://canadiana.org/standards/bagit/tdr_ingest.json",
       "Source-Organization":"Candiana.org",
       "Contact-Name":"William Wueppelmann",
@@ -227,15 +235,20 @@ Examples
    "Tag-Manifests-Required":[
      "md5"
    ],
+   "Tag-Files-Allowed":[
+     "DPN/*"
+   ],
    "Tag-Files-Required":[
-      "DPN/dpnFirstNode.txt",
-      "DPN/dpnRegistry"
+     "DPN/dpnFirstNode.txt",
+     "DPN/dpnRegistry"
    ],
    "Accept-BagIt-Version":[
       "0.96"
    ]
 }
 ```
+
+<!-- END-EVAL -->
 
 @todo
 ---
