@@ -3,7 +3,7 @@ BagIt Profiles Specification
 
 Status of this specification
 ---
-Current version: 1.1.0 (2017-05-10). Maintained by Mark Jordan and Nick Ruest. 
+Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest. 
 
 Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
 
@@ -55,7 +55,26 @@ The following fields make up a BagIt profile. Each field is a top-level JSON key
 
 1. `BagIt-Profile-Info`:
 
-	A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "BagIt-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "BagIt-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "BagIt-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Name," "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
+A list of tags that describes the profile itself. The following tags are
+required in this section: `Source-Organization`, `External-Description`,
+`Version`, and `BagIt-Profile-Identifier`. Starting with version [`v1.2.0`],
+`BagIt-Profile-Version` is also required.
+
+The `Source-Organization` and `External-Description` tags are taken from the
+[reserved tags defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10).
+
+The value of `Version` contains the version of the profile; the value of
+`BagIt-Profile-Identifier` is the URI where the profile file is available, and
+will have the same value as the `BagIt-Profile-Identifier` tag in bag-info.txt
+(see below).
+
+The value of `BagIt-Profile-Version` contains the version of this specification the
+profile.conforms to. Since the tag was introduced after version [`v1.1.0`], any
+profile not explicitly defining `BagIt-Profile-Version` should be treated as
+conforming to version [`1.1.0`] of this specification.
+
+Inclusion of `Contact-Name,` `Contact-Phone` and `Contact-Email,`
+as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is not required but is encouraged.
 
 2. `Bag-Info`:
 
@@ -98,6 +117,8 @@ the complete filename), e.g. `["sha1", "md5"]`.
   Every file in `Tag-Files-Required` must also be present in `Tag-Files-Allowed`.
 
 10. `Tag-Files-Allowed`: LIST
+
+*(Added in [`v1.2.0`])*
 
   A list of tag files that may be included in a conformant Bag. Entries are either full path names relative to the bag base directory or path name patterns in which asterisks can represent zero or more characters (c.f. [glob(7)](http://man7.org/linux/man-pages/man7/glob.7.html)).
 
@@ -263,3 +284,6 @@ Examples
 ### License
 
 ![CC0](http://i.creativecommons.org/p/zero/1.0/88x31.png "CC0")
+
+[`v1.1.0`]: https://github.com/bagit-profiles/bagit-profiles/tree/1.1.0
+[`v1.2.0`]: https://github.com/bagit-profiles/bagit-profiles/tree/1.2.0
