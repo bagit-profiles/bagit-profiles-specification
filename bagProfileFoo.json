@@ -1,6 +1,7 @@
 {
    "BagIt-Profile-Info":{
       "BagIt-Profile-Identifier":"http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
+      "BagIt-Profile-Version": "1.1.0",
       "Source-Organization":"Yale University",
       "Contact-Name":"Mark Matienzo",
       "External-Description":"BagIt profile for packaging disk images",

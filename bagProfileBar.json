@@ -1,6 +1,7 @@
 {
    "BagIt-Profile-Info":{
       "BagIt-Profile-Identifier":"http://canadiana.org/standards/bagit/tdr_ingest.json",
+      "BagIt-Profile-Version": "1.2.0",
       "Source-Organization":"Candiana.org",
       "Contact-Name":"William Wueppelmann",
       "Contact-Email":"tdr@canadiana.com",
