@@ -1,0 +1,186 @@
+{
+        "Accept-BagIt-Version": [
+            "0.97", "1.0"
+        ],
+        "Accept-Serialization": [
+            "application/tar"
+        ],
+        "Allow-Fetch.txt": false,
+        "Deserialization-Match-Required": true,
+        "BagIt-Profile-Info": {
+            "BagIt-Profile-Identifier": "https://wiki.aptrust.org/dpnxxx.json",
+            "BagIt-Profile-Version": "x.x.x",
+            "Contact-Email": "support@dpn.org",
+            "Contact-Name": "A. Diamond",
+            "External-Description": "BagIt profile for ingesting content into DPN.",
+            "Source-Organization": "dpn.org",
+            "Version": "2.1"
+        },
+        "Manifests-Required": [
+            "sha256"
+        ],
+        "Serialization": "required",
+		"Deserialization-Match-Required": true,
+        "Tag-Manifests-Required": [
+            "sha256"
+        ],
+        "Tags": [
+            {
+                "tagFile": "bagit.txt",
+                "tagName": "BagIt-Version",
+                "required": true,
+                "values": [
+                    "0.97", "1.0"
+                ],
+                "defaultValue": "0.97",
+                "help": "Which version of the BagIt specification describes this bag's format?"
+            },
+            {
+                "tagFile": "bagit.txt",
+                "tagName": "Tag-File-Character-Encoding",
+                "required": true,
+                "values": [
+                    "UTF-8"
+                ],
+                "defaultValue": "UTF-8",
+                "help": "How are this bag's plain-text tag files encoded? (Hint: usually UTF-8)"
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Source-Organization",
+                "required": true,
+                "values": [],
+                "help": "The name of the organization that produced this bag, or is responsible for its contents."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Organization-Address",
+                "required": true,
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Contact-Name",
+                "required": true,
+                "values": [],
+                "help": "The street address of the source organization."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Contact-Phone",
+                "required": true,
+                "values": [],
+                "help": "The phone number of the bagging/archiving contact in the source organization."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Contact-Email",
+                "required": true,
+                "help": "The email address of the bagging/archiving contact in the source organization."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bagging-Date",
+                "required": true,
+                "help": "The date this bag was created. The bagging software should set this automatically."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bagging-Software",
+                "required": false,
+                "help": "The name of the software that created this bag. The bagging software should set this automatically."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bag-Size",
+                "required": true,
+                "help": "The approximate size of the bag's payload, in human-readable format. E.g. 33MB or 268GB."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bag-Group-Identifier",
+                "required": true,
+                "help": "An identifier that marks this bag as part of a single collection or a related group of items that has been packaged into several bags."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bag-Count",
+                "required": true,
+                "help": "Two numbers separated by \"of\", in particular, \"N of T\", where T is the total number of bags in a group of bags and N is the ordinal number within the group; if T is not known, specify it as \"?\" (question mark).  Examples: 1 of 2, 4 of 4, 3 of ?, 89 of 145."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "DPN-Object-ID",
+                "required": true,
+                "values": [],
+                "help": "The bag's unique identifier, which is a version 4 UUID that must match the bag name. The system should set this automatically."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Local-ID",
+                "required": true,
+                "values": [],
+                "help": "You're local name or unique identifier for this bag."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Ingest-Node-Name",
+                "required": true,
+                "help": "The name of the DPN node that ingests this bag."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Ingest-Node-Address",
+                "required": true,
+                "help": "The street address of the node that ingests this bag."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Ingest-Node-Contact-Name",
+                "required": true,
+                "help": "The name of the technical or administrative contact at the ingest node."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Ingest-Node-Contact-Email",
+                "required": true,
+                "help": "The email address of the technical or administrative contact at the ingest node."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Version-Number",
+                "required": true,
+                "help": "The version number of this bag. Until DPN fully supports bag versioning, this should be set to 1."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "First-Version-Object-ID",
+                "required": true,
+                "values": [],
+                "help": "The unique identifier of the first version of this bag. Until DPN fully supports versionion, this should be set automatically by the bagging software to match the bag name and DPN-Object-ID."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Interpretive-Object-ID",
+                "required": true,
+                "values": [],
+                "help": "The unique identifier of the DPN bag that contains information about how to brighten this bag. Because brightening bags are not yet implemented, this should be left blank."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Rights-Object-ID",
+                "required": true,
+                "help": "The unique identifier of the DPN bag that contains information about legal rights governing this bag's content. Because rights bags are not yet implemented, this should be left blank."
+            },
+            {
+                "tagFile": "dpn-tags/dpn-info.txt",
+                "tagName": "Bag-Type",
+                "required": true,
+                "values": [
+                    "data",
+                    "interpretive",
+                    "rights"
+                ],
+                "help": "The type of this DPN bag. This should be set to 'data', since other bag types are not yet implemented."
+            }
+        ]
+    }

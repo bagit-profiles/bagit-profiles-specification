@@ -1,0 +1,148 @@
+    {
+        "Accept-BagIt-Version": [
+            "0.97", "1.0"
+        ],
+        "Accept-Serialization": [
+            "application/tar"
+        ],
+        "Allow-Fetch.txt": false,
+        "BagIt-Profile-Info": {
+            "BagIt-Profile-Identifier": "https://wiki.aptrust.org/xxxx.json",
+            "BagIt-Profile-Version": "x.x.x",
+            "Contact-Email": "support@aptrust.org",
+            "Contact-Name": "A. Diamond",
+            "External-Description": "Sample BagIt profile for ingesting content into APTrust.",
+            "Source-Organization": "aptrust.org",
+            "Version": "2.2"
+        },
+        "Serialization": "required",
+        "Deserialization-Match-Required": true,
+        "Manifests-Required": [],
+        "Tag-Manifests-Required": [],
+        "Manifests-Allowed": [
+        	"md5",
+        	"sha1",
+			"sha224",
+        	"sha256",
+        	"sha384",
+        	"sha512"        
+        ],
+        "Tag-Manifests-Allowed": [
+        	"md5",
+        	"sha1",
+			"sha224",
+        	"sha256",
+        	"sha384",
+        	"sha512"
+        ],
+        "Tags": [
+            {
+                "tagFile": "bagit.txt",
+                "tagName": "BagIt-Version",
+                "required": true,
+                "values": [
+                    "0.97", "1.0"
+                ],
+                "help": "Which version of the BagIt specification describes this bag's format?"
+            },
+            {
+                "tagFile": "bagit.txt",
+                "tagName": "Tag-File-Character-Encoding",
+                "required": true,
+                "values": [
+                    "UTF-8"
+                ],
+                "defaultValue": "UTF-8",
+                "help": "How are this bag's plain-text tag files encoded? (Hint: usually UTF-8)"
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Source-Organization",
+                "required": true,
+                "values": [],
+                "help": "The name of the organization that produced this bag, or is responsible for its contents."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bag-Count",
+                "required": false,
+                "help": "The number of bags that make up this object. Set this only if you are packaging a single object into multiple bags. See https://wiki.aptrust.org/Bagging_specifications for info on naming multi-part APTrust bags."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bagging-Date",
+                "required": false,
+                "help": "The date this bag was created. The bagging software should set this automatically."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bagging-Software",
+                "required": false,
+                "help": "The name of the software that created this bag. The bagging software should set this automatically."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Bag-Group-Identifier",
+                "required": false,
+                "help": "Identifies the logical group or collection to which a bag belongs. Several bags may share the same Bag-Group-Identifier to indicate that they are part of the same logical grouping."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Internal-Sender-Description",
+                "required": false,
+                "help": "A description of the bag's contents for the sender's internal use. This description will appear in the APTrust registry if you do not set the Description tag in the aptrust-info.txt file."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Internal-Sender-Identifier",
+                "required": false,
+                "help": "A unique identifier for this bag inside your organization."
+            },
+            {
+                "tagFile": "bag-info.txt",
+                "tagName": "Payload-Oxum",
+                "required": false,
+                "help": "The number of files and bytes in this bag's payload. This should be calculated and set by the bagging software."
+            },
+            {
+                "tagFile": "aptrust-info.txt",
+                "tagName": "Title",
+                "required": true,
+                "help": "The title or name of that describes this bag's contents."
+            },
+            {
+                "tagFile": "aptrust-info.txt",
+                "tagName": "Access",
+                "required": true,
+                "values": [
+                    "Consortia",
+                    "Institution",
+                    "Restricted"
+                ],
+                "help": "Access rights for this bag describe who can see that it exists in the repository."
+            },
+            {
+                "tagFile": "aptrust-info.txt",
+                "tagName": "Description",
+                "required": false,
+                "help": "The description of the bag that you want to appear in the APTrust registry."
+            },
+            {
+                "tagFile": "aptrust-info.txt",
+                "tagName": "Storage-Option",
+                "required": true,
+                "values": [
+                    "Standard",
+                    "Glacier-OH",
+                    "Glacier-OR",
+                    "Glacier-VA",
+                    "Glacier-Deep-OH",
+                    "Glacier-Deep-OR",
+                    "Glacier-Deep-VA"
+                ],
+                "defaultValue": "Standard",
+                "help": "How do you want this bag to be stored in APTrust? Standard = S3/Virginia + Glacier/Oregon. Glacier-OH = Glacier-only storage in Ohio. Glacier-OR = Glacier-only storage in Oregon. Glacier-VA = Glacier-only storage in Virginia. Standard storage includes regular 90-day fixity checks. Glacier-only storage is less expensive but excludes fixity checks. File in Glacier-only storage may take up to 24 hours longer to restore and excessive Glacier retrieval may incur additional fees."
+            }
+        ]
+    }
+
