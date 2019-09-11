@@ -6,6 +6,16 @@ As part of its test suite, DART includes profiles from APTrust and the now defun
 
 The existing BagIt profiles in this repository cannot describe valid APTrust and DPN bags because APTrust requires a tag file called aptrust-info.txt, which must contain a specific set of tags, and DPN required a file called dpn-tags/dpn-info.txt whose tags also had to comply with a defined set of requirements.
 
+APTrust proposes changes to BagIt profiles to achieve the following goals:
+
+1. Allow profiles to descibe tags outside the bag-info.txt file.
+
+2. Allow profiles to tell users (optionally through bagging software user GUIs) what information is expected in tag values.
+
+3. Allow profiles to specify a set of valid manifests and tag manifests without prescribing which manifest algorithms must be used.
+
+4. Allow profiles to specify whether serialized bags must expand into a directory that matches the name of the serialized bag.
+
 ## Limitations of Tag Definitions in BagIt-Profiles v1.2.0
 
 BagIt-Profiles v1.2.0 allows users to specify which tags should be present in the bag-info.txt file, whether they're required, and which values are allowed. For example:
@@ -63,7 +73,7 @@ This approach presents two problems.
 
 1. First, in order to collect a list of all tag definitions, the software that creates or validates the bag must scan through all the keys of BagIt profile JSON structure and look for keys that don't match known names like `Manifests-Required`, `Allow-Fetch.txt`, etc. Then it must assume these keys describe tag files, and the values describe tags expected to be in those files.
 
-2. Second, the key names in the JSON structure don't necessarily match the tag file names. Bag-Info.txt and bag-info.txt are not the same thing on case-sensitive file systems.
+2. Second, the key names in the JSON structure don't necessarily match the tag file names. Bag-Info.txt and bag-info.txt are not the same thing on case-sensitive file systems. Asking the bagging/validation software to infer file names based on loosely matching key names invites trouble.
 
 ## Proposed Fix for Tag Definitions
 
@@ -97,7 +107,7 @@ A single key in a BagIt profile called Tags can contain a list of all required t
     ]
 ```
 
-Bagging software and bag validators can scan a single list in the profile definition to get a list of all required tags in all required tag files. If a tag file contains a single required tag, the bagger/validator can assume the containing tag file is also required. `Tag-Files-Required` may then no longer require a separate definition.
+Bagging software and bag validators can scan a single list in the profile definition to find all required tags in all required tag files. If a tag file contains a single required tag, the bagger/validator can assume the containing tag file is also required. If this is the case, `Tag-Files-Required` would no longer be required.
 
 ### A Note on the Help Attribute
 
@@ -160,6 +170,8 @@ BTR plans a similar definition, in order to make the process of moving data from
    ]
 ```
 
+Because APTrust, Chronopolis, DuraCloud, LOCKSS, and MetaArchive are all participating in the BTR grant, all may at some point be supporting the BTR profile idea of specifying allowed manifest algorithms without prescribing which specific one should be used.
+
 ## Deserialization-Match-Required
 
 Finally, APTrust has one request related to validating serialized bags. We currently enforce a recommendation that was part of version 14 of the BagIt spec but was later dropped. [Section 4.2](https://tools.ietf.org/html/draft-kunze-bagit-14#page-11) of the old spec said:
@@ -172,13 +184,13 @@ APTrust has always enforced a rule that these names MUST match. That is, if a ta
 
 APTrust and other DDPs typically untar bags in a staging area during the ingest process. When the bag `photos.tar` bag untars to a directory called `photos`, we can be sure its contents will not overwrite or commingle with the contents of another bags being processed at the same time.
 
-When bags `photos.tar`, `audio.tar`, and `video.tar` all expand to directory called `bag_contents` and are all being ingested at the same time, we wind up with a mess.
+Allowing bags to deserialize to arbitrary locations can cause problems. For example, if `photos.tar`, `audio.tar`, and `video.tar` all expand to directory called `bag_contents` and are all being ingested at the same time, contents of one bag can be mistaken for contents of another bag, and we wind up with a mess.
 
 To prevent this, APTrust looks into serialized bags BEFORE deserializing them to ensure that the will expand into a directory with the same name. We reject bags that don't meet this rule.
 
 Although the recommendation in Section 4.2 was dropped from the official BagIt spec, we would like BagIt profiles to provide a way to specify whether a valid bag must deserialize to an expected directory. This rule would only apply to serialized bags, and can default to false.
 
-It has practical applications for DDPs and can vastly simplify the ingest process and the maintenance of the DDPs staging area. APTrust is not the only DDP to use a staging area for bag validation. Chronopolis, Texas Digital Library, and Hathi Trust also used staging areas when they acted as DPN nodes, and DDPs will likely continue to use them in the future.
+It has practical applications for DDPs and can vastly simplify the ingest process and the maintenance of the DDPs' staging area. APTrust is not the only DDP to use a staging area for bag validation. Chronopolis, Texas Digital Library, and Hathi Trust also used staging areas when they acted as DPN nodes, and DDPs will likely continue to use them in the future.
 
 ## BTR and APTrust Change Requests
 
@@ -192,4 +204,4 @@ Note that, for the time being, these samples go against the BagIt profile rule o
 
 Including bagit.txt in the `Tags` list simplifies the work of the bagger and the validator by including all requirements in a single place.
 
-The examples also include a `Default-Value` attribute in tag definitions. DART uses this internally when creating bags. APTrust is not asking for this to be part of a future BagIt profile spec.
+The examples also include a `defaultValue` attribute in tag definitions (such as the definition for the Storage-Option tag in the sample called aptrust-bagit-profile.json). DART uses this internally when creating bags. APTrust is not asking for this to be part of a future BagIt profile spec.

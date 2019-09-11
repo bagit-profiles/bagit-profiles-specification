@@ -1,6 +1,7 @@
     {
         "Accept-BagIt-Version": [
-            "0.97", "1.0"
+            "0.97",
+            "1.0"
         ],
         "Accept-Serialization": [
             "application/tar"
@@ -8,7 +9,7 @@
         "Allow-Fetch.txt": false,
         "BagIt-Profile-Info": {
             "BagIt-Profile-Identifier": "https://wiki.aptrust.org/xxxx.json",
-            "BagIt-Profile-Version": "x.x.x",
+            "BagIt-Profile-Version": "1.3.0",
             "Contact-Email": "support@aptrust.org",
             "Contact-Name": "A. Diamond",
             "External-Description": "Sample BagIt profile for ingesting content into APTrust.",
@@ -25,7 +26,7 @@
 			"sha224",
         	"sha256",
         	"sha384",
-        	"sha512"        
+        	"sha512"
         ],
         "Tag-Manifests-Allowed": [
         	"md5",
@@ -41,7 +42,8 @@
                 "tagName": "BagIt-Version",
                 "required": true,
                 "values": [
-                    "0.97", "1.0"
+                    "0.97",
+                    "1.0"
                 ],
                 "help": "Which version of the BagIt specification describes this bag's format?"
             },
@@ -145,4 +147,3 @@
             }
         ]
     }
-
