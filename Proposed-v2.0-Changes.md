@@ -2,6 +2,8 @@
 
 This document proposes some breaking changes to the BagIt Profiles specification.
 
+These changes evolved during the development of APTrust's [DART](https://github.com/APTrust/dart) tool, which (among other things) creates and validates bags. While developing DART, we found that the existing BagIt profile spec could not describe bags we needed to create and validate.
+
 The current BagIt Profiles spec only defines tags within the bag-info.txt file. It cannot describe valid APTrust bags because APTrust requires a tag file called aptrust-info.txt, which must contain a specific set of tags, each of which has defined constraints. Other organizations in the past, such as DPN, also required a defined set of tags outside of bag-info.txt, and future organizations will likely do the same.
 
 APTrust proposes changes to BagIt Profiles to achieve the following goals:
@@ -111,7 +113,7 @@ Bagging software and bag validators can scan a single list in the profile defini
 
 ### A Note on the Help Attribute
 
-APTrust uses the help attribute of each tag definition to provide tooltips in its graphical bagging library. These tips help users understand what information is expected in a tag field. For example, see the tooltip for the Bag-Group-Identifier tag in the screenshot below.
+APTrust uses the help attribute of each tag definition to provide tooltips in its graphical bagging library. These tips help users understand what information is expected in a tag field. For example, see the tooltip for the Bag-Group-Identifier tag in the screenshot below. The text comes directly from the tag's help attribute in the BagIt Profile.
 
 ![DART bagging tool showing a tooltip for the Bag-Group-Identifier tag](./img/HelpAsTooltip.png)
 
