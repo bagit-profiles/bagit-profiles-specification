@@ -3,7 +3,7 @@ BagIt Profiles Specification
 
 Status of this specification
 ---
-Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest.
+Current version: 2.0 (2010-09-12). Maintained by Mark Jordan and Nick Ruest.
 
 Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
 
