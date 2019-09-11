@@ -1,20 +1,20 @@
-# APTrust Proposed BagIt Profile Changes
+# Proposed BagIt Profile Changes for v2.0
 
-APTrust has been using a modified version of BagIt profiles as part of its open source [DART](https://github.com/APTrust/dart) software. Among other things, DART can both build and validate bags according to a BagIt profile.
+This document proposes some breaking changes to the BagIt Profiles specification.
 
-As part of its test suite, DART includes profiles from APTrust and the now defunct DPN. Each of these profiles includes a custom tag file with a number of required tags.
+The current BagIt Profiles spec only defines tags within the bag-info.txt file. It cannot describe valid APTrust bags because APTrust requires a tag file called aptrust-info.txt, which must contain a specific set of tags, each of which has defined constraints. Other organizations in the past, such as DPN, also required a defined set of tags outside of bag-info.txt, and future organizations will likely do the same.
 
-The existing BagIt profiles in this repository cannot describe valid APTrust and DPN bags because APTrust requires a tag file called aptrust-info.txt, which must contain a specific set of tags, and DPN required a file called dpn-tags/dpn-info.txt whose tags also had to comply with a defined set of requirements.
-
-APTrust proposes changes to BagIt profiles to achieve the following goals:
+APTrust proposes changes to BagIt Profiles to achieve the following goals:
 
 1. Allow profiles to descibe tags outside the bag-info.txt file.
 
-2. Allow profiles to tell users (optionally through bagging software user GUIs) what information is expected in tag values.
+2. Simplify the work of software that creates and validates bags by collecting all tag requirements in a single list within the profile.
 
-3. Allow profiles to specify a set of valid manifests and tag manifests without prescribing which manifest algorithms must be used.
+3. Allow profiles to tell users (optionally through bagging software user GUIs) what information is expected in tag values.
 
-4. Allow profiles to specify whether serialized bags must expand into a directory that matches the name of the serialized bag.
+4. Allow profiles to specify a set of valid manifests and tag manifests without prescribing which manifest algorithms must be used.
+
+5. Allow profiles to specify whether serialized bags must expand into a directory that matches the name of the serialized bag.
 
 ## Limitations of Tag Definitions in BagIt-Profiles v1.2.0
 
@@ -111,7 +111,9 @@ Bagging software and bag validators can scan a single list in the profile defini
 
 ### A Note on the Help Attribute
 
-APTrust uses the help attribute of each tag definition to provide tooltips in its graphical bagging library. These tips help users understand what information is expected in a tag field.
+APTrust uses the help attribute of each tag definition to provide tooltips in its graphical bagging library. These tips help users understand what information is expected in a tag field. For example, see the tooltip for the Bag-Group-Identifier tag in the screenshot below.
+
+![DART bagging tool showing a tooltip for the Bag-Group-Identifier tag](./img/HelpAsTooltip.png)
 
 Members of the [Beyond the Repository](https://northwestern.app.box.com/s/3qu2qbkdx3aod6wj9jt6977p4byhpj3y) (BTR) project will soon be publishing a BagIt profile intended to be supported by all distributed digital preservation repositories (DDPs) in the US. They also want a new attribute similar to `help` in the tag defintions, though they are calling it `definition`. The name isn't as important as the presence of some inline documentation to help bag creators supply meaningful tag values.
 
@@ -198,10 +200,4 @@ The BTR team will be submitting its comments and change requests separately in t
 
 ## Included Sample Profiles
 
-The JSON files in this directory show sample BagIt profiles for APTrust and DPN that conform to the changes proposed above.
-
-Note that, for the time being, these samples go against the BagIt profile rule of not defining what's expected in the bagit.txt file. These profiles include ALL tags expected to be found in the bag.
-
-Including bagit.txt in the `Tags` list simplifies the work of the bagger and the validator by including all requirements in a single place.
-
-The examples also include a `defaultValue` attribute in tag definitions (such as the definition for the Storage-Option tag in the sample called aptrust-bagit-profile.json). DART uses this internally when creating bags. APTrust is not asking for this to be part of a future BagIt profile spec.
+The sample profiles [bagProfileBar.json](bagProfileBar.json) and [bagProfileFoo.json](bagProfileFoo.json) have been revised from the 1.2.0 spec to use the format of the proposed 2.0 spec.
