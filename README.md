@@ -82,12 +82,12 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 
 A list of tag definitions, each of which describes requirements, constraints, and/or help text associated with a tag that may be present in the bag. Each tag definition may include the following parameters:
 
-    * "tagName" [required] is the name of the tag. E.g. "Source-Organization"
-    * "tagFile" [required] is the path of the file in which the tag appears. This path is relative to the root of the bag. For example, "bag-info.txt" or "custom-tags/custom.txt".
-    * "required" is true or false (default false) and indicates whether or not this tag is required.
-    * "values" is a list of acceptable values. If empty, any value is accepted.
-    * "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in the file.
-    * "help" is free-form text to assist bag creators in understanding what information is expected to be supplied as the tag's value.
+* "tagName" [required] is the name of the tag. E.g. "Source-Organization"
+* "tagFile" [required] is the path of the file in which the tag appears. This path is relative to the root of the bag. For example, "bag-info.txt" or "custom-tags/custom.txt".
+* "required" is true or false (default false) and indicates whether or not this tag is required.
+* "values" is a list of acceptable values. If empty, any value is accepted.
+* "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in the file.
+* "help" is free-form text to assist bag creators in understanding what information is expected to be supplied as the tag's value.
 
 	Implementers may define in the Tags section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
 
