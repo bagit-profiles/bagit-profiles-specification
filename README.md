@@ -3,7 +3,7 @@ BagIt Profiles Specification
 
 Status of this specification
 ---
-Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest. 
+Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest.
 
 Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
 
@@ -76,32 +76,53 @@ conforming to version [`1.1.0`] of this specification.
 Inclusion of `Contact-Name,` `Contact-Phone` and `Contact-Email,`
 as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is not required but is encouraged.
 
-2. `Bag-Info`:
+2. `Tags`:
 
-	Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes three optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted. 3) "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`.
+*(Added in [`v2.0`])*
 
-	Implementers may define in the Bag-Info section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
+A list of tag definitions, each of which describes requirements, constraints, and/or help text associated with a tag that may be present in the bag. Each tag definition may include the following parameters:
 
-	The tag `BagIt-Profile-Identifier` is always required, but SHOULD NOT be listed under `Bag-Info` in the profile.
+    * "tagName" [required] is the name of the tag. E.g. "Source-Organization"
+    * "tagFile" [required] is the path of the file in which the tag appears. This path is relative to the root of the bag. For example, "bag-info.txt" or "custom-tags/custom.txt".
+    * "required" is true or false (default false) and indicates whether or not this tag is required.
+    * "values" is a list of acceptable values. If empty, any value is accepted.
+    * "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in the file.
+    * "help" is free-form text to assist bag creators in understanding what information is expected to be supplied as the tag's value.
+
+	Implementers may define in the Tags section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
+
+All required tags must be listed in the Tags list. If a tag in the list is required, the tag file containing that tag is also required to exist in a valid bag.
 
 3. `Manifests-Required`: LIST
 
 	Each manifest type in LIST is required. The list contains the type of manifest (not
 	the complete filename), e.g. `["sha1", "md5"]`.
 
-4. `Allow-Fetch.txt`: `true`|`false`
+4. `Manifests-Allowed`: LIST
+
+*(Added in [`v2.0`])*
+
+   Each manifest type in the list may be present in the bag. If `Manifests-Required` is empty, a valid bag must include at least one payload manifest from the `Manifests-Allowed` list.
+
+5. `Allow-Fetch.txt`: `true`|`false`
 
 	A fetch.txt file is allowed within the bag. Default: `true`
 
-5. `Serialization`: `forbidden`|`required`|`optional`
+6. `Serialization`: `forbidden`|`required`|`optional`
 
 	Allow, forbid or require serialization of Bags. Default is `optional`.
 
-6. `Accept-Serialization`: LIST
+7. `Accept-Serialization`: LIST
 
 	A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
 
-7. `Accept-BagIt-Version`: LIST
+8. `Deserialization-Match-Required`: `true` | `false`
+
+*(Added in [`v2.0`])*
+
+   If this is true, a serialized bag must deserialize to a directory whose name matches the name of the serialized bag, minus the file extension. For example, `bagOfPhotos.tar` would have to deserialize to a single directory called `bagOfPhotos`. The default value for this option is `false`.
+
+9. `Accept-BagIt-Version`: LIST
 
 	A list of BagIt version numbers that will be accepted. At least one version number is required. All version numbers MUST be UTF-8 encoded strings.
 
@@ -110,11 +131,11 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
   Each tag manifest type in LIST is required. The list contains the type of manifest (not
 the complete filename), e.g. `["sha1", "md5"]`.
 
-9. `Tag-Files-Required`: LIST
+9. `Tag-Manifests-Allowed`: LIST
 
-  A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+*(Added in [`v2.0`])*
 
-  Every file in `Tag-Files-Required` must also be present in `Tag-Files-Allowed`.
+   Each manifest type in the list may be present in the bag. If `Tag-Manifests-Required` is empty, a bag may include one or more tag manifest from the `Tag-Manifests-Allowed` list.
 
 10. `Tag-Files-Allowed`: LIST
 
@@ -124,9 +145,9 @@ the complete filename), e.g. `["sha1", "md5"]`.
 
   If `Tag-Files-Allowed` is not provided, its value is assumed to be `['*']`, i.e. all tag files are allowed.
 
-As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifest files.
 
-  At least all the tag files listed in `Tag-Files-Required` must be in included in `Tag-Files-Allowed`.
+  At least all the tag files listed in `Tags` must be in included in `Tag-Files-Allowed`.
 
 Examples
 ---
@@ -138,39 +159,85 @@ Examples
 {
    "BagIt-Profile-Info":{
       "BagIt-Profile-Identifier":"http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
+      "BagIt-Profile-Version": "2.0",
       "Source-Organization":"Yale University",
       "Contact-Name":"Mark Matienzo",
       "External-Description":"BagIt profile for packaging disk images",
       "Version":"0.3"
    },
-   "Bag-Info":{
-      "Bagging-Date":{
-         "required":true
-      },
-      "Source-Organization":{
-         "required":true,
-         "values":[
-            "Simon Fraser University",
-            "York University"
-         ]
-      },
-      "Contact-Phone":{
-         "required":true
-      }
-   },
-   "Manifests-Required":[
-      "md5"
-   ],
-   "Allow-Fetch.txt":false,
-   "Serialization":"required",
-   "Accept-Serialization":[
-      "application/zip",
-      "application/tar"
-   ],
-   "Accept-BagIt-Version":[
-      "0.96",
-      "0.97"
-   ]
+    "Tags":[
+        {
+            "tagFile": "bagit.txt",
+            "tagName": "BagIt-Version",
+            "required": true,
+            "values": [
+                "0.96",
+                "0.97"
+            ],
+            "defaultValue": "0.97",
+            "help": "Which version of the BagIt specification describes this bag's format?"
+        },
+        {
+            "tagFile": "bagit.txt",
+            "tagName": "Tag-File-Character-Encoding",
+            "required": true,
+            "values": [
+                "UTF-8"
+            ],
+            "defaultValue": "UTF-8",
+            "help": "How are this bag's plain-text tag files encoded?"
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Bagging-Date",
+            "required": true,
+            "help": "The date this bag was created."
+        },
+        {
+            "tagName": "Source-Organization",
+            "tagFile": "bag-info.txt",
+            "required":true,
+            "values":[
+                "Simon Fraser University",
+                "York University"
+            ],
+            "help": "The name of the organization transferring the content. This organization is assumed to be the custodian of the content."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Contact-Phone",
+            "required": true,
+            "values": [],
+            "help": "The phone number of the bagging/archiving contact in the source organization."
+        },
+    ],
+    "Manifests-Allowed": [
+        "md5",
+        "sha1",
+		"sha224",
+        "sha256",
+        "sha384",
+        "sha512"
+    ],
+    "Tag-Manifests-Allowed": [
+        "md5",
+        "sha1",
+		"sha224",
+        "sha256",
+        "sha384",
+        "sha512"
+    ],
+    "Allow-Fetch.txt":false,
+    "Serialization":"required",
+    "Deserialization-Match-Required": false,
+    "Accept-Serialization":[
+        "application/zip",
+        "application/tar"
+    ],
+    "Accept-BagIt-Version":[
+        "0.96",
+        "0.97"
+    ]
 }
 ```
 
@@ -181,91 +248,183 @@ Examples
 <!-- BEGIN-EVAL -w '```json' '```' -- cat ./bagProfileBar.json  -->
 ```json
 {
-   "BagIt-Profile-Info":{
-      "BagIt-Profile-Identifier":"http://canadiana.org/standards/bagit/tdr_ingest.json",
-      "Source-Organization":"Candiana.org",
-      "Contact-Name":"William Wueppelmann",
-      "Contact-Email":"tdr@canadiana.com",
-      "External-Description":"BagIt profile for ingesting content into the C.O. TDR loading dock.",
-      "Version":"1.2"
-   },
-   "Bag-Info":{
-      "Source-Organization":{
-         "required":true,
-         "values":[
-            "Simon Fraser University",
-            "York University"
-         ]
+    "BagIt-Profile-Info":{
+        "BagIt-Profile-Identifier":"http://canadiana.org/standards/bagit/tdr_ingest.json",
+        "BagIt-Profile-Version": "2.0",
+        "Source-Organization":"Candiana.org",
+        "Contact-Name":"William Wueppelmann",
+        "Contact-Email":"tdr@canadiana.com",
+        "External-Description":"BagIt profile for ingesting content into the C.O. TDR loading dock.",
+        "Version":"1.3"
+    },
+    "Tags":[
+        {
+            "tagFile": "bagit.txt",
+            "tagName": "BagIt-Version",
+            "required": true,
+            "values": [
+                "0.96",
+                "0.97",
+                "1.0"
+            ],
+            "defaultValue": "0.97",
+            "help": "Which version of the BagIt specification describes this bag's format?"
+        },
+        {
+            "tagFile": "bagit.txt",
+            "tagName": "Tag-File-Character-Encoding",
+            "required": true,
+            "values": [
+                "UTF-8"
+            ],
+            "defaultValue": "UTF-8",
+            "help": "How are this bag's plain-text tag files encoded?"
+        },
+        {
+            "tagName": "Source-Organization",
+            "tagFile": "bag-info.txt",
+            "required":true,
+            "values":[
+                "Simon Fraser University",
+                "York University"
+            ],
+            "help": "The name of the organization transferring the content. This organization is assumed to be the custodian of the content."
+        },
+        {
+            "tagName": "Organization-Address",
+            "tagFile": "bag-info.txt",
+            "required":true,
+            "values":[
+                "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
+                "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+            ],
+            "help": "The street address of the source organization."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Contact-Name",
+            "required":true,
+            "values":[
+                "Mark Jordan",
+                "Nick Ruest"
+            ],
+            "help": "The street address of the source organization."
       },
-      "Organization-Address":{
-         "required":true,
-         "values":[
-            "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
-            "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
-         ]
-      },
-      "Contact-Name":{
-         "required":true,
-         "values":[
-            "Mark Jordan",
-            "Nick Ruest"
-         ]
-      },
-      "Contact-Phone":{
-         "required":false
-      },
-      "Contact-Email":{
-         "required":true
-      },
-      "External-Description":{
-         "required":true
-      },
-      "External-Identifier":{
-         "required":false
-      },
-      "Bag-Size":{
-         "required":true
-      },
-      "Bag-Group-Identifier":{
-         "required":false
-      },
-      "Bag-Count":{
-         "required":true
-      },
-      "Internal-Sender-Identifier":{
-         "required":false
-      },
-      "Internal-Sender-Description":{
-         "required":false
-      },
-      "Bagging-Date":{
-         "required":true
-      },
-      "Payload-Oxum":{
-         "required":true
-      }
-   },
-   "Manifests-Required":[
-      "md5"
-   ],
-   "Allow-Fetch.txt":false,
-   "Serialization":"optional",
-   "Accept-Serialization":[
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Contact-Phone",
+            "required": false,
+            "values": [],
+            "help": "The phone number of the bagging/archiving contact in the source organization."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Contact-Email",
+            "required": true,
+            "help": "The email address of the bagging/archiving contact in the source organization."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "External-Description",
+            "required": true,
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "External-Identifier",
+            "required": true,
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Bag-Size",
+            "required": true,
+            "help": "The approximate size of the bag's payload, in human-readable format. E.g. 33MB or 268GB."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Bag-Group-Identifier",
+            "required": false,
+            "help": "An identifier that marks this bag as part of a single collection or a related group of items that has been packaged into several bags."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Bag-Count",
+            "required": true,
+            "help": "Two numbers separated by \"of\", in particular, \"N of T\", where T is the total number of bags in a group of bags and N is the ordinal number within the group; if T is not known, specify it as \"?\" (question mark).  Examples: 1 of 2, 4 of 4, 3 of ?, 89 of 145."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Internal-Sender-Identifier",
+            "required": false,
+            "help": "A unique identifier for this bag inside your organization."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Internal-Sender-Description",
+            "required": false,
+            "help": "A description of the bag's contents for the sender's internal use."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Bagging-Date",
+            "required": true,
+            "help": "The date this bag was created."
+        },
+        {
+            "tagFile": "bag-info.txt",
+            "tagName": "Payload-Oxum",
+            "required": true,
+            "help": "The number of files and bytes in this bag's payload. This should be calculated and set by the bagging software."
+        },
+        {
+            "tagFile": "custom-tags/custom-info.txt",
+            "tagName": "Custom-Tag-One",
+            "required": true
+        },
+        {
+            "tagFile": "custom-tags/custom-info.txt",
+            "tagName": "Custom-Tag-Two",
+            "required": false,
+            "values": [
+                "Linux",
+                "Mac",
+                "Windows"
+            ]
+        }
+    ],
+    "Manifests-Required":[
+        "md5"
+    ],
+    "Manifests-Allowed": [
+        "md5",
+        "sha1",
+		"sha224",
+        "sha256",
+        "sha384",
+        "sha512"
+    ],
+    "Allow-Fetch.txt":false,
+    "Serialization":"optional",
+    "Deserialization-Match-Required": true,
+    "Accept-Serialization":[
       "application/zip"
-   ],
-   "Tag-Manifests-Required":[
-     "md5"
-   ],
-   "Tag-Files-Allowed":[
-     "DPN/*"
-   ],
-   "Tag-Files-Required":[
-     "DPN/dpnFirstNode.txt",
-     "DPN/dpnRegistry"
-   ],
-   "Accept-BagIt-Version":[
-      "0.96"
-   ]
+    ],
+    "Tag-Manifests-Required":[
+        "md5"
+    ],
+    "Tag-Manifests-Allowed": [
+        "md5",
+        "sha1",
+		"sha224",
+        "sha256",
+        "sha384",
+        "sha512"
+    ],
+    "Tag-Files-Allowed":[
+        "DPN/*"
+    ],
+    "Accept-BagIt-Version":[
+        "0.96"
+    ]
 }
 ```
 
