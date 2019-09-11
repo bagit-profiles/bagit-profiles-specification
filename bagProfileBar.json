@@ -1,179 +1,178 @@
 {
-    "BagIt-Profile-Info":{
-        "BagIt-Profile-Identifier":"http://canadiana.org/standards/bagit/tdr_ingest.json",
-        "BagIt-Profile-Version": "2.0",
-        "Source-Organization":"Candiana.org",
-        "Contact-Name":"William Wueppelmann",
-        "Contact-Email":"tdr@canadiana.com",
-        "External-Description":"BagIt profile for ingesting content into the C.O. TDR loading dock.",
-        "Version":"1.3"
-    },
-    "Tags":[
-        {
-            "tagFile": "bagit.txt",
-            "tagName": "BagIt-Version",
-            "required": true,
-            "values": [
-                "0.96",
-                "0.97"
-            ],
-            "defaultValue": "0.97",
-            "help": "Which version of the BagIt specification describes this bag's format?"
-        },
-        {
-            "tagFile": "bagit.txt",
-            "tagName": "Tag-File-Character-Encoding",
-            "required": true,
-            "values": [
-                "UTF-8"
-            ],
-            "defaultValue": "UTF-8",
-            "help": "How are this bag's plain-text tag files encoded?"
-        },
-        {
-            "tagName": "Source-Organization",
-            "tagFile": "bag-info.txt",
-            "required":true,
-            "values":[
-                "Simon Fraser University",
-                "York University"
-            ],
-            "help": "The name of the organization transferring the content. This organization is assumed to be the custodian of the content."
-        },
-        {
-            "tagName": "Organization-Address",
-            "tagFile": "bag-info.txt",
-            "required":true,
-            "values":[
-                "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
-                "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
-            ],
-            "help": "The street address of the source organization."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Contact-Name",
-            "required":true,
-            "values":[
-                "Mark Jordan",
-                "Nick Ruest"
-            ],
-            "help": "The street address of the source organization."
-      },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Contact-Phone",
-            "required": false,
-            "values": [],
-            "help": "The phone number of the bagging/archiving contact in the source organization."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Contact-Email",
-            "required": true,
-            "help": "The email address of the bagging/archiving contact in the source organization."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "External-Description",
-            "required": true,
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "External-Identifier",
-            "required": true,
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Bag-Size",
-            "required": true,
-            "help": "The approximate size of the bag's payload, in human-readable format. E.g. 33MB or 268GB."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Bag-Group-Identifier",
-            "required": false,
-            "help": "An identifier that marks this bag as part of a single collection or a related group of items that has been packaged into several bags."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Bag-Count",
-            "required": true,
-            "help": "Two numbers separated by \"of\", in particular, \"N of T\", where T is the total number of bags in a group of bags and N is the ordinal number within the group; if T is not known, specify it as \"?\" (question mark).  Examples: 1 of 2, 4 of 4, 3 of ?, 89 of 145."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Internal-Sender-Identifier",
-            "required": false,
-            "help": "A unique identifier for this bag inside your organization."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Internal-Sender-Description",
-            "required": false,
-            "help": "A description of the bag's contents for the sender's internal use."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Bagging-Date",
-            "required": true,
-            "help": "The date this bag was created."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Payload-Oxum",
-            "required": true,
-            "help": "The number of files and bytes in this bag's payload. This should be calculated and set by the bagging software."
-        },
-        {
-            "tagFile": "custom-tags/custom-info.txt",
-            "tagName": "Custom-Tag-One",
-            "required": true
-        },
-        {
-            "tagFile": "custom-tags/custom-info.txt",
-            "tagName": "Custom-Tag-Two",
-            "required": false,
-            "values": [
-                "Linux",
-                "Mac",
-                "Windows"
-            ]
-        }
-    ],
-    "Manifests-Required":[
-        "md5"
-    ],
-    "Manifests-Allowed": [
-        "md5",
-        "sha1",
+	"BagIt-Profile-Info": {
+		"BagIt-Profile-Identifier": "http://canadiana.org/standards/bagit/tdr_ingest.json",
+		"BagIt-Profile-Version": "2.0",
+		"Source-Organization": "Candiana.org",
+		"Contact-Name": "William Wueppelmann",
+		"Contact-Email": "tdr@canadiana.com",
+		"External-Description": "BagIt profile for ingesting content into the C.O. TDR loading dock.",
+		"Version": "1.3"
+	},
+	"Tags": [{
+			"tagFile": "bagit.txt",
+			"tagName": "BagIt-Version",
+			"required": true,
+			"values": [
+				"0.96",
+				"0.97"
+			],
+			"defaultValue": "0.97",
+			"help": "Which version of the BagIt specification describes this bag's format?"
+		},
+		{
+			"tagFile": "bagit.txt",
+			"tagName": "Tag-File-Character-Encoding",
+			"required": true,
+			"values": [
+				"UTF-8"
+			],
+			"defaultValue": "UTF-8",
+			"help": "How are this bag's plain-text tag files encoded?"
+		},
+		{
+			"tagName": "Source-Organization",
+			"tagFile": "bag-info.txt",
+			"required": true,
+			"values": [
+				"Simon Fraser University",
+				"York University"
+			],
+			"help": "The name of the organization transferring the content. This organization is assumed to be the custodian of the content."
+		},
+		{
+			"tagName": "Organization-Address",
+			"tagFile": "bag-info.txt",
+			"required": true,
+			"values": [
+				"8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
+				"4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+			],
+			"help": "The street address of the source organization."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Contact-Name",
+			"required": true,
+			"values": [
+				"Mark Jordan",
+				"Nick Ruest"
+			],
+			"help": "The street address of the source organization."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Contact-Phone",
+			"required": false,
+			"values": [],
+			"help": "The phone number of the bagging/archiving contact in the source organization."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Contact-Email",
+			"required": true,
+			"help": "The email address of the bagging/archiving contact in the source organization."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "External-Description",
+			"required": true
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "External-Identifier",
+			"required": true
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Bag-Size",
+			"required": true,
+			"help": "The approximate size of the bag's payload, in human-readable format. E.g. 33MB or 268GB."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Bag-Group-Identifier",
+			"required": false,
+			"help": "An identifier that marks this bag as part of a single collection or a related group of items that has been packaged into several bags."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Bag-Count",
+			"required": true,
+			"help": "Two numbers separated by \"of\", in particular, \"N of T\", where T is the total number of bags in a group of bags and N is the ordinal number within the group; if T is not known, specify it as \"?\" (question mark).  Examples: 1 of 2, 4 of 4, 3 of ?, 89 of 145."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Internal-Sender-Identifier",
+			"required": false,
+			"help": "A unique identifier for this bag inside your organization."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Internal-Sender-Description",
+			"required": false,
+			"help": "A description of the bag's contents for the sender's internal use."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Bagging-Date",
+			"required": true,
+			"help": "The date this bag was created."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Payload-Oxum",
+			"required": true,
+			"help": "The number of files and bytes in this bag's payload. This should be calculated and set by the bagging software."
+		},
+		{
+			"tagFile": "custom-tags/custom-info.txt",
+			"tagName": "Custom-Tag-One",
+			"required": true
+		},
+		{
+			"tagFile": "custom-tags/custom-info.txt",
+			"tagName": "Custom-Tag-Two",
+			"required": false,
+			"values": [
+				"Linux",
+				"Mac",
+				"Windows"
+			]
+		}
+	],
+	"Manifests-Required": [
+		"md5"
+	],
+	"Manifests-Allowed": [
+		"md5",
+		"sha1",
 		"sha224",
-        "sha256",
-        "sha384",
-        "sha512"
-    ],
-    "Allow-Fetch.txt":false,
-    "Serialization":"optional",
-    "Deserialization-Match-Required": true,
-    "Accept-Serialization":[
-      "application/zip"
-    ],
-    "Tag-Manifests-Required":[
-        "md5"
-    ],
-    "Tag-Manifests-Allowed": [
-        "md5",
-        "sha1",
+		"sha256",
+		"sha384",
+		"sha512"
+	],
+	"Allow-Fetch.txt": false,
+	"Serialization": "optional",
+	"Deserialization-Match-Required": true,
+	"Accept-Serialization": [
+		"application/zip"
+	],
+	"Tag-Manifests-Required": [
+		"md5"
+	],
+	"Tag-Manifests-Allowed": [
+		"md5",
+		"sha1",
 		"sha224",
-        "sha256",
-        "sha384",
-        "sha512"
-    ],
-    "Tag-Files-Allowed":[
-        "DPN/*"
-    ],
-    "Accept-BagIt-Version":[
-        "0.96",
-        "0.97"
-    ]
+		"sha256",
+		"sha384",
+		"sha512"
+	],
+	"Tag-Files-Allowed": [
+		"DPN/*"
+	],
+	"Accept-BagIt-Version": [
+		"0.96",
+		"0.97"
+	]
 }

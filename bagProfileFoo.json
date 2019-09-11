@@ -1,83 +1,82 @@
 {
-   "BagIt-Profile-Info":{
-      "BagIt-Profile-Identifier":"http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
-      "BagIt-Profile-Version": "2.0",
-      "Source-Organization":"Yale University",
-      "Contact-Name":"Mark Matienzo",
-      "External-Description":"BagIt profile for packaging disk images",
-      "Version":"0.3"
-   },
-    "Tags":[
-        {
-            "tagFile": "bagit.txt",
-            "tagName": "BagIt-Version",
-            "required": true,
-            "values": [
-                "0.96",
-                "0.97"
-            ],
-            "defaultValue": "0.97",
-            "help": "Which version of the BagIt specification describes this bag's format?"
-        },
-        {
-            "tagFile": "bagit.txt",
-            "tagName": "Tag-File-Character-Encoding",
-            "required": true,
-            "values": [
-                "UTF-8"
-            ],
-            "defaultValue": "UTF-8",
-            "help": "How are this bag's plain-text tag files encoded?"
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Bagging-Date",
-            "required": true,
-            "help": "The date this bag was created."
-        },
-        {
-            "tagName": "Source-Organization",
-            "tagFile": "bag-info.txt",
-            "required":true,
-            "values":[
-                "Simon Fraser University",
-                "York University"
-            ],
-            "help": "The name of the organization transferring the content. This organization is assumed to be the custodian of the content."
-        },
-        {
-            "tagFile": "bag-info.txt",
-            "tagName": "Contact-Phone",
-            "required": true,
-            "values": [],
-            "help": "The phone number of the bagging/archiving contact in the source organization."
-        },
-    ],
-    "Manifests-Allowed": [
-        "md5",
-        "sha1",
+	"BagIt-Profile-Info": {
+		"BagIt-Profile-Identifier": "http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
+		"BagIt-Profile-Version": "2.0",
+		"Source-Organization": "Yale University",
+		"Contact-Name": "Mark Matienzo",
+		"External-Description": "BagIt profile for packaging disk images",
+		"Version": "0.3"
+	},
+	"Tags": [{
+			"tagFile": "bagit.txt",
+			"tagName": "BagIt-Version",
+			"required": true,
+			"values": [
+				"0.96",
+				"0.97"
+			],
+			"defaultValue": "0.97",
+			"help": "Which version of the BagIt specification describes this bag's format?"
+		},
+		{
+			"tagFile": "bagit.txt",
+			"tagName": "Tag-File-Character-Encoding",
+			"required": true,
+			"values": [
+				"UTF-8"
+			],
+			"defaultValue": "UTF-8",
+			"help": "How are this bag's plain-text tag files encoded?"
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Bagging-Date",
+			"required": true,
+			"help": "The date this bag was created."
+		},
+		{
+			"tagName": "Source-Organization",
+			"tagFile": "bag-info.txt",
+			"required": true,
+			"values": [
+				"Simon Fraser University",
+				"York University"
+			],
+			"help": "The name of the organization transferring the content. This organization is assumed to be the custodian of the content."
+		},
+		{
+			"tagFile": "bag-info.txt",
+			"tagName": "Contact-Phone",
+			"required": true,
+			"values": [],
+			"help": "The phone number of the bagging/archiving contact in the source organization."
+		}
+	],
+	"Manifests-Allowed": [
+		"md5",
+		"sha1",
 		"sha224",
-        "sha256",
-        "sha384",
-        "sha512"
-    ],
-    "Tag-Manifests-Allowed": [
-        "md5",
-        "sha1",
+		"sha256",
+		"sha384",
+		"sha512"
+	],
+	"Tag-Manifests-Allowed": [
+		"md5",
+		"sha1",
 		"sha224",
-        "sha256",
-        "sha384",
-        "sha512"
-    ],
-    "Allow-Fetch.txt":false,
-    "Serialization":"required",
-    "Deserialization-Match-Required": false,
-    "Accept-Serialization":[
-        "application/zip",
-        "application/tar"
-    ],
-    "Accept-BagIt-Version":[
-        "0.96",
-        "0.97"
-    ]
+		"sha256",
+		"sha384",
+		"sha512"
+	],
+	"Allow-Fetch.txt": false,
+	"Serialization": "required",
+	"Deserialization-Match-Required": false,
+	"Accept-Serialization": [
+		"application/zip",
+		"application/tar"
+	],
+	"Accept-BagIt-Version": [
+		"0.96",
+		"0.97"
+	]
 }
