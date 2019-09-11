@@ -214,7 +214,7 @@ Examples
     "Manifests-Allowed": [
         "md5",
         "sha1",
-		"sha224",
+        "sha224",
         "sha256",
         "sha384",
         "sha512"
@@ -222,7 +222,7 @@ Examples
     "Tag-Manifests-Allowed": [
         "md5",
         "sha1",
-		"sha224",
+        "sha224",
         "sha256",
         "sha384",
         "sha512"
@@ -264,8 +264,7 @@ Examples
             "required": true,
             "values": [
                 "0.96",
-                "0.97",
-                "1.0"
+                "0.97"
             ],
             "defaultValue": "0.97",
             "help": "Which version of the BagIt specification describes this bag's format?"
@@ -423,7 +422,8 @@ Examples
         "DPN/*"
     ],
     "Accept-BagIt-Version":[
-        "0.96"
+        "0.96",
+        "0.97"
     ]
 }
 ```

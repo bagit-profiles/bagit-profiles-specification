@@ -15,8 +15,7 @@
             "required": true,
             "values": [
                 "0.96",
-                "0.97",
-                "1.0"
+                "0.97"
             ],
             "defaultValue": "0.97",
             "help": "Which version of the BagIt specification describes this bag's format?"
@@ -174,6 +173,7 @@
         "DPN/*"
     ],
     "Accept-BagIt-Version":[
-        "0.96"
+        "0.96",
+        "0.97"
     ]
 }
