@@ -113,9 +113,7 @@ Bagging software and bag validators can scan a single list in the profile defini
 
 ### A Note on the Help Attribute
 
-APTrust uses the help attribute of each tag definition to provide tooltips in its graphical bagging library. These tips help users understand what information is expected in a tag field. For example, see the tooltip for the Bag-Group-Identifier tag in the screenshot below. The text comes directly from the tag's help attribute in the BagIt Profile.
-
-![DART bagging tool showing a tooltip for the Bag-Group-Identifier tag](./img/HelpAsTooltip.png)
+APTrust uses the help attribute of each tag definition to provide tooltips in its graphical bagging library. These tips help users understand what information is expected in a tag field.
 
 Members of the [Beyond the Repository](https://northwestern.app.box.com/s/3qu2qbkdx3aod6wj9jt6977p4byhpj3y) (BTR) project will soon be publishing a BagIt profile intended to be supported by all distributed digital preservation repositories (DDPs) in the US. They also want a new attribute similar to `help` in the tag defintions, though they are calling it `definition`. The name isn't as important as the presence of some inline documentation to help bag creators supply meaningful tag values.
 
