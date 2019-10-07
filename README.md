@@ -3,7 +3,7 @@ BagIt Profiles Specification
 
 Status of this specification
 ---
-Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest. 
+Current version: 1.3.0 (Fall 2019).
 
 Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
 
@@ -89,6 +89,16 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 	Each manifest type in LIST is required. The list contains the type of manifest (not
 	the complete filename), e.g. `["sha1", "md5"]`.
 
+3a. `Manifests-Allowed`: LIST
+
+*(Added in [`v1.3.0`])*
+
+	If specified, only the manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
+
+	If not specified, its value is assumed to be `["*"]`, i.e. all manifest types are allowed.
+
+	Every algorithm in `Manifests-Required` must also be present in `Manifests-Allowed`, unless `Manifests-Allowed` is specified as `["*"]` or is allowed to default to `["*"]` by omission.
+
 4. `Allow-Fetch.txt`: `true`|`false`
 
 	A fetch.txt file is allowed within the bag. Default: `true`
@@ -109,6 +119,16 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 
   Each tag manifest type in LIST is required. The list contains the type of manifest (not
 the complete filename), e.g. `["sha1", "md5"]`.
+
+8a. `Tag-Manifests-Allowed`: LIST
+
+*(Added in [`v1.3.0`])*
+
+	If specified, only the tag manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
+
+	If not specified, its value is assumed to be `["*"]`, i.e. all tag manifest types are allowed.
+
+	Every algorithm in `Tag-Manifests-Required` must also be present in `Tag-Manifests-Allowed`, unless `Tag-Manifests-Allowed` is specified as `["*"]` or is allowed to default to `["*"]` by omission.
 
 9. `Tag-Files-Required`: LIST
 
