@@ -78,7 +78,7 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 
 2. `Bag-Info`:
 
-	Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes three optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted. 3) "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`.
+	Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes four optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted. 3) "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`. 4) "description" is a string providing notes or description related to this tag.
 
 	Implementers may define in the Bag-Info section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
 
