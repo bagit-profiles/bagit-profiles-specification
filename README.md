@@ -95,9 +95,9 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 
 	If specified, only the manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
 
-	If not specified, its value is assumed to be `["*"]`, i.e. all manifest types are allowed.
+	When specified along with `Manifests-Required`, `Manifests-Allowed` must include at least all of the manifest types listed in `Manifests-Required`.
 
-	Every algorithm in `Manifests-Required` must also be present in `Manifests-Allowed`, unless `Manifests-Allowed` is specified as `["*"]` or is allowed to default to `["*"]` by omission.
+	If not specified, all manifest types are permitted.
 
 4. `Allow-Fetch.txt`: `true`|`false`
 
@@ -126,9 +126,9 @@ the complete filename), e.g. `["sha1", "md5"]`.
 
 	If specified, only the tag manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
 
-	If not specified, its value is assumed to be `["*"]`, i.e. all tag manifest types are allowed.
+	When specified along with `Tag-Manifests-Required`, `Tag-Manifests-Allowed` must include at least all of the tag manifest types listed in `Tag-Manifests-Required`.
 
-	Every algorithm in `Tag-Manifests-Required` must also be present in `Tag-Manifests-Allowed`, unless `Tag-Manifests-Allowed` is specified as `["*"]` or is allowed to default to `["*"]` by omission.
+	If not specified, all tag manifest types are permitted.
 
 9. `Tag-Files-Required`: LIST
 
