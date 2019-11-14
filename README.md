@@ -3,7 +3,7 @@ BagIt Profiles Specification
 
 Status of this specification
 ---
-Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest. 
+Current version: 1.3.0 (2019-11-13).
 
 Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
 
@@ -78,7 +78,7 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 
 2. `Bag-Info`:
 
-	Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes three optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted. 3) "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`.
+	Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes four optional parameters: 1) "required" is true or false (default false) and indicates whether or not this tag is required. 2) "values" is a list of acceptable values. If empty, any value is accepted. 3) "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`. 4) "description" is a string providing notes or description related to this tag.
 
 	Implementers may define in the Bag-Info section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
 
@@ -89,34 +89,54 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 	Each manifest type in LIST is required. The list contains the type of manifest (not
 	the complete filename), e.g. `["sha1", "md5"]`.
 
-4. `Allow-Fetch.txt`: `true`|`false`
+4. `Manifests-Allowed`: LIST
+
+*(Added in [`v1.3.0`])*
+
+	If specified, only the manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
+
+	When specified along with `Manifests-Required`, `Manifests-Allowed` must include at least all of the manifest types listed in `Manifests-Required`.
+
+	If not specified, all manifest types are permitted.
+
+5. `Allow-Fetch.txt`: `true`|`false`
 
 	A fetch.txt file is allowed within the bag. Default: `true`
 
-5. `Serialization`: `forbidden`|`required`|`optional`
+6. `Serialization`: `forbidden`|`required`|`optional`
 
 	Allow, forbid or require serialization of Bags. Default is `optional`.
 
-6. `Accept-Serialization`: LIST
+7. `Accept-Serialization`: LIST
 
 	A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
 
-7. `Accept-BagIt-Version`: LIST
+8. `Accept-BagIt-Version`: LIST
 
 	A list of BagIt version numbers that will be accepted. At least one version number is required. All version numbers MUST be UTF-8 encoded strings.
 
-8. `Tag-Manifests-Required`: LIST
+9. `Tag-Manifests-Required`: LIST
 
   Each tag manifest type in LIST is required. The list contains the type of manifest (not
 the complete filename), e.g. `["sha1", "md5"]`.
 
-9. `Tag-Files-Required`: LIST
+10. `Tag-Manifests-Allowed`: LIST
+
+*(Added in [`v1.3.0`])*
+
+	If specified, only the tag manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
+
+	When specified along with `Tag-Manifests-Required`, `Tag-Manifests-Allowed` must include at least all of the tag manifest types listed in `Tag-Manifests-Required`.
+
+	If not specified, all tag manifest types are permitted.
+
+11. `Tag-Files-Required`: LIST
 
   A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](https://tools.ietf.org/html/rfc8493), these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
 
   Every file in `Tag-Files-Required` must also be present in `Tag-Files-Allowed`.
 
-10. `Tag-Files-Allowed`: LIST
+12. `Tag-Files-Allowed`: LIST
 
 *(Added in [`v1.2.0`])*
 
@@ -287,3 +307,4 @@ Examples
 
 [`v1.1.0`]: https://github.com/bagit-profiles/bagit-profiles/tree/1.1.0
 [`v1.2.0`]: https://github.com/bagit-profiles/bagit-profiles/tree/1.2.0
+[`v1.3.0`]: https://github.com/bagit-profiles/bagit-profiles/tree/1.3.0
