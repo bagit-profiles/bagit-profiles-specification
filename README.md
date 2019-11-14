@@ -91,7 +91,7 @@ as [defined in the BagIt spec](https://tools.ietf.org/html/rfc8493#page-10), is 
 
 4. `Manifests-Allowed`: LIST
 
-*(Added in [`v1.3.0`])*
+	*(Added in [`v1.3.0`])*
 
 	If specified, only the manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
 
@@ -122,7 +122,7 @@ the complete filename), e.g. `["sha1", "md5"]`.
 
 10. `Tag-Manifests-Allowed`: LIST
 
-*(Added in [`v1.3.0`])*
+	*(Added in [`v1.3.0`])*
 
 	If specified, only the tag manifest types in LIST are permitted. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
 
