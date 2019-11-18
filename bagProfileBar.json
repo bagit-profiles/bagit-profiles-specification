@@ -5,7 +5,7 @@
       "Source-Organization":"Candiana.org",
       "Contact-Name":"William Wueppelmann",
       "Contact-Email":"tdr@canadiana.com",
-      "External-Description":"BagIt profile for ingesting content into the C.O. TDR loading dock.",
+      "External-Description":"BagIt Profile for ingesting content into the C.O. TDR loading dock.",
       "Version":"1.2"
    },
    "Bag-Info":{
