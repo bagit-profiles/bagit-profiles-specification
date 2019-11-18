@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BagIt-Profiles Specification 1.2.0</title>
+    <meta charset='utf-8'>
+    <script src='https://www.w3.org/Tools/respec/respec-w3c' async class='remove'></script>
+    <script class='remove'>
+      var respecConfig = {
+        specStatus: "unofficial",
+        shortName:  "bagit-profiles",
+        editors: [
+        {
+          name: "Nick Ruest",
+          url: "https://ruebot.net",
+        },
+        {
+          name: "Mark Jordan"
+        }
+        ],
+        edDraftURI: "https://bagit-profiles.github.io/bagit-profiles-specification/",
+        github: "https://github.com/bagit-profiles/bagit-profiles-specification",
+        wgPublicList: "https://groups.google.com/forum/#!forum/fedora-community",
+        otherLinks: [{
+          key: "Previous version",
+          data: [
+              {
+                value: "1.1.0",
+                href: "https://github.com/bagit-profiles/bagit-profiles/tree/abaedfc3cec2bfaf20cd19d96893085a83ca6f3d"
+              }
+            ]
+        },{
+          key: "Repository",
+          data: [
+            {
+              value: "Github",
+              href: "https://github.com/bagit-profiles/bagit-profiles-specification"
+            },
+            {
+              value: "Issues",
+              href: "https://github.com//bagit-profiles/bagit-profiles-specification/issues"
+            },
+            {
+              value: "Commits",
+              href: "https://github.com/bagit-profiles/bagit-profiles-specification/commits"
+            }
+          ]
+        }],
+        overrideCopyright: "<p class='copyright'>This document is licensed under a <a class='subfoot' href='https://creativecommons.org/publicdomain/zero/1.0/' rel='license'>CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</a>.</p>"
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Introduction</h1>
+    <section id='abstract'>
+      <p>
+        The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging. Details of the profile are instantiated in a JSON file that both the producing and consuming applications interpret using the conventions described below. The profile file sits at an HTTP URI (e.g., `http://example.com/bagitprofiles/profile-bar-v0.1.json`), and can therefore be read by any number of applications creating or consuming Bags:
+      </p>
+      <p>
+        <pre>
+
+	                        BagIt Profile JSON file
+                                        /       \
+                                       v         v
+                        Bag creating app 1  -->  Bag consuming app
+                        Bag creating app 2
+        </pre>
+      </p>
+      <p>
+        This proposed Specification builds on the sample profile included in the Library of Congress Bagger tool. However, that profile was local to LC and not intended to be implemented widely. The proposed Specification is intended to be an optional extension to the cannonical BagIt spec, and in no way modifies that specification. Like the BagIt spec, this Profile spec is agnostic to the payload stored in a Bag's data directory.
+      </p>
+      <p>
+        Use cases for BagIt profiles include distributed mass production of Bags, repository or application-specific content ingestion via Bags (e.g. SWORD, Archivematica), and Preservation-as-a-Service.
+      </p>
+      <h2>Workflow</h2>
+      <p>
+        The intended workflow for using a BagIt profile is:
+        <ol>
+          <li>
+            The creator of the Bags ensures that Bags it produces meet all of the constraints expressed in the agreed-upon and published BagIt profile file. The creator declares the `BagIt-Profile-Identifier` in the `bag-info.txt` file of the Bags.
+          </li>
+          <li>
+            The consumer of the Bags identifies the profile(s) from the `BagIt-Profile-Identifier` field in their `bag-info.txt`. The consumer then retrieves the profile file from its URI and validates incoming Bags against it; specifically, it must complete the Bag if `fetch.txt` is present, validate the complete Bag against the profile, and then validate the Bag against the cannonical BagIt spec.
+          </li>
+        </ol>
+      </p>
+      <p>
+        Each of these steps may be performed by a separate tool or microservice; in fact, implementers may integrate validation functionality in tools that perform other Bag-processing functions. For example, the completion of a holey Bag might be performed by a more general Bag-processing tool and need not be delegated to a separate validation tool.
+      </p>
+      <p>
+        Some profile constraints are fatal: for example, failure to validate 'Accept-Serialization' or 'Accept-BagIt-Version' implies that the rest of the bag is unverifiable and processing should stop. Therefore, the task that checks these two constraints should be performed as early as possible in the workflow. Processing may continue after non-fatal errors in order to generate a comprehensive error report.
+      </p>
+    </section>
+    <section id='sotd'>
+      <p>
+        Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest.
+      </p>
+      <p>
+        Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
+      </p>
+    </section>
+    <section id="conformance">
+    </section>
+    <section data-dfn-for="BagIt-Profiles" data-link-for="BagIt-Profiles">
+      <h2>Implementation Details</h2>
+        <p>
+          Bags complying to a BagIt Profile MUST contain the tag `BagIt-Profile-Identifier` in their `bag-info.txt`, which value is the URI of the JSON file containing the Profile it conforms to. This tag MAY be repeated if the bag conforms to multiple Profiles. The URI that identifies the profile SHOULD be versioned, e.g. `http://example.com/bagitprofiles/profile-bar-v0.1.json`.
+        </p>
+        <p>
+          Resolving the URI with `Accept: application/json` SHOULD provide a BagIt Profile as JSON according to this specification.
+        </p>
+        The following fields make up a BagIt profile. Each field is a top-level JSON key, as illustrated in the examples that follow. LIST in the field definitions indicates that the key can have one or more values, serialized as a JSON array. Itemized values separated by a `|` indicate allowed options for that field.
+        </p>
+        <ol>
+          <li>
+            `BagIt-Profile-Info`:
+          </li>
+          <p>
+            A list of tags that describes the profile itself. The following tags are required in this section: "Source-Organization", "External-Description", "Version", and "BagIt-Profile-Identifier". The first two of these tags are taken from the reserved tags defined in the BagIt spec. The value of "Version" contains the version of the profile; the value of "BagIt-Profile-Identifier" is the URI where the profile file is available, and will have the same value as the "BagIt-Profile-Identifier" tag in bag-info.txt (see below). Inclusion of "Contact-Name," "Contact-Phone" and "Contact-Email," as defined in the BagIt spec, is not required but is encouraged.
+          </p>
+          <li>
+            `Bag-Info`:
+          </li>
+          <p>
+            Specifies which tags are required, etc. in `bag-info.txt`. Each tag definition takes three optional parameters:
+            <ol>
+              <li>
+                "required" is true or false (default false) and indicates whether or not this tag is required.
+              </li>
+              <li>
+                "values" is a list of acceptable values. If empty, any value is accepted.
+              </li>
+              <li>
+                "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`.
+              </li>
+            </ol>
+          </p>
+          <p>
+            Implementers may define in the Bag-Info section of their profile whatever tags their application requires, i.e., tags defined here are not limited to the 'reserved metadata element names' identified in the BagIt spec.
+          </p>
+          <p>
+            The tag `BagIt-Profile-Identifier` is always required, but SHOULD NOT be listed under `Bag-Info` in the profile.
+          </p>
+          <li>
+            `Manifests-Required`: LIST
+          </li>
+          <p>
+            Each manifest type in LIST is required. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
+          </p>
+          <li>
+            `Allow-Fetch.txt`: `true`|`false`
+          </li>
+          <p>
+            A fetch.txt file is allowed within the bag. Default: `true`
+          </p>
+          <li>
+            `Serialization`: `forbidden`|`required`|`optional`
+          </li>
+          <p>
+            Allow, forbid or require serialization of Bags. Default is `optional`.
+          </p>
+          <li>
+            `Accept-Serialization`: LIST
+          </li>
+          <p>
+            A list of MIME types acceptable as serialized formats. E.g. "application/zip". If serialization has a value of required or optional, at least one value is needed. If serialization is forbidden, this has no meaning.
+          </p>
+          <li>
+            `Accept-BagIt-Version`: LIST
+          </li>
+          <p>
+            A list of BagIt version numbers that will be accepted. At least one version is required.
+          </p>
+          <li>
+            `Tag-Manifests-Required`: LIST
+          </li>
+          <p>
+            Each tag manifest type in LIST is required. The list contains the type of manifest (not the complete filename), e.g. `["sha1", "md5"]`.
+          </p>
+          <li>
+            `Tag-Files-Required`: LIST
+          </li>
+          <p>
+            A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per the [BagIt Spec](http://tools.ietf.org/html/draft-kunze-bagit-08), these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+          </p>
+        </ol>
+      </section>
+    </section>
+    <section id='examples'>
+      <h2>Examples</h2>
+      <section id='bagProfileFoo'>
+        <h3>bagProfileFoo.json</h3>
+        <pre>
+{
+   "BagIt-Profile-Info":{
+      "BagIt-Profile-Identifier":"http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
+      "Source-Organization":"Yale University",
+      "Contact-Name":"Mark Matienzo",
+      "External-Description":"BagIt profile for packaging disk images",
+      "Version":"0.3"
+   },
+   "Bag-Info":{
+      "Bagging-Date":{
+         "required":true
+      },
+      "Source-Organization":{
+         "required":true,
+         "values":[
+            "Simon Fraser University",
+            "York University"
+         ]
+      },
+      "Contact-Phone":{
+         "required":true
+      }
+   },
+   "Manifests-Required":[
+      "md5"
+   ],
+   "Allow-Fetch.txt":false,
+   "Serialization":"required",
+   "Accept-Serialization":[
+      "application/zip",
+      "application/tar"
+   ],
+   "Accept-BagIt-Version":[
+      "0.96",
+      "0.97"
+   ]
+}
+        </pre>
+      </section>
+      <section id='bagProfileBar'>
+        <h3>bagProfileBar.json</h3>
+        <pre>
+{
+     "BagIt-Profile-Info":{
+      "BagIt-Profile-Identifier":"http://canadiana.org/standards/bagit/tdr_ingest.json",
+      "Source-Organization":"Candiana.org",
+      "Contact-Name":"William Wueppelmann",
+      "Contact-Email":"tdr@canadiana.com",
+      "External-Description":"BagIt profile for ingesting content into the C.O. TDR loading dock.",
+      "Version":"1.2"
+   },
+   "Bag-Info":{
+      "Source-Organization":{
+         "required":true,
+         "values":[
+            "Simon Fraser University",
+            "York University"
+         ]
+      },
+      "Organization-Address":{
+         "required":true,
+         "values":[
+            "8888 University Drive Burnaby, B.C. V5A 1S6 Canada",
+            "4700 Keele Street Toronto, Ontario M3J 1P3 Canada"
+         ]
+      },
+      "Contact-Name":{
+         "required":true,
+         "values":[
+            "Mark Jordan",
+            "Nick Ruest"
+         ]
+      },
+      "Contact-Phone":{
+         "required":false
+      },
+      "Contact-Email":{
+         "required":true
+      },
+      "External-Description":{
+         "required":true
+      },
+      "External-Identifier":{
+         "required":false
+      },
+      "Bag-Size":{
+         "required":true
+      },
+      "Bag-Group-Identifier":{
+         "required":false
+      },
+      "Bag-Count":{
+         "required":true
+      },
+      "Internal-Sender-Identifier":{
+         "required":false
+      },
+      "Internal-Sender-Description":{
+         "required":false
+      },
+      "Bagging-Date":{
+         "required":true
+      },
+      "Payload-Oxum":{
+         "required":true
+      }
+   },
+   "Manifests-Required":[
+      "md5"
+   ],
+   "Allow-Fetch.txt":false,
+   "Serialization":"optional",
+   "Accept-Serialization":[
+      "application/zip"
+   ],
+   "Tag-Manifests-Required":[
+     "md5"
+   ],
+   "Tag-Files-Required":[
+      "DPN/dpnFirstNode.txt",
+      "DPN/dpnRegistry"
+   ],
+   "Accept-BagIt-Version":[
+      "0.96"
+   ]
+}
+        </pre>
+      </section>
+    </section>
+  </body>
+</html>
