@@ -53,7 +53,7 @@
     <h1>Introduction</h1>
     <section id='abstract'>
       <p>
-        The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging. Details of the Profile are instantiated in a JSON file that both the producing and consuming applications interpret using the conventions described below. The Profile file sits at an HTTP URI (e.g., `http://example.com/bagitprofiles/profile-bar-v0.1.json`), and can therefore be read by any number of applications creating or consuming Bags:
+        The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging. Details of the Profile are instantiated in a JSON ([[!RFC8259]]) file that both the producing and consuming applications interpret using the conventions described below. The Profile file sits at an HTTP URI (e.g., `http://example.com/bagitprofiles/profile-bar-v0.1.json`), and can therefore be read by any number of applications creating or consuming Bags:
       </p>
       <p>
         <pre>
@@ -66,7 +66,7 @@
         </pre>
       </p>
       <p>
-        This proposed Specification builds on the sample Profile included in the Library of Congress Bagger tool. However, that Profile was local to LC and not intended to be implemented widely. The proposed Specification is intended to be an optional extension to the cannonical BagIt spec, and in no way modifies that specification. Like the BagIt spec, this Profile spec is agnostic to the payload stored in a Bag's data directory.
+        This proposed Specification builds on the sample Profile included in the Library of Congress Bagger tool. However, that Profile was local to LC and not intended to be implemented widely. The proposed Specification is intended to be an optional extension to the cannonical BagIt spec, and in no way modifies that specification. Like [[!RFC8493]], this specification is agnostic to the payload stored in a Bag's data directory.
       </p>
       <p>
         Use cases for BagIt Profiles include distributed mass production of Bags, repository or application-specific content ingestion via Bags (e.g. SWORD, Archivematica), and Preservation-as-a-Service.
@@ -92,15 +92,12 @@
     </section>
     <section id='sotd'>
       <p>
-        Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest.
-      </p>
-      <p>
-        Original draft created by members of the Access 2012 Hackfest group: Meghan Currie, Krista Godfrey, Mark Jordan, Nick Ruest, William Wueppelmann, and Dan Chudnov.
+        Current version: 1.2.0 (2018-12-03).
       </p>
     </section>
     <section id="conformance">
     </section>
-    <section data-dfn-for="BagIt-Profiles" data-link-for="BagIt-Profiles">
+    <section id="implementation-details">
       <h2>Implementation Details</h2>
         <p>
           Bags complying to a BagIt Profile MUST contain the tag `BagIt-Profile-Identifier` in their `bag-info.txt`, which value is the URI of the JSON file containing the Profile it conforms to. This tag MAY be repeated if the bag conforms to multiple Profiles. The URI that identifies the Profile SHOULD be versioned, e.g. `http://example.com/bagitprofiles/profile-bar-v0.1.json`.
