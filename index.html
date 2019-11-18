@@ -53,7 +53,7 @@
     <h1>Introduction</h1>
     <section id='abstract'>
       <p>
-        The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging. Details of the Profile are instantiated in a JSON ([[!RFC8259]]) file that both the producing and consuming applications interpret using the conventions described below. The Profile file sits at an HTTP URI (e.g., `http://example.com/bagitprofiles/profile-bar-v0.1.json`), and can therefore be read by any number of applications creating or consuming Bags:
+        The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging. Details of the Profile are instantiated in a JSON ([[RFC8259]]) file that both the producing and consuming applications interpret using the conventions described below. The Profile file sits at an HTTP URI (e.g., `http://example.com/bagitprofiles/profile-bar-v0.1.json`), and can therefore be read by any number of applications creating or consuming Bags:
       </p>
       <p>
         <pre>
@@ -66,7 +66,7 @@
         </pre>
       </p>
       <p>
-        This proposed Specification builds on the sample Profile included in the Library of Congress Bagger tool. However, that Profile was local to LC and not intended to be implemented widely. The proposed Specification is intended to be an optional extension to the cannonical BagIt spec, and in no way modifies that specification. Like [[!RFC8493]], this specification is agnostic to the payload stored in a Bag's data directory.
+        This proposed Specification builds on the sample Profile included in the Library of Congress Bagger tool. However, that Profile was local to LC and not intended to be implemented widely. The proposed Specification is intended to be an optional extension to the cannonical BagIt spec, and in no way modifies that specification. Like [[RFC8493]], this specification is agnostic to the payload stored in a Bag's data directory.
       </p>
       <p>
         Use cases for BagIt Profiles include distributed mass production of Bags, repository or application-specific content ingestion via Bags (e.g. SWORD, Archivematica), and Preservation-as-a-Service.
@@ -112,7 +112,7 @@
             `BagIt-Profile-Info`:
           </li>
           <p>
-            A list of tags that describes the Profile itself. The following tags are required in this section: "`Source-Organization`", "`External-Description`", "`Version`", and "`BagIt-Profile-Identifier`". The first two of these tags are taken from the reserved tags defined in [[!RFC8493]]. The value of "`Version`" contains the version of the Profile; the value of "`BagIt-Profile-Identifier`" is the URI where the Profile file is available, and will have the same value as the "`BagIt-Profile-Identifier`" tag in `bag-info.txt`. Inclusion of "`Contact-Name`," "`Contact-Phone`" and "`Contact-Email`," as defined in [[!RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.2">section 2.2.2</a>, OPTIONAL but is encouraged.
+            A list of tags that describes the Profile itself. The following tags are required in this section: "`Source-Organization`", "`External-Description`", "`Version`", and "`BagIt-Profile-Identifier`". The first two of these tags are taken from the reserved tags defined in [[!RFC8493]]. The value of "`Version`" contains the version of the Profile; the value of "`BagIt-Profile-Identifier`" is the URI where the Profile file is available, and will have the same value as the "`BagIt-Profile-Identifier`" tag in `bag-info.txt`. Inclusion of "`Contact-Name`," "`Contact-Phone`" and "`Contact-Email`," as defined in [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.2">section 2.2.2</a>, OPTIONAL but is encouraged.
           </p>
           <li>
             `Bag-Info`:
@@ -177,7 +177,7 @@
             `Tag-Files-Required`: LIST
           </li>
           <p>
-            A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per [[!RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.4">section 2.2.4</a>, these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+            A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.4">section 2.2.4</a>, these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
           </p>
         </ol>
       </section>
