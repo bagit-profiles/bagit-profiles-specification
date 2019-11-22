@@ -1,6 +1,6 @@
 # BagIt Profiles Specification
 
-The purpose of the BagIt Profiles Specification is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging.
+The purpose of the [BagIt Profiles Specification](https://bagit-profiles.github.io/bagit-profiles-specification) is to allow creators and consumers of Bags to agree on optional components of the Bags they are exchanging.
 
 ## Status of this specification
 
