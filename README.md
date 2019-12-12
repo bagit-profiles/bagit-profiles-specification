@@ -4,7 +4,7 @@ The purpose of the [BagIt Profiles Specification](https://bagit-profiles.github.
 
 ## Status of this specification
 
-Current version: 1.2.0 (2018-12-03). Maintained by Mark Jordan and Nick Ruest. 
+Current version: 1.3.0 (2019-12-12). Maintained by Mark Jordan and Nick Ruest. 
 
 ## How To Participate
 
