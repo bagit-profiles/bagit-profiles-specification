@@ -46,7 +46,7 @@
           ]
         }],
         overrideCopyright: "<p class='copyright'>This document is licensed under a <a class='subfoot' href='https://creativecommons.org/publicdomain/zero/1.0/' rel='license'>CC0 1.0 Universal (CC0 1.0) Public Domain Dedication</a>.</p>"
-      };
+      }
     </script>
   </head>
   <body>
@@ -381,6 +381,64 @@
           }
         </pre>
       </section>
+    </section>
+    <section id='ABNF'>
+      <h2>ABNF</h2>
+      <p>
+        The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. If there is a discrepancy between requirements in the normative sections and the ABNF, the requirements in the normative sections prevail. Some definiations use the core rules as defined in [RFC5234].
+        
+        <section id='BagitProfileJsonfileABNF'>
+        <h3>Bagit Profile Json file</h3>
+        </section>
+        <pre>
+        profile                     = "{" profile-info bag-info manifests-required fetch-allowed serialization serialization-types tag-manifests tags-allowed tags-required bagit-version "}"
+        profile-info                = DQUOTE "BagIt-Profile-Info" DQUOTE ":{" profile-identifier profile-bagit-version profile-organization-name profile-name profile-email profile-description profile-version "},"
+        profile-identifier          = DQUOTE "BagIt-Profile-Identifier" DQUOTE ":" DQUOTE absolute-URI DQUOTE "," ; For absolute-URI see [RFC3986], Section 4.3.
+        profile-bagit-version             = DQUOTE "BagIt-Profile-Version" DQUOTE ":" version ","
+        profile-organization-name   = DQUOTE "Source-Organization" DQUOTE ":" value ","
+        profile-name                = DQUOTE "Contact-Name" DQUOTE ":" value ","
+        profile-email               = DQUOTE "Contact-Email" DQUOTE ":" email-address ","
+        email-address               = DQUOTE 1*( atext / "." ) "@" ldh-str 1*( "." ldh-str ) DQUOTE; For atext and ldh-str see [RFC5322] and [RFC1034].
+        profile-description         = DQUOTE "External-Description" DQUOTE ":" value ","
+        profile-version             = DQUOTE "Version" DQUOTE ":" version ","
+        version                     = DQUOTE 1*DIGIT "." 1*DIGIT DQUOTE
+        bag-info                    = DQUOTE "Bagit-Info" DQUOTE ":{" info-organization info-address info-name info-phone info-email info-description info-identifier info-size info-group-identifier info-count info-sender-identifier info-sender-description info-date info-payload-oxum "},"
+        info-organization           = DQUOTE "Source-Organization" DQUOTE ":" requirements ","
+        info-address                = DQUOTE "Organization-Address" DQUOTE ":" requirements ","
+        info-name                   = DQUOTE "Contact-Name" DQUOTE ":" requirements ","
+        info-phone                  = DQUOTE "Contact-Phone" DQUOTE ":" requirements ","
+        info-email                  = DQUOTE "Contact-Email" DQUOTE ":" requirements ","
+        info-description            = DQUOTE "External-Description" DQUOTE ":" requirements ","
+        info-identifier             = DQUOTE "External-Identifier" DQUOTE ":" requirements ","
+        info-size                   = DQUOTE "Bag-Size" DQUOTE ":" requirements ","
+        info-group-identifier       = DQUOTE "Bag-Group-Identifier" DQUOTE ":" requirements ","
+        info-count                  = DQUOTE "Bag-Count" DQUOTE ":" requirements ","
+        info-sender-identifier      = DQUOTE "Internal-Sender-Identifier" DQUOTE ":" requirements ","
+        info-sender-description     = DQUOTE "Internal-Sender-Description" DQUOTE ":" requirements ","
+        info-date                   = DQUOTE "Bagging-Date" DQUOTE ":" requirements ","
+        info-payload-oxum           = DQUOTE "Payload-Oxum" DQUOTE ":" requirements
+        requirements                = "{" required values "}"
+        required                    = DQUOTE "required" DQUOTE ":" DQUOTE boolean DQUOTE ","
+        boolean                     = DQUOTE ("true" / "false") DQUOTE
+        values                      = DQUOTE "values" DQUOTE ":[" values-list "]"
+        values-list                 = value *("," value )
+        value                       = DQUOTE 1*VCHAR DQUOTE
+        manifests-required          = DQUOTE "Manifests-Required" DQUOTE ":[" manifest-list "],"
+        manifest-list               = manifest *("," manifest)
+        manifest                    = DQUOTE 1*[a-z0-9] DQUOTE 
+        fetch-allowed               = DQUOTE "Allow-Fetch.txt" DQUOTE ":" boolean ","
+        serialization               = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","
+        serialization-types         = DQUOTE "Accept-Serialization" DQUOTE ":[" serialization-type-list "],"
+        serialization-type-list     = serialization-type *("," serialization-type )
+        serialization-type          = value
+        tag-manifests               = DQUOTE "Tag-Manifests-Required" DQUOTE ":[" manifest-list "],"
+        tags-allowed                = DQUOTE "Tag-Files-Allowed" DQUOTE ":[" tag-file-list "],"
+        tag-file-list               = tag-file *("," tag-file)
+        tag-file                    = value     
+        tags-required               = DQUOTE "Tag-Files-Required" DQUOTE ":[" tag-file-list "],"
+        bagit-version               = DQUOTE "Accept-BagIt-Version" DQUOTE ":[" version-list "],"
+        version-list                = version *("," version);</prev>
+      </p>
     </section>
   </body>
 </html>
