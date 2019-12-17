@@ -58,7 +58,7 @@
       <p>
         <pre>
 
-	                        BagIt Profile JSON file
+                                BagIt Profile JSON file
                                         /       \
                                        v         v
                         Bag creating app 1  -->  Bag consuming app
@@ -382,23 +382,35 @@
         </pre>
       </section>
     </section>
-    <section id='ABNF'>
+    <section id='ABNF' class=informative>
       <h2>ABNF</h2>
       <p>
-        The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. If there is a discrepancy between requirements in the normative sections and the ABNF, the requirements in the normative sections prevail. Some definiations use the core rules as defined in [RFC5234].
-        
+        The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. 
+	If there is a discrepancy between requirements in the normative sections and the ABNF, the requirements in the normative sections prevail.
+      </p>
+      <p>
+	Some definiations use the core rules as defined in [[RFC5234]] <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">appendix B.1</a>. 
+      </p>
+      <p>
+	For addr-spec see [[RFC5322]], <a href="https://tools.ietf.org/html/rfc5322#section-3.4.1">section 3.4.1</a>.
+      </p>
+      <p>
+	For absolute-URI see [[RFC3986]], <a href="https://tools.ietf.org/html/rfc3986#section-4.3">section 4.3</a>.
+      </p>
+
+      <p>
         <section id='BagitProfileJsonfileABNF'>
         <h3>Bagit Profile Json file</h3>
         </section>
         <pre>
-        profile                     = "{" profile-info bag-info manifests-required fetch-allowed serialization serialization-types tag-manifests tags-allowed tags-required bagit-version "}"
+        profile                     = "{" profile-info bag-info manifests-required manifests-allowed fetch-allowed serialization serialization-types tag-manifests tags-allowed tags-required bagit-version "}"
         profile-info                = DQUOTE "BagIt-Profile-Info" DQUOTE ":{" profile-identifier profile-bagit-version profile-organization-name profile-name profile-email profile-description profile-version "},"
-        profile-identifier          = DQUOTE "BagIt-Profile-Identifier" DQUOTE ":" DQUOTE absolute-URI DQUOTE "," ; For absolute-URI see [RFC3986], Section 4.3.
-        profile-bagit-version             = DQUOTE "BagIt-Profile-Version" DQUOTE ":" version ","
+        profile-identifier          = DQUOTE "BagIt-Profile-Identifier" DQUOTE ":" DQUOTE absolute-URI DQUOTE ","
+        profile-bagit-version       = DQUOTE "BagIt-Profile-Version" DQUOTE ":" version ","
         profile-organization-name   = DQUOTE "Source-Organization" DQUOTE ":" value ","
         profile-name                = DQUOTE "Contact-Name" DQUOTE ":" value ","
         profile-email               = DQUOTE "Contact-Email" DQUOTE ":" email-address ","
-        email-address               = DQUOTE 1*( atext / "." ) "@" ldh-str 1*( "." ldh-str ) DQUOTE; For atext and ldh-str see [RFC5322] and [RFC1034].
+        email-address               = DQUOTE addr-spec DQUOTE
         profile-description         = DQUOTE "External-Description" DQUOTE ":" value ","
         profile-version             = DQUOTE "Version" DQUOTE ":" version ","
         version                     = DQUOTE 1*DIGIT "." 1*DIGIT DQUOTE
@@ -417,17 +429,20 @@
         info-sender-description     = DQUOTE "Internal-Sender-Description" DQUOTE ":" requirements ","
         info-date                   = DQUOTE "Bagging-Date" DQUOTE ":" requirements ","
         info-payload-oxum           = DQUOTE "Payload-Oxum" DQUOTE ":" requirements
-        requirements                = "{" required values "}"
-        required                    = DQUOTE "required" DQUOTE ":" DQUOTE boolean DQUOTE ","
+        requirements                = "{" required repeatable description values "}"
+        required                    = DQUOTE "required" DQUOTE ":" DQUOTE boolean DQUOTE ","; Default=false
+        repeatable                  = DQUOTE "repeatable" DQUOTE ":" DQUOTE boolean DQUOTE ","; Default=true
+        description                 = DQUOTE "description" DQUOTE ":" value ","
         boolean                     = DQUOTE ("true" / "false") DQUOTE
         values                      = DQUOTE "values" DQUOTE ":[" values-list "]"
         values-list                 = value *("," value )
         value                       = DQUOTE 1*VCHAR DQUOTE
         manifests-required          = DQUOTE "Manifests-Required" DQUOTE ":[" manifest-list "],"
         manifest-list               = manifest *("," manifest)
-        manifest                    = DQUOTE 1*[a-z0-9] DQUOTE 
-        fetch-allowed               = DQUOTE "Allow-Fetch.txt" DQUOTE ":" boolean ","
-        serialization               = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","
+        manifest                    = DQUOTE 1*[a-z0-9] DQUOTE
+        manifests-allowed           = DQUOTE "Manifests-Allowed" DQUOTE ":[" manifest-list "],"
+        fetch-allowed               = DQUOTE "Allow-Fetch.txt" DQUOTE ":" boolean ","; Default=True
+        serialization               = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","; Default=True
         serialization-types         = DQUOTE "Accept-Serialization" DQUOTE ":[" serialization-type-list "],"
         serialization-type-list     = serialization-type *("," serialization-type )
         serialization-type          = value
