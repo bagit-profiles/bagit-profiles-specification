@@ -403,52 +403,67 @@
         <h3>Bagit Profile Json file</h3>
         </section>
         <pre>
-        profile                     = "{" profile-info bag-info manifests-required manifests-allowed fetch-allowed serialization serialization-types bagit-version tag-manifests tag-manifests-allowed tag-files-required tag-files-allowed "}"; the main definition for the entire JSON profile
+        profile                               = "{" profile-info-section bag-info-section bag-requirements-section "}"
 
-        profile-info                = DQUOTE "BagIt-Profile-Info" DQUOTE ":{" profile-identifier profile-bagit-version profile-organization-name profile-description profile-version [profile-name] [profile-phone] [profile-email] "}," ; profile-name, profile-phone, and profile-email are optional but encouraged
-        profile-identifier          = DQUOTE "BagIt-Profile-Identifier" DQUOTE ":" DQUOTE absolute-URI DQUOTE ","
-        profile-bagit-version       = DQUOTE "BagIt-Profile-Version" DQUOTE ":" version ","
-        profile-organization-name   = DQUOTE "Source-Organization" DQUOTE ":" value ","
-        email-address               = DQUOTE addr-spec DQUOTE
-        profile-description         = DQUOTE "External-Description" DQUOTE ":" value ","
-        profile-version             = DQUOTE "Version" DQUOTE ":" version ","
-        profile-name                = DQUOTE "Contact-Name" DQUOTE ":" value ","
-        profile-phone               = DQUOTE "Contact-Phone" DQUOTE ":" value ","
-        profile-email               = DQUOTE "Contact-Email" DQUOTE ":" email-address ","
+        profile-info-section                  = DQUOTE "BagIt-Profile-Info" DQUOTE ":{" mandatory-profile-info optional-profile-info "},"
 
-        bag-info                    = DQUOTE "Bagit-Info" DQUOTE ":{" bag-info-key-values "},"
-        bag-info-key-values         = bag-info-key-value *("," bag-info-key-value)
-        bag-info-key-value          = bag-info-key ":" requirements
-        bag-info-key                = value; BagIt-Profile-Identifier SHOULD NOT be listed here
-        requirements                = "{" required repeatable description values "}"
-        required                    = DQUOTE "required" DQUOTE ":" DQUOTE boolean DQUOTE ","; Default=false
-        repeatable                  = DQUOTE "repeatable" DQUOTE ":" DQUOTE boolean DQUOTE ","; Default=true
-        description                 = DQUOTE "description" DQUOTE ":" value ","
-        values                      = DQUOTE "values" DQUOTE ":[" values-list "]"
-        values-list                 = value *("," value )
+        mandatory-profile-info                = profile-info-source-organization 
+                                                profile-info-external-description 
+                                                profile-info-version
+                                                profile-info-bagit-profile-identifier
+                                                profile-info-bagit-profile-version
 
-        manifest                    = DQUOTE 1*[a-z0-9] DQUOTE
-        manifests-required          = DQUOTE "Manifests-Required" DQUOTE ":[" manifest-list "],"
-        manifests-allowed           = DQUOTE "Manifests-Allowed" DQUOTE ":[" manifest-list "],"
-        fetch-allowed               = DQUOTE "Allow-Fetch.txt" DQUOTE ":" boolean ","; Default=True
-        serialization               = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","; Default=optional
-        serialization-types         = DQUOTE "Accept-Serialization" DQUOTE ":[" serialization-type-list "],"
-        serialization-type-list     = serialization-type *("," serialization-type )
-        serialization-type          = value
-        bagit-version               = DQUOTE "Accept-BagIt-Version" DQUOTE ":[" version-list "],"
-        version-list                = version *("," version)
-        tag-file                    = value
-        tag-manifests               = DQUOTE "Tag-Manifests-Required" DQUOTE ":[" manifest-list "],"
-        tag-manifests-allowed       = DQUOTE "Tag-Manifests-Allowed" DQUOTE ":[" manifest-list "],"
-        tag-files-required               = DQUOTE "Tag-Files-Required" DQUOTE ":[" tag-file-list "],"
-        tag-files-allowed                = DQUOTE "Tag-Files-Allowed" DQUOTE ":[" tag-file-list "],"
+        profile-info-source-organization      = DQUOTE "Source-Organization" DQUOTE ":" quoted-value ","
+        profile-info-external-description     = DQUOTE "External-Description" DQUOTE ":" quoted-value ","
+        profile-info-version                  = DQUOTE "Version" DQUOTE ":" quoted-version ","
+        profile-info-bagit-profile-identifier = DQUOTE "BagIt-Profile-Identifier" DQUOTE ":" quoted-uri ","
+        profile-info-bagit-profile-version    = DQUOTE "BagIt-Profile-Version" DQUOTE ":" quoted-version
 
-        ; the follow are used multiple times
-        version                     = DQUOTE 1*DIGIT *("." 1*DIGIT) DQUOTE
-        value                       = DQUOTE 1*VCHAR DQUOTE
-        boolean                     = DQUOTE ("true" / "false") DQUOTE
-        manifest-list               = manifest *("," manifest)
-        tag-file-list               = tag-file *("," tag-file)
+        optional-profile-info                 = [optional-profile-info-contact-name]
+                                                [optional-profile-info-contact-phone]
+                                                [optional-profile-info-contact-email]
+
+        optional-profile-info-contact-name    = "," DQUOTE "Contact-Name" DQUOTE ":" quoted-value
+        optional-profile-info-contact-phone   = "," DQUOTE "Contact-Phone" DQUOTE ":" quoted-value
+        optional-profile-info-contact-email   = "," DQUOTE "Contact-Email," DQUOTE ":" quoted-value
+
+        bag-info-section                      = DQUOTE "Bagit-Info" DQUOTE ":{" bag-info-key-values "},"
+        bag-info-key-values                   = bag-info-key-value *("," bag-info-key-value)
+        bag-info-key-value                    = quoted-value ":{" requirements "},"
+        requirements                          = [required] [repeatable] [description] [values] 
+        required                              = DQUOTE "required" DQUOTE ":" quoted-boolean ","; Default=false
+        repeatable                            = DQUOTE "repeatable" DQUOTE ":" quoted-boolean ","; Default=true
+        description                           = DQUOTE "description" DQUOTE ":" quoted-value
+        values                                = DQUOTE "values" DQUOTE ":[" quoted-values "]"
+
+        bag-requirements-section              = manifests-required
+                                                manifests-allowed
+                                                allow-fetch
+                                                serialization
+                                                accept-serialzation
+                                                accept-bagit-version
+                                                tag-manifests-required
+                                                tag-manifests-allowed
+                                                tag-files-required
+                                                [tag-files-allowed] ;If Tag-Files-Allowed is not provided, its value is assumed to be ['*'], i.e. all tag files are allowed.
+
+        manifests-required                    = DQUOTE "Manifests-Required" DQUOTE ":[" quoted-values "]," 
+        manifests-allowed                     = DQUOTE "Manifests-Allowed" DQUOTE ":[" quoted-values "]," 
+        allow-fetch                           = DQUOTE "Allow-Fetch.txt" ":" quoted-boolean ","
+        serialization                         = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","; Default=optional
+        accept-serialzation                   = DQUOTE "Accept-Serialization" DQUOTE ":[" quoted-values "]," 
+        accept-bagit-version                  = DQUOTE "Accept-BagIt-Version" DQUOTE ":[" quoted-version *("," quoted-version) "]," 
+        tag-manifests-required                = DQUOTE "Tag-Manifests-Required" DQUOTE ":[" quoted-values "]," 
+        tag-manifests-allowed                 = DQUOTE "Tag-Manifests-Allowed" DQUOTE ":[" quoted-values "]," 
+        tag-files-required                    = DQUOTE "Tag-Files-Required" DQUOTE ":[" quoted-values "]," 
+        tag-files-allowed                     = DQUOTE "Tag-Files-Allowed" DQUOTE ":[" quoted-values "]" 
+
+        quoted-value                          = DQUOTE 1*VCHAR DQUOTE
+        quoted-values                         = quoted-value *("," quoted-value)
+        quoted-version                        = DQUOTE DIGIT *("." DIGIT) DQUOTE
+        quoted-uri                            = DQUOTE absolute-URI DQUOTE ;See https://tools.ietf.org/html/rfc3986#section-4.3
+        quoted-email-address                  = DQUOTE addr-spec DQUOTE ;See https://tools.ietf.org/html/rfc5322#section-3.4.1
+        quoted-boolean                        = DQUOTE boolean DQUOTE
 	</prev>
       </p>
     </section>
