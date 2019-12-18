@@ -425,7 +425,7 @@
 
         optional-profile-info-contact-name    = "," DQUOTE "Contact-Name" DQUOTE ":" quoted-value
         optional-profile-info-contact-phone   = "," DQUOTE "Contact-Phone" DQUOTE ":" quoted-value
-        optional-profile-info-contact-email   = "," DQUOTE "Contact-Email," DQUOTE ":" quoted-value
+        optional-profile-info-contact-email   = "," DQUOTE "Contact-Email," DQUOTE ":" quoted-email-address
 
         bag-info-section                      = DQUOTE "Bagit-Info" DQUOTE ":{" bag-info-key-values "},"
         bag-info-key-values                   = bag-info-key-value *("," bag-info-key-value)
@@ -449,7 +449,7 @@
 
         manifests-required                    = DQUOTE "Manifests-Required" DQUOTE ":[" quoted-values "]," 
         manifests-allowed                     = DQUOTE "Manifests-Allowed" DQUOTE ":[" quoted-values "]," 
-        allow-fetch                           = DQUOTE "Allow-Fetch.txt" ":" quoted-boolean ","
+        allow-fetch                           = DQUOTE "Allow-Fetch.txt" DQUOTE ":" quoted-boolean ","
         serialization                         = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","; Default=optional
         accept-serialzation                   = DQUOTE "Accept-Serialization" DQUOTE ":[" quoted-values "]," 
         accept-bagit-version                  = DQUOTE "Accept-BagIt-Version" DQUOTE ":[" quoted-version *("," quoted-version) "]," 
