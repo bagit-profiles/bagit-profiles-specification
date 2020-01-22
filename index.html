@@ -68,8 +68,7 @@
       </p>
       <p>
         <pre>
-
-	                        BagIt Profile JSON file
+                                  BagIt Profile JSON file
                                         /       \
                                        v         v
                         Bag creating app 1  -->  Bag consuming app
@@ -236,13 +235,13 @@
           <li>
             `Tag-Files-Allowed`: LIST
             <p>
-              A list of tag files that MAY be included in a conformant Bag. Entries are either full path names relative to the bag base directory or path name patterns in which asterisks can represent zero or more characters (c.f. [glob(7)](http://man7.org/linux/man-pages/man7/glob.7.html)).
+              A list of tag files that MAY be included in a conformant Bag. Entries are either full path names relative to the bag base directory or path name patterns in which asterisks can represent zero or more characters (c.f. <a href="http://man7.org/linux/man-pages/man7/glob.7.html">glob(7)</a>).
             </p>
             <p>
               If `Tag-Files-Allowed` is not provided, its value is assumed to be `['*']`, i.e. all tag files are allowed.
             </p>
             <p>
-              As per the As per [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2">section 2</a>, these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+              As per [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2">section 2</a>, these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
             </p>
             <p>
               At least all the tag files listed in `Tag-Files-Required` must be in included in `Tag-Files-Allowed`.
