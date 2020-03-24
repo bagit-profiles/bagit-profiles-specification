@@ -69,6 +69,7 @@
       <p>
         <pre>
                                   BagIt Profile JSON file
+
                                         /       \
                                        v         v
                         Bag creating app 1  -->  Bag consuming app
@@ -391,6 +392,91 @@
           }
         </pre>
       </section>
+    </section>
+    <section id='ABNF' class=informative>
+      <h2>ABNF</h2>
+      <p>
+        The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. 
+	If there is a discrepancy between requirements in the normative sections and the ABNF, the requirements in the normative sections prevail.
+      </p>
+      <p>
+	Some definiations use the core rules as defined in [[RFC5234]] <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">appendix B.1</a>. 
+      </p>
+      <p>
+	For addr-spec see [[RFC5322]], <a href="https://tools.ietf.org/html/rfc5322#section-3.4.1">section 3.4.1</a>.
+      </p>
+      <p>
+	For absolute-URI see [[RFC3986]], <a href="https://tools.ietf.org/html/rfc3986#section-4.3">section 4.3</a>.
+      </p>
+
+      <p>
+        <section id='BagitProfileJsonfileABNF'>
+        <h3>Bagit Profile Json file</h3>
+        </section>
+        <pre>
+        profile                               = "{" profile-info-section bag-info-section bag-requirements-section "}"
+
+        profile-info-section                  = DQUOTE "BagIt-Profile-Info" DQUOTE ":{" mandatory-profile-info optional-profile-info "},"
+
+        mandatory-profile-info                = profile-info-source-organization 
+                                                profile-info-external-description 
+                                                profile-info-version
+                                                profile-info-bagit-profile-identifier
+                                                profile-info-bagit-profile-version
+
+        profile-info-source-organization      = DQUOTE "Source-Organization" DQUOTE ":" quoted-value ","
+        profile-info-external-description     = DQUOTE "External-Description" DQUOTE ":" quoted-value ","
+        profile-info-version                  = DQUOTE "Version" DQUOTE ":" quoted-version ","
+        profile-info-bagit-profile-identifier = DQUOTE "BagIt-Profile-Identifier" DQUOTE ":" quoted-uri ","
+        profile-info-bagit-profile-version    = DQUOTE "BagIt-Profile-Version" DQUOTE ":" quoted-version
+
+        optional-profile-info                 = [optional-profile-info-contact-name]
+                                                [optional-profile-info-contact-phone]
+                                                [optional-profile-info-contact-email]
+
+        optional-profile-info-contact-name    = "," DQUOTE "Contact-Name" DQUOTE ":" quoted-value
+        optional-profile-info-contact-phone   = "," DQUOTE "Contact-Phone" DQUOTE ":" quoted-value
+        optional-profile-info-contact-email   = "," DQUOTE "Contact-Email," DQUOTE ":" quoted-email-address
+
+        bag-info-section                      = DQUOTE "Bagit-Info" DQUOTE ":{" bag-info-key-values "},"
+        bag-info-key-values                   = bag-info-key-value *("," bag-info-key-value)
+        bag-info-key-value                    = quoted-value ":{" requirements "},"
+        requirements                          = [required] [repeatable] [description] [values] 
+        required                              = DQUOTE "required" DQUOTE ":" quoted-boolean ","; Default=false
+        repeatable                            = DQUOTE "repeatable" DQUOTE ":" quoted-boolean ","; Default=true
+        description                           = DQUOTE "description" DQUOTE ":" quoted-value
+        values                                = DQUOTE "values" DQUOTE ":[" quoted-values "]"
+
+        bag-requirements-section              = manifests-required
+                                                manifests-allowed
+                                                allow-fetch
+                                                serialization
+                                                accept-serialzation
+                                                accept-bagit-version
+                                                tag-manifests-required
+                                                tag-manifests-allowed
+                                                tag-files-required
+                                                [tag-files-allowed] ;If Tag-Files-Allowed is not provided, its value is assumed to be ['*'], i.e. all tag files are allowed.
+
+        manifests-required                    = DQUOTE "Manifests-Required" DQUOTE ":[" quoted-values "]," 
+        manifests-allowed                     = DQUOTE "Manifests-Allowed" DQUOTE ":[" quoted-values "]," 
+        allow-fetch                           = DQUOTE "Allow-Fetch.txt" DQUOTE ":" quoted-boolean ","
+        serialization                         = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","; Default=optional
+        accept-serialzation                   = DQUOTE "Accept-Serialization" DQUOTE ":[" quoted-values "]," 
+        accept-bagit-version                  = DQUOTE "Accept-BagIt-Version" DQUOTE ":[" quoted-version *("," quoted-version) "]," 
+        tag-manifests-required                = DQUOTE "Tag-Manifests-Required" DQUOTE ":[" quoted-values "]," 
+        tag-manifests-allowed                 = DQUOTE "Tag-Manifests-Allowed" DQUOTE ":[" quoted-values "]," 
+        tag-files-required                    = DQUOTE "Tag-Files-Required" DQUOTE ":[" quoted-values "]," 
+        tag-files-allowed                     = DQUOTE "Tag-Files-Allowed" DQUOTE ":[" quoted-values "]" 
+
+        quoted-value                          = DQUOTE 1*VCHAR DQUOTE
+        quoted-values                         = quoted-value *("," quoted-value)
+        quoted-version                        = DQUOTE DIGIT *("." DIGIT) DQUOTE
+        quoted-uri                            = DQUOTE absolute-URI DQUOTE ;See https://tools.ietf.org/html/rfc3986#section-4.3
+        quoted-email-address                  = DQUOTE addr-spec DQUOTE ;See https://tools.ietf.org/html/rfc5322#section-3.4.1
+        quoted-boolean                        = DQUOTE boolean DQUOTE
+	</prev>
+      </p>
     </section>
   </body>
 </html>
