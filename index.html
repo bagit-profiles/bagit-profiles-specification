@@ -200,13 +200,13 @@
           <li>
             `Fetch.txt-Required`: `true`|`false`
             <p>
-              A fetch.txt file is required. Specified when `Allow-Fetch.txt` is `true`. Default is `false`.
+              Only specify when `Allow-Fetch.txt` is `true`. Default is `false`.
             </p>
           </li>
           <li>
             `Data-Empty`: `true`|`false`
             <p>
-              Whether or not the `/data` directory should be empty. Default is `false`.
+              Whether or not the `/data` directory MUST be empty. Default is `false`.
             </p>
           </li>
           <li>
@@ -417,19 +417,17 @@
     <section id='ABNF' class=informative>
       <h2>ABNF</h2>
       <p>
-        The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative.
-	If there is a discrepancy between requirements in the normative sections and the ABNF, the requirements in the normative sections prevail.
+        The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. If there is a discrepancy between requirements in the normative sections and the ABNF, the requirements in the normative sections prevail.
       </p>
       <p>
-	Some definiations use the core rules as defined in [[RFC5234]] <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">appendix B.1</a>.
+        Some definiations use the core rules as defined in [[RFC5234]] <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">appendix B.1</a>.
       </p>
       <p>
-	For addr-spec see [[RFC5322]], <a href="https://tools.ietf.org/html/rfc5322#section-3.4.1">section 3.4.1</a>.
+        For addr-spec see [[RFC5322]], <a href="https://tools.ietf.org/html/rfc5322#section-3.4.1">section 3.4.1</a>.
       </p>
       <p>
-	For absolute-URI see [[RFC3986]], <a href="https://tools.ietf.org/html/rfc3986#section-4.3">section 4.3</a>.
+        For absolute-URI see [[RFC3986]], <a href="https://tools.ietf.org/html/rfc3986#section-4.3">section 4.3</a>.
       </p>
-
       <p>
         <section id='BagitProfileJsonfileABNF'>
         <h3>Bagit Profile Json file</h3>
@@ -496,7 +494,6 @@
         quoted-uri                            = DQUOTE absolute-URI DQUOTE ;See https://tools.ietf.org/html/rfc3986#section-4.3
         quoted-email-address                  = DQUOTE addr-spec DQUOTE ;See https://tools.ietf.org/html/rfc5322#section-3.4.1
         quoted-boolean                        = DQUOTE boolean DQUOTE
-	</prev>
       </p>
     </section>
   </body>
