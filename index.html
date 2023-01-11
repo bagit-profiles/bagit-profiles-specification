@@ -471,7 +471,7 @@
         bag-requirements-section              = manifests-required
                                                 manifests-allowed
                                                 allow-fetch
-                                                fetch.txt-required
+                                                fetch-required
                                                 data-empty
                                                 serialization
                                                 accept-serialzation
@@ -484,6 +484,8 @@
         manifests-required                    = DQUOTE "Manifests-Required" DQUOTE ":[" quoted-values "],"
         manifests-allowed                     = DQUOTE "Manifests-Allowed" DQUOTE ":[" quoted-values "],"
         allow-fetch                           = DQUOTE "Allow-Fetch.txt" DQUOTE ":" quoted-boolean ","
+        fetch-required                        = DQUOTE "Fetch.txt-Required" DQUOTE ":" quoted-boolean ","; Default=false
+        data-empty                            = DQUOTE "Data-Empty" DQUOTE ":" quoted-boolean ","; Default=false
         serialization                         = DQUOTE "Serialization" DQUOTE ":" DQUOTE ( "forbidden" / "required" / "optional" ) DQUOTE ","; Default=optional
         accept-serialzation                   = DQUOTE "Accept-Serialization" DQUOTE ":[" quoted-values "],"
         accept-bagit-version                  = DQUOTE "Accept-BagIt-Version" DQUOTE ":[" quoted-version *("," quoted-version) "],"
