@@ -21,7 +21,9 @@
           company: "Simon Fraser University"
         },
         {
-          name: "Tim DiLauro"
+          name: "Tim DiLauro",
+          orcid: "0000-0002-9997-3464",
+          company: "Lyrasis"
         },
         {
           name: "John Scancella",
@@ -38,7 +40,7 @@
               {
                 value: "1.3.0",
                 href: "https://bagit-profiles.github.io/bagit-profiles-specification/v-1.3.0"
-              }
+              },
               {
                 value: "1.2.0",
                 href: "https://github.com/bagit-profiles/bagit-profiles-specification/blob/c5ecfa8afe0e3de11eccb68f3f1e9d56197a1578/README.md"
@@ -420,7 +422,7 @@
         The Augmented Backus-Naur Form (ABNF) rules provided below are non-normative. If there is a discrepancy between requirements in the normative sections and the ABNF, the requirements in the normative sections prevail.
       </p>
       <p>
-        Some definiations use the core rules as defined in [[RFC5234]] <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">appendix B.1</a>.
+        Some definitions use the core rules as defined in [[RFC5234]] <a href="https://tools.ietf.org/html/rfc5234#appendix-B.1">appendix B.1</a>.
       </p>
       <p>
         For addr-spec see [[RFC5322]], <a href="https://tools.ietf.org/html/rfc5322#section-3.4.1">section 3.4.1</a>.
@@ -469,6 +471,8 @@
         bag-requirements-section              = manifests-required
                                                 manifests-allowed
                                                 allow-fetch
+                                                fetch.txt-required
+                                                data-empty
                                                 serialization
                                                 accept-serialzation
                                                 accept-bagit-version
