@@ -130,20 +130,20 @@
           <li>
             `BagIt-Profile-Info`:
             <p>
-              A list of tags that describes the Profile itself. The following tags are required in this section: "`Source-Organization`", "`External-Description`", "`Version`", and "`BagIt-Profile-Identifier`". Starting with version [`v1.2.0`],
+              A list of tags that describes the Profile itself. The following tags are required in this section: `"Source-Organization"`, `"External-Description"`, `"Version"`, and `"BagIt-Profile-Identifier"`. Starting with version [`v1.2.0`],
     `BagIt-Profile-Version` is also required.
             </p>
             <p>
               The `Source-Organization` and `External-Description` tags are taken from the reserved tags defined in [[!RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.2">section 2.2.2</a>.
             </p>
             <p>
-              The value of "`Version`" contains the version of the Profile; the value of "`BagIt-Profile-Identifier`" is the URI where the Profile file is available, and will have the same value as the "`BagIt-Profile-Identifier`" tag in `bag-info.txt`.
+              The value of `"Version"` contains the version of the Profile; the value of `"BagIt-Profile-Identifier"` is the URI where the Profile file is available, and will have the same value as the `"BagIt-Profile-Identifier"` tag in `bag-info.txt`.
             </p>
             <p>
-              The value of `BagIt-Profile-Version` contains the version of this specification that the BagIt Profile conforms to. Since the tag was introduced after version [`v1.1.0`], any profile not explicitly defining `BagIt-Profile-Version` should be treated as conforming to version [`1.1.0`] of this specification.
+              The value of `"BagIt-Profile-Version"` contains the version of this specification that the BagIt Profile conforms to. Since the tag was introduced after version [`v1.1.0`], any profile not explicitly defining `BagIt-Profile-Version` should be treated as conforming to version [`1.1.0`] of this specification.
             </p>
             <p>
-              Inclusion of "`Contact-Name`," "`Contact-Phone`" and "`Contact-Email`," as defined in [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.2">section 2.2.2</a>, OPTIONAL but is encouraged.
+              Inclusion of `"Contact-Name"`, `"Contact-Phone"` and `"Contact-Email"` is OPTIONAL as defined in [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.2">section 2.2.2</a>, but is encouraged.
             </p>
           </li>
           <li>
@@ -153,16 +153,16 @@
             </p>
               <ol>
                 <li>
-                  "required" is true or false (default false) and indicates whether or not this tag is required.
+                  `"required"` is true or false (default `false`) and indicates whether or not this tag is required.
                 </li>
                 <li>
-                  "values" is a list of acceptable values. If empty, any value is accepted.
+                  `"values"` is a list of acceptable values. If empty or missing, any value is accepted.
                 </li>
                 <li>
-                  "repeatable" is true or false (default true) and indicates whether or not this tag can be repeated in `bag-info.txt`.
+                  `"repeatable"` is `true` or `false` (default `true`) to indicate whether or not this tag can be repeated in `bag-info.txt`.
                 </li>
                 <li>
-                  "description" is a string providing notes or description related to this tag.
+                  `"description"` is a string providing notes or description related to this tag.
                 </li>
               </ol>
             <p>
