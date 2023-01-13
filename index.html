@@ -140,7 +140,7 @@
               The value of "`Version`" contains the version of the Profile; the value of "`BagIt-Profile-Identifier`" is the URI where the Profile file is available, and will have the same value as the "`BagIt-Profile-Identifier`" tag in `bag-info.txt`.
             </p>
             <p>
-              The value of `BagIt-Profile-Version` contains the version of this specification that the BagIt Profile conforms to. Since the tag was introduced after version [`v1.1.0`], any profile not explicitly defining `BagIt-Profile-Version` should be treated as conforming to version [`1.1.0`] of this specification.
+              The value of `BagIt-Profile-Version` contains the version of this specification that the BagIt Profile conforms to, e.g. `"1.3.0"`. Since the tag was introduced after version `1.1.0`, any profile not explicitly defining `BagIt-Profile-Version` should be treated as conforming to version `1.1.0` of this specification.
             </p>
             <p>
               Inclusion of "`Contact-Name`," "`Contact-Phone`" and "`Contact-Email`," as defined in [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.2">section 2.2.2</a>, OPTIONAL but is encouraged.
@@ -226,7 +226,7 @@
           <li>
             `Accept-BagIt-Version`: LIST
             <p>
-              A list of BagIt version numbers that will be accepted. At least one version is required.
+              A list of BagIt version numbers that will be accepted, e.g. "1.0". At least one version is required.
             </p>
           </li>
           <li>
@@ -286,6 +286,7 @@
           {
              "BagIt-Profile-Info":{
                 "BagIt-Profile-Identifier":"http://www.library.yale.edu/mssa/bagitprofiles/disk_images.json",
+	        "BagIt-Profile-Version": "1.3.0",
                 "Source-Organization":"Yale University",
                 "Contact-Name":"Mark Matienzo",
                 "External-Description":"BagIt Profile for packaging disk images",
