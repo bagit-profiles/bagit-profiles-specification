@@ -4,7 +4,7 @@ The purpose of the [BagIt Profiles Specification](https://bagit-profiles.github.
 
 ## Status of this specification
 
-Current version: 1.3.0 (2019-12-12).
+[Current version](https://bagit-profiles.github.io/bagit-profiles-specification/): 1.4.0 (2023-01-13).
 
 ## How To Participate
 
