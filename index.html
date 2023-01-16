@@ -208,7 +208,10 @@
           <li>
             `Data-Empty`: `true`|`false`
             <p>
-              If "true", the `/data` directory must hold the minimum contents for the directory to be included in the archive. If "false", no constraints are placed on the `/data` directory. Default is "false".
+	      If `true` then the `/data` directory must contain either
+	      no files or a single zero byte length file.  If `false`,
+	      no constraints are placed on the `/data`
+	      directory. Default is `false`.
             </p>
           </li>
           <li>
