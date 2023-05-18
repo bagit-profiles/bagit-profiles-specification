@@ -250,10 +250,10 @@
           <li>
             `Tag-Files-Required`: LIST
             <p>
-              A list of a tag files that must be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.4">section 2.2.4</a>, these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
+              A list of a tag files that MUST be included in a conformant Bag. Entries are full path names relative to the Bag base directory. As per [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2.2.4">section 2.2.4</a>, these tag files need not be listed in tag manifiest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
             </p>
             <p>
-              Every file in `Tag-Files-Required` must also be present in `Tag-Files-Allowed`.
+              Every file in `Tag-Files-Required` MUST also be covered by the path patterns in `Tag-Files-Allowed`.
             </p>
           </li>
           <li>
@@ -262,7 +262,7 @@
               A list of tag files that MAY be included in a conformant Bag. Entries are either full path names relative to the bag base directory or path name patterns in which asterisks can represent zero or more characters (c.f. <a href="http://man7.org/linux/man-pages/man7/glob.7.html">glob(7)</a>).
             </p>
             <p>
-              If `Tag-Files-Allowed` is not provided, its value is assumed to be `['*']`, i.e. all tag files are allowed.
+              Conformants bags MUST NOT contain any payload that do not match the specified `Tag-Files-Allowed`. If `Tag-Files-Allowed` is not provided, its value is assumed to be `['*']`, i.e. all tag files are allowed.
             </p>
             <p>
               As per [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2">section 2</a>, these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
