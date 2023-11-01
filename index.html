@@ -262,7 +262,7 @@
               A list of tag files that MAY be included in a conformant Bag. Entries are either full path names relative to the bag base directory or path name patterns in which asterisks can represent zero or more characters (c.f. <a href="http://man7.org/linux/man-pages/man7/glob.7.html">glob(7)</a>).
             </p>
             <p>
-              Conformants bags MUST NOT contain any payload that do not match the specified `Tag-Files-Allowed`. If `Tag-Files-Allowed` is not provided, its value is assumed to be `['*']`, i.e. all tag files are allowed.
+              Conformants bags MUST NOT contain any payload that does not match the specified `Tag-Files-Allowed`. If `Tag-Files-Allowed` is not provided, its value is assumed to be `['*']`, i.e. all tag files are allowed.
             </p>
             <p>
               As per [[RFC8493]] <a href="https://tools.ietf.org/html/rfc8493#section-2">section 2</a>, these tag files need not be listed in tag manifest files. `Tag-Files-Required` SHOULD NOT include `bag-info.txt` (which is always required), nor any required manifest files, which instead are required by `Manifests-Required` and `Tag-Manifests-Required`.
@@ -283,10 +283,10 @@
           <li>
             `Payload-Files-Allowed`: LIST
             <p>
-              A kist of payload files or directories that MAY be included in a conformant Bag. Each entry MUST be either a full path names relative to the bag base directory or a path name pattern in which asterisks can represent zero or more characters (c.f. [glob(7)](http://man7.org/linux/man-pages/man7/glob.7.html)). Paths requiring permitted directories MUST end with `/*` (not `/`).<br>
+              A list of payload files or directories that MAY be included in a conformant Bag. Each entry MUST be either a full path name relative to the bag base directory, or a path name pattern in which asterisks can represent zero or more characters (c.f. [glob(7)](http://man7.org/linux/man-pages/man7/glob.7.html)). Paths requiring permitted directories MUST end with `/*` (not `/`).<br>
             </p>
             <p>
-              Conformants bags MUST NOT contain any payload that do not match the specified `Payload-Files-Allowed`. If `Payload-Files-Allowed` is not provided, its value is assumed to be ['*'], i.e. all payload files and directories are allowed.
+              Conformants bags MUST NOT contain any payload that does not match the specified `Payload-Files-Allowed`. If `Payload-Files-Allowed` is not provided, its value is assumed to be ['*'], i.e. all payload files and directories are allowed.
             </p>
             <p>
               At least all the payload paths listed in `Payload-Files-Required` MUST be covered by the list of path patterns in `Payload-Files-Allowed`.
